@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Form</title>
+</head>
+
+<body>
+
+    <h1>Add a New Product</h1>
+    <form method="POST" action="{% url 'purchase_add' %}">
+        {% csrf_token %}
+
+        <label for="category">Enter material :</label>
+        <input type="text" id="category" name="materialname"><br>
+
+        <label for="category">Enter quantity :</label>
+        <input type="number" id="category" name="quantity"><br>
+
+        <label for="category">Enter Amount :</label>
+        <input type="number" id="category" name="amount"><br>
+        
+        <label for="category">choose supplier Name :</label>
+        <select name="supplier">
+            {% for supplier in suppliers %}
+            <option value="{{supplier.sup_id}}">{{supplier.sup_name}}</option>
+            {% endfor %}
+        </select><br>
+
+        <input type="submit" value="Submit">
+    </form>
+    {% if msg %}
+    {{msg}}
+    {% endif %}
+
+</body>
+
+</html>
