@@ -59,6 +59,7 @@
                   <th scope="col">shipping_charges</th>
                   <th scope="col">order_date</th>
                   <th scope="col">total</th>
+                  <th scope="col">delete </th>
                </tr>
 
                {% for vtwork in billing %}
@@ -69,7 +70,13 @@
                   <td>{{vtwork.shipping_charges}}</td>
                   <td>{{vtwork.order_date}}</td>
                   <td>{{vtwork.total}}</td>
-
+                  <td>
+                     <p class="table_cell">
+                        <a href="/delete_billing/{{vtwork.bill_id}}">
+                           <span class="icon"><i class="bi-x-circle-fill">delete</i></span>
+                        </a>
+                     </p>
+                  </td>
                </tr>
                {% endfor %}
 

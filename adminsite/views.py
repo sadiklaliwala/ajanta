@@ -194,6 +194,15 @@ def delete_admin(request,admin_id):
     deletestaff.delete()
     ans=Admin.objects.all()
     return redirect("show")
+
+def delete_billing(request,bill_id):    
+    deletestaff=Billing.objects.get(bill_id=bill_id)
+    deletestaff.delete()
+    ans=Admin.objects.all()
+    return redirect("show")
+
+
+
     # return render(request,'delete.html',{'Enrolled':ans})
 
     # return render (request , "delete.html" ,{'ans' : ans})

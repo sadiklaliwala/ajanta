@@ -25,5 +25,7 @@ urlpatterns = [
       path('admin_add/',views.admin_add, name ="admin_add"),
 
       # delete
-      path('delete_admin/<int:admin_id>', views.delete_admin ,name="delete_admin/<int:admin_id>")
+      path('delete_admin/<int:admin_id>', views.delete_admin ,name="delete_admin"),
+      path('delete_billing/<int:bill_id>', views.delete_billing ,name="delete_billing"),
+
 ]
