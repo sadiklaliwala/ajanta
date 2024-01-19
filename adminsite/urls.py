@@ -27,5 +27,6 @@ urlpatterns = [
       # delete
       path('delete_admin/<int:admin_id>', views.delete_admin ,name="delete_admin"),
       path('delete_billing/<int:bill_id>', views.delete_billing ,name="delete_billing"),
+      path('delete_delivery/<int:d_id>', views.delete_delivery ,name="delete_delivery"),
 
 ]

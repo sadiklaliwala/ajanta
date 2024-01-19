@@ -201,6 +201,11 @@ def delete_billing(request,bill_id):
     ans=Admin.objects.all()
     return redirect("show")
 
+def delete_delivery(request , d_id):
+    deletestaff=Delivery.objects.get(d_id=d_id)
+    deletestaff.delete()
+    ans=Admin.objects.all()
+    return redirect("show")
 
 
     # return render(request,'delete.html',{'Enrolled':ans})
