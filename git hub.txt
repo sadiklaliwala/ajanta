@@ -1,3 +1,5 @@
+only for updating data in github
 git status 
 git add .
 git commit -m "sadik"
+git push -u origin master
