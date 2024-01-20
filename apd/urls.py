@@ -20,35 +20,37 @@ from adminsite import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+      path('admindasheboard/', views.admindasheboard,name="admindasheboard"),
     # path('',include('adminsite.urls'))
      #all data show 
       path('show/',views.show, name ="show"),
-      
-
+      path('bill_show',views.billingshow, name="billingshow"),
       path('admin_show', views.adminshow, name="adminshow"),
-      #category 
-      path('category_add', views.category_add ,name="category_add"),
-      # delivery
-      path('delivery_add', views.delivery_add ,name="delivery_add"),
-      # navbar
-      path('nav/',views.nav, name ='nav'),
+      path('category_show', views.categoryhow, name="categoryhow"),
+      path('customer_show', views.customershow, name="customershow"),
+      path('delivery_show', views.deliveryshow, name="deliveryshow"),
+      path('employee_show', views.employeeshow, name="employeeshow"),
+      path('feedback_show', views.feedbackshow, name="feedbackshow"),
+      path('offer_show', views.offershow, name="offershow"),   
+      path('production_show', views.productionshow, name="productionshow"),
+      path('product_show', views.productshow, name="productshow"),
+      path('purchase_show', views.purchaseshow, name="purchaseshow"),
+      path('raw_show', views.rawmaterialshow, name="rawmaterialshow"),
+      path('recycle_show', views.recyclingshow, name="recyclingshow"),
+      path('sales_show', views.salesshow, name="salesshow"),
+      path('supplier_show', views.suppliershow, name="suppliershow"),
+      path('work_show', views.workshow, name="workshow"),
+    #   path('nav/',views.nav, name ='nav'),
 
-      path('admindasheboard/', views.admindasheboard,name="admindasheboard"),
-      
-      # purchaseform
-      path('purchase_add/',views.purchase_add, name ='purchase_add'),
-      
-      #work
-      path('workform/',views.workform, name ='workform'),
-      
-      #customer
-      path('customer_add/',views.customer_add, name ="customer_add"),
-      
-      # supplier 
-      path('sup_add/',views.sup_add, name ="sup_add"),
-      
-      # admin 
+    #   add
       path('admin_add/',views.admin_add, name ="admin_add"),
+      path('category_add', views.category_add ,name="category_add"),
+      path('customer_add/',views.customer_add, name ="customer_add"),
+      path('delivery_add', views.delivery_add ,name="delivery_add"),
+      path('purchase_add/',views.purchase_add, name ='purchase_add'),
+      path('sup_add/',views.sup_add, name ="sup_add"), 
+      path('work_add/',views.workform, name ='workform'),
+      
 
       # delete
       path('delete_admin/<int:admin_id>', views.delete_admin ,name="delete_admin"),

@@ -197,8 +197,8 @@ def order_add(request):
         fvcustomer=request.POST.get("")
         vcustomer=Customer.objects.get(customer_id=fvcustomer)
         vorder_date=request.POST.get("")
-        fvproduct=Product.objects.get(product_id=fvproduct)
         vproduct=request.POST.get("")
+        fvproduct=Product.objects.get(product_id=vproduct)
         vorder_quantity=request.POST.get("")
         vpayment=request.POST.get("")
         vorder1=Order1(order_id=vorder_id,customer=vcustomer,order_date=vorder_date,product=vproduct,order_quantity=vorder_quantity,payment=vpayment)
@@ -301,7 +301,7 @@ def workshow(request):
 
 def purchaseshow(request):
     vpurchase =Purchase.objects.all()
-    params ={'purchase':params}
+    params ={'purchase':Purchase.objects.all()}
     return render (request , "purchaseshow.html",params)
 
 def rawmaterialshow(request):
@@ -323,6 +323,8 @@ def offershow(request):
     offer=Offer.objects.all()
     params ={'offer':offer}
     return render (request , "offershow.html",params)
+
+
 
     # return render(request,'delete.html',{'Enrolled':ans})
 
