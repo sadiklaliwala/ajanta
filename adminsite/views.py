@@ -110,11 +110,27 @@ def admin_add(request):
 
 def category_add(request):
     if request.method=="POST":
-        vcategory_name=request.POST.get('categoryname')
+        vcategory_name=request.POST.get("categoryname")
         vcategory=Category(category_name=vcategory_name)
         vcategory.save()
         return render (request , "add_data/category_add.html")
     return render (request , "add_data/category_add.html")
+
+def delivery_add(request):
+    if request.method=="POST":
+        vcustomername=request.POST.get('customername')
+        fvcustomer=Customer.objects.get(customer=vcustomername)
+        vaddress =request.POST.get("address")
+        vproduct =request.POST.get("product")
+        vd_date =request.POST.get("deliverydate")
+        vemp =request.POST.get("employee")
+        vquantity =request.POST.get("quantity")
+        vdelivery=Delivery(customer=fvcustomer,address=vaddress,product=vproduct,d_date=vd_date,emp=vemp,quantity=vquantity)
+        vdelivery.save()
+        return render (request , "add_data/delivery_add.html")
+    params={'customer':Customer.objects.all()}
+    return render (request , "add_data/delivery_add.html",params)
+
 
 def product_add(request):
     if request.method=="POST":

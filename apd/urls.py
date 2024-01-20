@@ -26,6 +26,8 @@ urlpatterns = [
       
       #category 
       path('category_add', views.category_add ,name="category_add"),
+      # delivery
+      path('delivery_add', views.delivery_add ,name="delivery_add"),
       # navbar
       path('nav/',views.nav, name ='nav'),
 
