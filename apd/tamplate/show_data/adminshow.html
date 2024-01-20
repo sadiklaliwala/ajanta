@@ -1,7 +1,8 @@
-{% extends "base.html" %}
+{% extends "basepage.html" %}
+{% load static %}
 
 
-<!DOCTYPE html>
+{% comment %} <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -11,8 +12,14 @@
    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
     <title>Document</title>
-</head>
-<body>
+</head> {% endcomment %}
+{% block user  %}
+      this is the tag
+{% endblock user  %}
+
+
+{% comment %} {% block body %}
+
     <center>
         <!-- <h2>HTML Table</h2> -->
         <div style="width: 50vw; height: auto;">
@@ -42,5 +49,4 @@
   
         </div>
      </center>
-</body>
-</html>
+{% endblock body %} {% endcomment %}

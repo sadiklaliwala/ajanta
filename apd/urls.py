@@ -40,6 +40,7 @@ urlpatterns = [
       path('sales_show', views.salesshow, name="salesshow"),
       path('supplier_show', views.suppliershow, name="suppliershow"),
       path('work_show', views.workshow, name="workshow"),
+      path('adminbase' ,views.adminbase , name= "adminbase"),
     #   path('nav/',views.nav, name ='nav'),
 
     #   add
