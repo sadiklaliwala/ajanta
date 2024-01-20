@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <!-- <h2>HTML Table</h2> -->
+        <div style="width: 50vw; height: auto;">
+           <table class="table table-striped">
+              <thead class="thead-dark">
+                 <tr>
+                    <th scope="col">billing id </th>
+                    <th scope="col">customer</th>
+                    <th scope="col">order</th>
+                    <th scope="col">shipping_charges</th>
+                    <th scope="col">order_date</th>
+                    <th scope="col">total</th>
+                 </tr>
+  
+                 {% for vtwork in billing %}
+                 <tr>
+                    <td>{{vtwork.bill_id}}</td>
+                    <td>{{vtwork.customer}}</td>
+                    <td>{{vtwork.order}}</td>
+                    <td>{{vtwork.shipping_charges}}</td>
+                    <td>{{vtwork.order_date}}</td>
+                    <td>{{vtwork.total}}</td>
+  
+                 </tr>
+                 {% endfor %}
+  
+        </div>
+     </center>
+</body>
+</html>

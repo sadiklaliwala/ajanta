@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <!-- <h2>HTML Table</h2> -->
+        <div style="width: 50vw; height: auto;">
+           <table class="table table-striped">
+              <thead class="thead-dark">
+                 <tr>
+                    <th>order_id</th>
+                    <th>customer</th>
+                    <th>order_date</th>
+                    <th>product</th>
+                    <th>order_quantity</th>
+                    <th>payment</th>
+                 </tr>
+                 {% for vtwork in order1 %}
+                 <tr>
+                    <td>{{vtwork.order_id}}</td>
+                    <td>{{vtwork.customer}}</td>
+                    <td>{{vtwork.order_date}}</td>
+                    <td>{{vtwork.product}}</td>
+                    <td>{{vtwork.order_quantity}}</td>
+                    <td>{{vtwork.payment}}</td>
+                 </tr>
+                 {% endfor %}
+  
+        </div>
+     </center>
+</body>
+</html>
