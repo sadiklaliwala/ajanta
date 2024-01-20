@@ -24,6 +24,8 @@ urlpatterns = [
      #all data show 
       path('show/',views.show, name ="show"),
       
+      #category 
+      path('category_add', views.category_add ,name="category_add"),
       # navbar
       path('nav/',views.nav, name ='nav'),
 

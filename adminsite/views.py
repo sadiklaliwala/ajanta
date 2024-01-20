@@ -108,6 +108,14 @@ def admin_add(request):
         return render (request , "add_data/admin_add.html",params)
     return render (request , "add_data/admin_add.html")
 
+def category_add(request):
+    if request.method=="POST":
+        vcategory_name=request.POST.get('categoryname')
+        vcategory=Category(category_name=vcategory)
+        vcategory.save()
+        return render (request , "add_data/category_add.html")
+    return render (request , "add_data/category_add.html")
+
 def product_add(request):
     if request.method=="POST":
         fvcategory=request.POST.get("")
@@ -214,7 +222,15 @@ def admindasheboard(request ):
     # return render(request,'delete.html',{'Enrolled':ans})
 
     # return render (request , "delete.html" ,{'ans' : ans})
-#  add this in your html file
+ 
+
+
+
+
+
+
+
+# add this in your html file
 #      <p class ="table_cell">
 #      <a href="/editcust/{{i.cust_id}}">
 #      <span class="icon"><i class="fas fa-edit"></i></span>
