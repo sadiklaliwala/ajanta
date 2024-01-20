@@ -111,7 +111,7 @@ def admin_add(request):
 def category_add(request):
     if request.method=="POST":
         vcategory_name=request.POST.get('categoryname')
-        vcategory=Category(category_name=vcategory)
+        vcategory=Category(category_name=vcategory_name)
         vcategory.save()
         return render (request , "add_data/category_add.html")
     return render (request , "add_data/category_add.html")
@@ -223,7 +223,6 @@ def admindasheboard(request ):
 
     # return render (request , "delete.html" ,{'ans' : ans})
  
-
 
 
 
