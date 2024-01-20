@@ -8,6 +8,8 @@ urlpatterns = [
       
       # navbar
       path('nav/',views.nav, name ='nav'),
+
+      path('admindasheboard/', views.admindasheboard,name="admindasheboard"),
       
       # purchaseform
       path('purchase_add/',views.purchase_add, name ='purchase_add'),

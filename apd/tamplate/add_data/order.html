@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Form</title>
+</head>
+
+<body>
+
+    <h1>Add a New Order</h1>
+    <form method="POST" action="{% url 'order' %}">
+        {% csrf_token %}
+
+        
+
+        <label for="category">Enter customer:</label>
+        <input type="text" id="category" name="customer"><br>
+
+        <label for="category">Enter order_date:</label>
+        <input type="date" id="category" name="orderdate"><br>
+
+        <label for="category">Enter product :</label>
+        <input type="text" id="category" name="product"><br>
+
+        <label for="category">Enter contact no.:</label>
+        <input type="number" id="category" name="contact"><br>
+        
+        <label for="category">Enter order quantity :</label>
+        <input type="number" id="category" name="o_quantity"><br>
+
+        <label for="category">Enter Payment:</label>
+        <input type="number" id="category" name="payment"><br>
+
+        
+
+        <input type="submit" value="Submit">
+    </form>
+    {% if msg %}
+    {{msg}}
+    {% endif %}
+
+</body>
+
+</html>

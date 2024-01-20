@@ -207,6 +207,9 @@ def delete_delivery(request , d_id):
     ans=Admin.objects.all()
     return redirect("show")
 
+def admindasheboard(request ):
+    return render (request , "admindasheboard.html")
+
 
     # return render(request,'delete.html',{'Enrolled':ans})
 
@@ -234,4 +237,3 @@ def delete_delivery(request , d_id):
 #     ff.mediafile=request.POST['mediafile']
     
 #     ff.save()
-

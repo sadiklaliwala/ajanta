@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recycling Form</title>
+</head>
+
+<body>
+
+    <h1>Recycling</h1>
+    <form method="POST" action="{% url 'recycling' %}">
+        {% csrf_token %}
+
+        <label for="category">Enter Recycling_date:</label>
+        <input type="text" id="category" name="recyclingdate"><br>
+
+        <label for="category">Enter Quantity :</label>
+        <input type="number" id="category" name="quantity"><br>
+
+        
+        <input type="submit" value="Submit">
+    </form>
+    {% if msg %}
+    {{msg}}
+    {% endif %}
+
+</body>
+
+</html>
