@@ -24,6 +24,10 @@ urlpatterns = [
      #all data show 
       path('show/',views.show, name ="show"),
       
+      #category 
+      path('category_add', views.category_add ,name="category_add"),
+      # delivery
+      path('delivery_add', views.delivery_add ,name="delivery_add"),
       # navbar
       path('nav/',views.nav, name ='nav'),
 
@@ -48,5 +52,4 @@ urlpatterns = [
       path('delete_admin/<int:admin_id>', views.delete_admin ,name="delete_admin"),
       path('delete_billing/<int:bill_id>', views.delete_billing ,name="delete_billing"),
       path('delete_delivery/<int:d_id>', views.delete_delivery ,name="delete_delivery"),
-
 ]

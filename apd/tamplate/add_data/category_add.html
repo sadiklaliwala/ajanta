@@ -10,13 +10,12 @@
 <body>
 
     <h1>Add a New Product</h1>
-    <form method="POST" action="{% url 'category' %}">
+    <form method="POST" action="{% url 'category_add' %}">
         {% csrf_token %}
 
         <label for="category">Enter Category:</label>
         <input type="text" id="category" name="categoryname"><br>
 
-        
 
         <input type="submit" value="Submit">
     </form>

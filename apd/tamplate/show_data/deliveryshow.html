@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <!-- <h2>HTML Table</h2> -->
+        <div style="width: 50vw; height: auto;">
+  
+           <table class="table table-striped">
+              <thead class="thead-dark">
+                 <tr>
+                    <th>d_id </th>
+                    <th>customer</th>
+                    <th>address </th>
+                    <th>product</th>
+                    <th>d_date </th>
+                    <th> emp </th>
+                    <th>quantity </th>
+                 </tr>
+                 {% for vtwork in delivery %}
+                 <tr>
+                    <td>{{vtwork.d_id}}</td>
+                    <td>{{vtwork.customer}}</td>
+                    <td>{{vtwork.address}}</td>
+                    <td>{{vtwork.product}}</td>
+                    <td>{{vtwork.d_date}}</td>
+                    <td>{{vtwork.emp}}</td>
+                    <td>{{vtwork.quantity}}</td>
+                 </tr>
+                 {% endfor %}
+  
+        </div>
+     </center>
+</body>
+</html>

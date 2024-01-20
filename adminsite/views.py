@@ -108,6 +108,30 @@ def admin_add(request):
         return render (request , "add_data/admin_add.html",params)
     return render (request , "add_data/admin_add.html")
 
+def category_add(request):
+    if request.method=="POST":
+        vcategory_name=request.POST.get("categoryname")
+        vcategory=Category(category_name=vcategory_name)
+        vcategory.save()
+        return render (request , "add_data/category_add.html")
+    return render (request , "add_data/category_add.html")
+
+def delivery_add(request):
+    if request.method=="POST":
+        vcustomername=request.POST.get('customername')
+        fvcustomer=Customer.objects.get(customer=vcustomername)
+        vaddress =request.POST.get("address")
+        vproduct =request.POST.get("product")
+        vd_date =request.POST.get("deliverydate")
+        vemp =request.POST.get("employee")
+        vquantity =request.POST.get("quantity")
+        vdelivery=Delivery(customer=fvcustomer,address=vaddress,product=vproduct,d_date=vd_date,emp=vemp,quantity=vquantity)
+        vdelivery.save()
+        return render (request , "add_data/delivery_add.html")
+    params={'customer':Customer.objects.all()}
+    return render (request , "add_data/delivery_add.html",params)
+
+
 def product_add(request):
     if request.method=="POST":
         fvcategory=request.POST.get("")
@@ -303,7 +327,14 @@ def offershow(request)
     # return render(request,'delete.html',{'Enrolled':ans})
 
     # return render (request , "delete.html" ,{'ans' : ans})
-#  add this in your html file
+ 
+
+
+
+
+
+
+# add this in your html file
 #      <p class ="table_cell">
 #      <a href="/editcust/{{i.cust_id}}">
 #      <span class="icon"><i class="fas fa-edit"></i></span>

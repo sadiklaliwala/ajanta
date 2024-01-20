@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <!-- <h2>HTML Table</h2> -->
+        <div style="width: 50vw; height: auto;">
+           <table class="table table-striped table-responsive">
+              <thead class="thead-dark">
+                 <tr>
+                    <th>product_id</th>
+                    <th>category</th>
+                    <th>product_name</th>
+                    <th>material</th>
+                    <th>image</th>
+                    <th>product_price</th>
+                    <th>product_weight</th>
+                    <th>product_quantity</th>
+                    <th>product_color</th>
+                 </tr>
+                 {% for vtwork in product %}
+                 <tr>
+                    <td>{{vtwork.product_id}}</td>
+                    <td>{{vtwork.category}}</td>
+                    <td>{{vtwork.product_name}}</td>
+                    <td>{{vtwork.material}}</td>
+                    <td>{{vtwork.image}}</td>
+                    <td>{{vtwork.product_price}}</td>
+                    <td>{{vtwork.product_weight}}</td>
+                    <td>{{vtwork.product_quantity}}</td>
+                    <td>{{vtwork.product_color}}</td>
+                 </tr>
+                 {% endfor %}
+  
+        </div>
+     </center>
+</body>
+</html>
