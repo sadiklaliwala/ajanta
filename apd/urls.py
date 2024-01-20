@@ -24,6 +24,8 @@ urlpatterns = [
      #all data show 
       path('show/',views.show, name ="show"),
       
+
+      path('admin_show', views.adminshow, name="adminshow"),
       #category 
       path('category_add', views.category_add ,name="category_add"),
       # delivery

@@ -237,7 +237,7 @@ def admindasheboard(request ):
 def adminshow(request):
     admin=Admin.objects.all()
     params ={'admin':admin}
-    return render (request , "adminshow.html",params)
+    return render (request , "show_data/adminshow.html",params)
 
 def billingshow(request):
     billing=Billing.objects.all()
