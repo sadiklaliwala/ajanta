@@ -10,7 +10,7 @@
 <body>
 
     <h1>Add a New Product</h1>
-    <form method="POST" action="{% url 'offer' %}">
+    <form method="POST" action="{% url 'offer_add' %}">
         {% csrf_token %}
 
         <label for="category">Enter Starting_date:</label>

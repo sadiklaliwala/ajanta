@@ -10,7 +10,7 @@
 <body>
 
     <h1>Add feedback</h1>
-    <form method="POST" action="{% url 'feedback' %}">
+    <form method="POST" action="{% url 'feedback_add' %}">
         {% csrf_token %}
 
         <label for="category">Enter Feedback:</label>
