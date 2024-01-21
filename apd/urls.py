@@ -20,7 +20,7 @@ from adminsite import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-      path('admindasheboard/', views.admindasheboard,name="admindasheboard"),
+    path('admindasheboard/', views.admindasheboard,name="admindasheboard"),
       
     # path('',include('adminsite.urls'))
      #all data show 
@@ -71,4 +71,5 @@ urlpatterns = [
       path('delete_admin/<int:admin_id>', views.delete_admin ,name="delete_admin"),
       path('delete_billing/<int:bill_id>', views.delete_billing ,name="delete_billing"),
       path('delete_delivery/<int:d_id>', views.delete_delivery ,name="delete_delivery"),
+
 ]
