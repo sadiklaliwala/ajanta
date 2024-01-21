@@ -234,13 +234,10 @@ def delete_delivery(request , d_id):
 def admindasheboard(request ):
     return render (request , "admindasheboard.html")
 
-<<<<<<< HEAD
-=======
 def adminbase(request ):
     return render (request , "basepage.html")
 
 
->>>>>>> df823b1714c221ebf3ef8c5c33e1bd01f4244dcf
 def adminshow(request):
     admin=Admin.objects.all()
     params ={'admin':admin}
