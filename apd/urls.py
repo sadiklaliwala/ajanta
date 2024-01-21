@@ -52,6 +52,14 @@ urlpatterns = [
       path('purchase_add/',views.purchase_add, name ='purchase_add'),
       path('sup_add/',views.sup_add, name ="sup_add"), 
       path('work_add/',views.workform, name ='workform'),
+      path('employee_add' ,views.employee_add,name="employee"),
+      path('order_add' ,views.order_add,name="order"),
+      path('billing_add' ,views.billing_add,name="billing"),
+      path('feedback_add' ,views.feedback_add,name="feedback_add"),
+      path('offer_add' ,views.offer_add,name="offer_add"),
+      path('rawmaterial_add',views.rawmaterial_add,name="rawmaterial_add"),
+      path('recycling_add',views.recycling_add,name="recycling_add"),
+
       
 
       # delete

@@ -1,3 +1,6 @@
+from email.contentmanager import raw_data_manager
+from statistics import quantiles
+from urllib import request
 from django.shortcuts import render,HttpResponse ,redirect
 from django.http import HttpResponseRedirect
 from .models import Admin ,Work ,Purchase ,Supplier,Billing,Category
@@ -31,6 +34,62 @@ def show(request ):
 # navebar
 def nav(request):
   return render (request , "nav.html" )
+
+def billing_add(request):
+    if request.method=='POST':
+        vcustomer=request.POST.get("")
+        fvcustomer=request.POST.get(customer=vcu)
+        vorder=request.POST.get("")
+        vshipping_charges=request.POST.get("")
+        vorder_date=request.POST.get("")
+        vtotal=request.POST.get("")
+        vbilling=Billing(customer=fvcustomer,order=vorder,shipping_charges=vshipping_charges,order_date=vorder_date,total=vtotal)
+        vbilling.save()
+        return render(request , "add_data/billing.html")
+    params={'category_object':Category.objects.all()}
+    return render (request ,'add_data/billing.html',params)    
+
+def admin_add(request):
+    if request.method == "POST" :
+        vadminname=request.POST.get('admin_name')
+        vpassword=request.POST.get('password')
+        vadmin=Admin(admin_name=vadminname,password=vpassword)
+        vadmin.save()
+        params={'msg':'massage successfully '}
+        return render (request , "add_data/admin_add.html",params)
+    return render (request , "add_data/admin_add.html")
+
+def customer_add(request): 
+    if request.method=="POST":
+        vcustomer=Customer(
+            customer_fname=request.POST.get('admin_name'),
+            customer_lname=request.POST.get('admin_name'),
+            contact_number=request.POST.get('admin_name'),
+            customer_gender=request.POST.get('admin_name'),
+            customer_dob=request.POST.get('admin_name'),
+            customer_email=request.POST.get('admin_name'),
+            customer_password=request.POST.get('admin_name'),
+            address=request.POST.get('admin_name'),
+            customer_pincode=request.POST.get('admin_name'))
+        vcustomer.save()
+        params={'msg':'massage successfully '}
+        return render (request , "create.html",params)
+    return render (request , "add_data/customer_add.html")
+
+def delivery_add(request):
+    if request.method=="POST":
+        vcustomername=request.POST.get('customername')
+        fvcustomer=Customer.objects.get(customer=vcustomername)
+        vaddress =request.POST.get("address")
+        vproduct =request.POST.get("product")
+        vd_date =request.POST.get("deliverydate")
+        vemp =request.POST.get("employee")
+        vquantity =request.POST.get("quantity")
+        vdelivery=Delivery(customer=fvcustomer,address=vaddress,product=vproduct,d_date=vd_date,emp=vemp,quantity=vquantity)
+        vdelivery.save()
+        return render (request , "add_data/delivery_add.html")
+    params={'customer':Customer.objects.all()}
+    return render (request , "add_data/delivery_add.html",params)
 
 def purchase_add(request):
     if request.method =="POST":
@@ -70,23 +129,6 @@ def workform(request):
     params={'n':n}
     return render (request , "workform.html", params)
 
-def customer_add(request):        
-    if request.method=="POST":
-        vcustomer=Customer(
-            customer_fname=request.POST.get('admin_name'),
-            customer_lname=request.POST.get('admin_name'),
-            contact_number=request.POST.get('admin_name'),
-            customer_gender=request.POST.get('admin_name'),
-            customer_dob=request.POST.get('admin_name'),
-            customer_email=request.POST.get('admin_name'),
-            customer_password=request.POST.get('admin_name'),
-            address=request.POST.get('admin_name'),
-            customer_pincode=request.POST.get('admin_name'))
-        vcustomer.save()
-        params={'msg':'massage successfully '}
-        return render (request , "create.html",params)
-    return render (request , "add_data/customer_add.html")
-   
 def sup_add(request):
     if request.method=="POST":    
         vsup_name=request.POST.get("s_name")
@@ -98,16 +140,6 @@ def sup_add(request):
 
     return render(request , "add_data//sup_add.html")
 
-def admin_add(request):
-    if request.method == "POST" :
-        vadminname=request.POST.get('admin_name')
-        vpassword=request.POST.get('password')
-        vadmin=Admin(admin_name=vadminname,password=vpassword)
-        vadmin.save()
-        params={'msg':'massage successfully '}
-        return render (request , "add_data/admin_add.html",params)
-    return render (request , "add_data/admin_add.html")
-
 def category_add(request):
     if request.method=="POST":
         vcategory_name=request.POST.get("categoryname")
@@ -115,22 +147,6 @@ def category_add(request):
         vcategory.save()
         return render (request , "add_data/category_add.html")
     return render (request , "add_data/category_add.html")
-
-def delivery_add(request):
-    if request.method=="POST":
-        vcustomername=request.POST.get('customername')
-        fvcustomer=Customer.objects.get(customer=vcustomername)
-        vaddress =request.POST.get("address")
-        vproduct =request.POST.get("product")
-        vd_date =request.POST.get("deliverydate")
-        vemp =request.POST.get("employee")
-        vquantity =request.POST.get("quantity")
-        vdelivery=Delivery(customer=fvcustomer,address=vaddress,product=vproduct,d_date=vd_date,emp=vemp,quantity=vquantity)
-        vdelivery.save()
-        return render (request , "add_data/delivery_add.html")
-    params={'customer':Customer.objects.all()}
-    return render (request , "add_data/delivery_add.html",params)
-
 
 def product_add(request):
     if request.method=="POST":
@@ -152,6 +168,15 @@ def product_add(request):
     params={'category_object':Category.objects.all()}
     return render (request ,'add_data/purchase_adsd.html',params)    
 
+def recycling_add(request):
+    if request.method=="POST":
+        vr_date=request.POST.get("")
+        vquantity=request.POST.get("")
+        recycling=Recycling(r_date=vr_date,quantity=vquantity)
+        recycling.save()
+        return render(request , "add_data/recycling_add.html")  
+    return render(request , "add_data/recycling_add.html")  
+
 def production_add(request):
     if request.method=="POST":
         vproduction_id=request.POST.get("")
@@ -171,37 +196,47 @@ def production_add(request):
 
 def employee_add(request):
     if request.method=="POST":
-        vemp_id=request.POST.get("")
         fvwork=request.POST.get("")
         vwork=Work.objects.get(work=fvwork)
-        vemp_name=request.POST.get("")
-        vemp_dob=request.POST.get("")
-        vcontact_number=request.POST.get("")
-        vemp_salary=request.POST.get("")
-        vwork_experience=request.POST.get("")
-        vemp_joindate=request.POST.get("")
-        vemp_leavedate=request.POST.get("")
-        vqualification=request.POST.get("")
-        vemployee=Employee(emp_id=vemp_id,work=vwork,emp_name=vemp_name,emp_dob=vemp_dob,contact_number=vcontact_number,emp_salary=vemp_salary,work_experience=vwork_experience,emp_joindate=vemp_joindate,emp_leavedate=vemp_leavedate,qualification=vqualification)
+        vemp_name=request.POST.get("employeename")
+        vemp_dob=request.POST.get("employeedob")
+        vcontact_number=request.POST.get("contact")
+        vemp_salary=request.POST.get("salary")
+        vwork_experience=request.POST.get("experience")
+        vemp_joindate=request.POST.get("joiningdate")
+        vemp_leavedate=request.POST.get("leavedate")
+        vqualification=request.POST.get("qualification")
+        vemployee=Employee(work=vwork,emp_name=vemp_name,emp_dob=vemp_dob,contact_number=vcontact_number,emp_salary=vemp_salary,work_experience=vwork_experience,emp_joindate=vemp_joindate,emp_leavedate=vemp_leavedate,qualification=vqualification)
         vemployee.save()
         params={'work_object':Work.objects.all(),'msg':'massage successfully '}
         return render(request , "add_data/order_add.html")
         # return render (request , 'purchaseform.html',params)
         # from here all supplier name are coming 
     params={'work_object':Work.objects.all()}
-    return render (request ,'add_data/purchase_adsd.html',params)    
-    
+    return render (request ,'add_data/employee.html',params)    
+
+def rawmaterial_add(request):
+    if request.method=="POST":
+        vsup=request.POST.get("supplier")
+        fvsup=Supplier.objects.get(sup_id=vsup)
+        vraw_name=request.POST.get("rawmaterialname")
+        vraw_quantity=request.POST.get("quantity")
+        rawmaterial=RawMaterial(sup=fvsup,raw_name=vraw_name,raw_quantity=vraw_quantity)
+        rawmaterial.save()
+        return render(request , "add_data/rawmaterial_add.html")
+    params={'supplier_object': Supplier.objects.all}
+    return render(request , "add_data/rawmaterial_add.html",params)
+
 def order_add(request):
     if request.method=="POST":
-        vorder_id=request.POST.get("")
         fvcustomer=request.POST.get("")
         vcustomer=Customer.objects.get(customer_id=fvcustomer)
-        vorder_date=request.POST.get("")
+        vorder_date=request.POST.get("orderdate")
         vproduct=request.POST.get("")
         fvproduct=Product.objects.get(product_id=vproduct)
-        vorder_quantity=request.POST.get("")
-        vpayment=request.POST.get("")
-        vorder1=Order1(order_id=vorder_id,customer=vcustomer,order_date=vorder_date,product=vproduct,order_quantity=vorder_quantity,payment=vpayment)
+        vorder_quantity=request.POST.get("o_quantity")
+        vpayment=request.POST.get("payment")
+        vorder1=Order1(customer=vcustomer,order_date=vorder_date,product=fvproduct,order_quantity=vorder_quantity,payment=vpayment)
         vorder1.save()
         customer_object=Customer.objects.all()
         product_object=Product.objects.all()
@@ -212,8 +247,32 @@ def order_add(request):
     params={'customer_object':Customer.objects.all(),'product_object':Product.objects.all()}
     return render (request ,'add_data/purchase_adsd.html',params)
 
-def delete_admin(request,admin_id):
+def feedback_add(request):
+    if request.method == "POST" :
+        vf_id=request.POST.get("") 
+        vf_date=request.POST.get("") 
+        vfeedback=request.POST.get("") 
+        vcustomer=request.POST.get("")
+        fvcustomer=Customer.objects.get(customer_id=vcustomer)
+        feedback=Feedback(f_id=vf_id,f_date=vf_date,feedback=vfeedback,customer=fvcustomer)
+        feedback.save()
+        params={'msg':'massage successfully '}
+        return render (request , "add_data/feedback_add.html",params)
+    return render (request , "add_data/feedback_add.html")
+
+def offer_add(request):
+    if request.method == "POST" :
+        voffer_id=request.POST.get("")
+        vstart_date=request.POST.get("")
+        vend_date=request.POST.get("")
+        vdescription=request.POST.get("")
+        offer=Offer(offer_id=voffer_id,start_date=vstart_date,end_date=vend_date,description=vdescription)
+        offer.save()
+        params={'msg':'massage successfully '}
+        return render (request , "add_data/offer_add.html",params)
+    return render (request , "add_data/offer_add.html")
     
+def delete_admin(request,admin_id):
     deletestaff=Admin.objects.get(admin_id=admin_id)
     deletestaff.delete()
     ans=Admin.objects.all()
@@ -236,7 +295,6 @@ def admindasheboard(request ):
 
 def adminbase(request ):
     return render (request , "basepage.html")
-
 
 def adminshow(request):
     admin=Admin.objects.all()
