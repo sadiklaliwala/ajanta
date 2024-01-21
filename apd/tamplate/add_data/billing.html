@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Form</title>
+</head>
+
+<body>
+
+    <h1>Billing form</h1>
+    <form method="POST" action="{% url 'billing' %}">
+        {% csrf_token %}
+
+        <!--<label for="category">Enter Customer:</label>
+        <input type="text" id="category" name="customername"><br>-->
+        <label for="category">choose customer Name :</label>
+        <select name="customer">
+            {% for customer in customerss %}
+            <option value="{{customer.Customer_id}}">{{customer.Customer_fname}}</option>
+            {% endfor %}
+        </select><br>
+
+        <label for="category">Enter Order :</label>
+        <input type="number" id="category" name="order"><br>
+
+        <label for="category">Enter Shipping Charges :</label>
+        <input type="number" id="category" name="shippingcharges"><br>
+        
+        <label for="category">Enter Order Date :</label>
+        <input type="date" id="category" name="orderdate"><br>
+        
+        <label for="category">Enter Total Amount :</label>
+        <input type="number" id="category" name="totalamount"><br>
+        
+        
+
+        <input type="submit" value="Submit">
+    </form>
+    {% if msg %}
+    {{msg}}
+    {% endif %}
+
+</body>
+
+</html>
