@@ -60,6 +60,10 @@ urlpatterns = [
       path('rawmaterial_add',views.rawmaterial_add,name="rawmaterial_add"),
       path('recycling_add',views.recycling_add,name="recycling_add"),
       path('production_add',views.production_add,name="production_add"),
+      path('product_add',views.product_add,name="product_add"),
+      path('sales_add',views.sales_add,name="sales"),
+      path("stock_add", views.stock_add, name="stock_add")
+      
 
       
 

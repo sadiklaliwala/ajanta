@@ -37,16 +37,16 @@ def nav(request):
 
 def billing_add(request):
     if request.method=='POST':
-        vcustomer=request.POST.get("")
-        fvcustomer=request.POST.get(customer=vcu)
-        vorder=request.POST.get("")
-        vshipping_charges=request.POST.get("")
-        vorder_date=request.POST.get("")
-        vtotal=request.POST.get("")
+        vcustomer=request.POST.get("customer")
+        fvcustomer=request.POST.get(customer=vcustomer)
+        vorder=request.POST.get("order")
+        vshipping_charges=request.POST.get("shippingcharges")
+        vorder_date=request.POST.get("orderdate")
+        vtotal=request.POST.get("totalamount")
         vbilling=Billing(customer=fvcustomer,order=vorder,shipping_charges=vshipping_charges,order_date=vorder_date,total=vtotal)
         vbilling.save()
         return render(request , "add_data/billing.html")
-    params={'category_object':Category.objects.all()}
+    params={'customerss':Customer.objects.all()}
     return render (request ,'add_data/billing.html',params)    
 
 def admin_add(request):
@@ -150,23 +150,23 @@ def category_add(request):
 
 def product_add(request):
     if request.method=="POST":
-        fvcategory=request.POST.get("")
+        fvcategory=request.POST.get("category")
         vcategory=Category.objects.get(category_id=fvcategory)
-        vproduct_name=request.POST.get("")
-        vmaterial=request.POST.get("")
-        vimage=request.POST.get("") 
-        vproduct_price=request.POST.get("")
-        vproduct_weight=request.POST.get("")
-        vproduct_quantity=request.POST.get("")
-        vproduct_color=request.POST.get("")
+        vproduct_name=request.POST.get("productname")
+        vmaterial=request.POST.get("material")
+        vimage=request.POST.get("image") 
+        vproduct_price=request.POST.get("productprice")
+        vproduct_weight=request.POST.get("productweight")
+        vproduct_quantity=request.POST.get("productquantity")
+        vproduct_color=request.POST.get("productcolor")
         vproduct=Product(category=vcategory,product_name=vproduct_name,material=vmaterial,image=vimage,product_price=vproduct_price,product_weight=vproduct_weight,product_quantity=vproduct_quantity,product_color=vproduct_color)
         vproduct.save()
         params={'category_object':Category.objects.all(),'msg':'massage successfully '}
-        return render(request , "add_data/order_add.html")
+        return render(request , "add_data/product_add.html")
         # return render (request , 'purchaseform.html',params)
         # from here all supplier name are coming 
     params={'category_object':Category.objects.all()}
-    return render (request ,'add_data/purchase_adsd.html',params)    
+    return render (request ,'add_data/product_add.html',params)    
 
 def recycling_add(request):
     if request.method=="POST":
@@ -179,13 +179,12 @@ def recycling_add(request):
 
 def production_add(request):
     if request.method=="POST":
-        vproduction_id=request.POST.get("")
-        fproduct=request.POST.get("")
+        fproduct=request.POST.get("product")
         vproduct=Product.objects.get(product_id=fproduct)
-        vquantity=request.POST.get("")
-        vproduction_cost=request.POST.get("")
-        vproduction_date=request.POST.get("")
-        vproduction=Production(production_id=vproduction_id,product=vproduct,quantity=vquantity,production_cost=vproduction_cost,production_date=vproduction_date)
+        vquantity=request.POST.get("quantity")
+        vproduction_cost=request.POST.get("productioncost")
+        vproduction_date=request.POST.get("productiondate")
+        vproduction=Production(product=vproduct,quantity=vquantity,production_cost=vproduction_cost,production_date=vproduction_date)
         vproduction.save()
         params={'product_object':Product.objects.all(),'msg':'massage successfully '}
         return render(request , "add_data/production_add.html")
@@ -194,7 +193,7 @@ def production_add(request):
 
 def employee_add(request):
     if request.method=="POST":
-        fvwork=request.POST.get("")
+        fvwork=request.POST.get("work")
         vwork=Work.objects.get(work=fvwork)
         vemp_name=request.POST.get("employeename")
         vemp_dob=request.POST.get("employeedob")
@@ -207,9 +206,7 @@ def employee_add(request):
         vemployee=Employee(work=vwork,emp_name=vemp_name,emp_dob=vemp_dob,contact_number=vcontact_number,emp_salary=vemp_salary,work_experience=vwork_experience,emp_joindate=vemp_joindate,emp_leavedate=vemp_leavedate,qualification=vqualification)
         vemployee.save()
         params={'work_object':Work.objects.all(),'msg':'massage successfully '}
-        return render(request , "add_data/order_add.html")
-        # return render (request , 'purchaseform.html',params)
-        # from here all supplier name are coming 
+        return render(request , "add_data/employee.html")
     params={'work_object':Work.objects.all()}
     return render (request ,'add_data/employee.html',params)    
 
@@ -227,10 +224,10 @@ def rawmaterial_add(request):
 
 def order_add(request):
     if request.method=="POST":
-        fvcustomer=request.POST.get("")
+        fvcustomer=request.POST.get("customer")
         vcustomer=Customer.objects.get(customer_id=fvcustomer)
         vorder_date=request.POST.get("orderdate")
-        vproduct=request.POST.get("")
+        vproduct=request.POST.get("product")
         fvproduct=Product.objects.get(product_id=vproduct)
         vorder_quantity=request.POST.get("o_quantity")
         vpayment=request.POST.get("payment")
@@ -238,7 +235,7 @@ def order_add(request):
         vorder1.save()
         customer_object=Customer.objects.all()
         product_object=Product.objects.all()
-        params={'customer_object':customer_object ,'product_object':Product.objects.all(),'msg':'massage successfully '}
+        params={'customer_object':Customer.objects.all(),'product_object':Product.objects.all(),'msg':'massage successfully '}
         return render(request , "add_data/order_add.html")
         # return render (request , 'purchaseform.html',params)
         # from here all supplier name are coming 
@@ -246,30 +243,57 @@ def order_add(request):
     return render (request ,'add_data/purchase_adsd.html',params)
 
 def feedback_add(request):
-    if request.method == "POST" :
-        vf_id=request.POST.get("") 
-        vf_date=request.POST.get("") 
-        vfeedback=request.POST.get("") 
-        vcustomer=request.POST.get("")
+    if request.method == "POST" : 
+        vf_date=request.POST.get("f_date") 
+        vfeedback=request.POST.get("feedback") 
+        vcustomer=request.POST.get("customer")
         fvcustomer=Customer.objects.get(customer_id=vcustomer)
-        feedback=Feedback(f_id=vf_id,f_date=vf_date,feedback=vfeedback,customer=fvcustomer)
+        feedback=Feedback(f_date=vf_date,feedback=vfeedback,customer=fvcustomer)
         feedback.save()
-        params={'msg':'massage successfully '}
+        params={'msg':'massage successfully ','customer_object':Customer.objects.all()}
         return render (request , "add_data/feedback_add.html",params)
+    params={'msg':'massage successfully ','customer_object':Customer.objects.all()}
     return render (request , "add_data/feedback_add.html")
 
 def offer_add(request):
     if request.method == "POST" :
-        voffer_id=request.POST.get("")
-        vstart_date=request.POST.get("")
-        vend_date=request.POST.get("")
-        vdescription=request.POST.get("")
-        offer=Offer(offer_id=voffer_id,start_date=vstart_date,end_date=vend_date,description=vdescription)
+        vstart_date=request.POST.get("sdate")
+        vend_date=request.POST.get("edate")
+        vdescription=request.POST.get("description")
+        offer=Offer(start_date=vstart_date,end_date=vend_date,description=vdescription)
         offer.save()
         params={'msg':'massage successfully '}
         return render (request , "add_data/offer_add.html",params)
     return render (request , "add_data/offer_add.html")
-    
+
+def sales_add(request):
+    if request.method=="POST":
+        vsales_date=request.POST.get("salesdate")
+        vproduct=request.POST.get("product")
+        fvproduct=Product.objects.get(product_id=vproduct)
+        vquantity=request.POST.get("quantity")
+        vsales=Sales(sales_date=vsales_date,product=fvproduct,quantity=vquantity)
+        vsales.save()
+        params={'product_object':Product.objects.all(),'msg':'massage successfully '}
+        return render(request , "add_data/sales.html")
+    params={'product_object':Product.objects.all()}
+    return render (request ,'add_data/sales.html',params)
+
+def stock_add(request):
+    if request.method =="POST":
+        vproduct=request.POST.get("product")
+        fvproduct=Product.objects.get(product_id=vproduct)
+        vr_id=request.POST.get("rawmaterial")
+        fvr_id=RawMaterial.objects.get(raw_id=vr_id)
+        vquantity=request.POST.get("quantity")
+        vmaterial_quantity=request.POST.get("materialquantity")
+        stock=Stock(product=fvproduct,r_id=fvr_id,quantity=vquantity,material_quantity=vmaterial_quantity)
+        params={'rawMaterial_object':RawMaterial.objects.all(),'product_object':Product.objects.all()}
+        return render(request , "add_data/sales.html")
+    params={'rawMaterial_object':RawMaterial.objects.all(),'product_object':Product.objects.all()}
+    return render (request ,'add_data/sales.html',params)
+
+
 def delete_admin(request,admin_id):
     deletestaff=Admin.objects.get(admin_id=admin_id)
     deletestaff.delete()
@@ -338,7 +362,7 @@ def productionshow(request):
     production=Production.objects.all()
     params ={'production':production}
     return render (request , "productionshow.html",params)
-
+        
 def stockshow(request):
     stock=Stock.objects.all()
     params ={'stock':stock}
