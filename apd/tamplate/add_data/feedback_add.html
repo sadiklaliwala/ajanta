@@ -21,6 +21,12 @@
 
         <label for="category">Enter customer_id :</label>
         <input type="text" id="category" name="customer_id"><br>
+        <label for="category">choose customer :</label>
+        <select name="customer">
+            {% for i in Customer %}
+            <option value="{{i.customer_id}}">{{i.customer_fname}}</option>
+            {% endfor %}
+        </select><br>
 
         
 
