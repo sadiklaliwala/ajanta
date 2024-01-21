@@ -197,8 +197,8 @@ def order_add(request):
         fvcustomer=request.POST.get("")
         vcustomer=Customer.objects.get(customer_id=fvcustomer)
         vorder_date=request.POST.get("")
-        fvproduct=Product.objects.get(product_id=fvproduct)
         vproduct=request.POST.get("")
+        fvproduct=Product.objects.get(product_id=vproduct)
         vorder_quantity=request.POST.get("")
         vpayment=request.POST.get("")
         vorder1=Order1(order_id=vorder_id,customer=vcustomer,order_date=vorder_date,product=vproduct,order_quantity=vorder_quantity,payment=vpayment)
@@ -234,95 +234,104 @@ def delete_delivery(request , d_id):
 def admindasheboard(request ):
     return render (request , "admindasheboard.html")
 
-def adminshow(request)
+<<<<<<< HEAD
+=======
+def adminbase(request ):
+    return render (request , "basepage.html")
+
+
+>>>>>>> df823b1714c221ebf3ef8c5c33e1bd01f4244dcf
+def adminshow(request):
     admin=Admin.objects.all()
     params ={'admin':admin}
-    return render (request , "adminshow.html",params)
+    return render (request , "show_data/adminshow.html",params)
 
-def billingshow(request)
+def billingshow(request):
     billing=Billing.objects.all()
     params ={'billing':billing}
     return render (request , "billshow.html",params)
 
-def categoryhow(request)
+def categoryhow(request):
     category=Category.objects.all()
     params ={'category':category}
     return render (request , "categoryshow.html",params)
 
-def customershow(request)
+def customershow(request):
     customer=Customer.objects.all()
     params ={'customer':customer}
     return render (request , "customershow.html",params)
 
-def deliveryshow(request)
+def deliveryshow(request):
     delivery=Delivery.objects.all()
     params ={'delivery':delivery}
     return render (request , "deliveryshow.html",params)
 
-def employeeshow(request)
+def employeeshow(request):
     employee=Employee.objects.all()
     params ={'employee':employee}
     return render (request , "employeeshow.html",params)
 
-def order1show(request)
+def order1show(request):
     order1=Order1.objects.all()
     params ={'order1':order1}
     return render (request , "ordershow.html",params)
 
-def productshow(request)
+def productshow(request):
     product=Product.objects.all()
     params ={'product':product}
     return render (request , "productshow.html",params)
 
-def productionshow(request)
+def productionshow(request):
     production=Production.objects.all()
     params ={'production':production}
     return render (request , "productionshow.html",params)
 
-def stockshow(request)
+def stockshow(request):
     stock=Stock.objects.all()
     params ={'stock':stock}
     return render (request , "stockshow.html",params)
 
-def salesshow(request)
+def salesshow(request):
     sales=Sales.objects.all()
     params ={'sales':sales}
     return render (request , "saleshow.html",params)
 
-def suppliershow(request)
+def suppliershow(request):
     supplier=Supplier.objects.all()
     params ={'supplier':supplier}
     return render (request , "suppliershow.html",params)
 
-def workshow(request)
+def workshow(request):
     works =Work.objects.all()
     params ={'works':works}
     return render (request , "workshow.html",params)
 
-def purchaseshow(request)
+def purchaseshow(request):
     vpurchase =Purchase.objects.all()
-    params ={'purchase':purchase}
+    params ={'purchase':Purchase.objects.all()}
     return render (request , "purchaseshow.html",params)
 
-def rawmaterialshow(request)
+def rawmaterialshow(request):
     rawMaterial=RawMaterial.objects.all()
     params ={'rawmaterial':rawMaterial}
     return render (request , "rawmaterialshow.html",params)
 
-def recyclingshow(request)
+def recyclingshow(request):
     recycling=Recycling.objects.all()
     params ={'recycling':recycling}
     return render (request , "recyclingshow.html",params)
 
-def feedbackshow(request)
+def feedbackshow(request):
     feedback=Feedback.objects.all()
     params ={'feedback':feedback}
     return render (request , "feedbackshow.html",params)
 
-def offershow(request)
+def offershow(request):
     offer=Offer.objects.all()
     params ={'offer':offer}
     return render (request , "offershow.html",params)
+
+
 
     # return render(request,'delete.html',{'Enrolled':ans})
 

@@ -1,0 +1,256 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css1/basestyle.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<style type="text/css">
+		.sidebar {
+			height:100%;
+			width:160px;
+			position: fixed;
+					z-index:1;
+			top:0;
+			left:0;
+			background-color: #111;
+			overflow-x: hidden;
+			padding-top: 20px;
+		}
+		.sidebar a {
+			padding: 6px 8px 6px 16px;
+			text-decoration: none;
+			font-size: 20px;
+			color: #818181;
+			display: block;
+		}
+		.sidebar a:hover {
+			color: #f1f1f1;
+		}
+		.main {
+			margin-left: 160px; /* Same as the width of the sidenav */
+			padding: 0px 10px;
+		}
+        table, th, td {
+			border: 1px solid black;
+			border-collapse: collapse;
+			padding: 5px;
+			text-align: left;
+		}
+        @media screen and (max-width: 768px) {
+            .sidenav {
+              width: 100%;
+              height: auto;
+              position: relative;
+            }
+            .sidenav a {
+              float: left;
+            }
+            .main {
+              margin-left: 0;
+            }
+          }
+</style>
+<body>
+    <div class="sidebar">
+        <div class="logo-details">
+            <span class="logo_name">AjantaPlastics</span>
+        </div>
+
+        <ul class="nav-links">
+            <li>
+                <a href="#">
+                    <span class="link_name">Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="link_name">Customer</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="link_name">Supplier</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="link_name">Employee</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="link_name">Product</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="link_name">Production</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="link_name">Order</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="link_name">Sales</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="link_name">Purchase</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="link_name">Stock</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="link_name">Billing</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="link_name">Extra</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="link_name">Extra2</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="link_name">Extra3</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="link_name">Extra4</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="link_name">Log Out</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <section class="home-section">
+        <nav>
+            <div class="sidebar-button">
+                <span class="dashboard">Dashboard</span>
+            </div>
+            <div class="search-box">
+                <input type="text" placeholder="Search...">
+                <i class='bx bx-search'></i>
+            </div>
+            <div class="profile-details">
+                <img src="images/tiger.jpg" alt="">
+                <span class="admin_name">Raj Shah</span>
+                <i class='bx bx-chevron-down'></i>
+            </div>
+        </nav>
+    </section>
+    <div class="main">
+		<h2>Table Example</h2>
+		<table>
+			<tr>
+				<th>Header 1</th>
+				<th>Header 2</th>
+			</tr>
+			<tr>
+				<td>Row 1, Cell 1</td>
+				<td>Row 1, Cell 2</td>
+			</tr>
+			<tr>
+				<td>Row 2, Cell 1</td>
+				<td>Row 2, Cell 2</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>
+{% comment %} write a code for displaying sidebar leftside and table right side? {% endcomment %}
+
+{% comment %} <html>
+<head>
+	<style type="text/css">
+		.sidenav {
+			height:100%;
+			width:160px;
+			position: fixed;
+					z-index:1;
+			top:0;
+			left:0;
+			background-color: #111;
+			overflow-x: hidden;
+			padding-top: 20px;
+		}
+		.sidenav a {
+			padding: 6px 8px 6px 16px;
+			text-decoration: none;
+			font-size: 20px;
+			color: #818181;
+			display: block;
+		}
+		.sidenav a:hover {
+			color: #f1f1f1;
+		}
+		.main {
+			margin-left: 160px; /* Same as the width of the sidenav */
+			padding: 0px 10px;
+		}
+		table, th, td {
+			border: 1px solid black;
+			border-collapse: collapse;
+			padding: 5px;
+			text-align: left;
+		}
+        @media screen and (max-width: 768px) {
+            .sidenav {
+              width: 100%;
+              height: auto;
+              position: relative;
+            }
+            .sidenav a {
+              float: left;
+            }
+            .main {
+              margin-left: 0;
+            }
+          }
+	</style>
+</head>
+<body>
+	<div class="sidenav">
+		<a href="/">Home</a>
+		<a href="/about">About</a>
+		<a href="/contact">Contact</a>
+	</div>
+	<div class="main">
+		<h2>Table Example</h2>
+		<table>
+			<tr>
+				<th>Header 1</th>
+				<th>Header 2</th>
+			</tr>
+			<tr>
+				<td>Row 1, Cell 1</td>
+				<td>Row 1, Cell 2</td>
+			</tr>
+			<tr>
+				<td>Row 2, Cell 1</td>
+				<td>Row 2, Cell 2</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html> {% endcomment %}
