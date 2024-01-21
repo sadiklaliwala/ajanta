@@ -35,19 +35,24 @@
     <h1>Add a New Product</h1>
     <form method="POST" action=" {% url 'customer_add' %}">
         {% csrf_token %}
-        <label for="productName">Enter Customer Name :</label>
-        <input type="number" id="productName" name="admin_id"><br>
+        <label for="productName">Enter Customer fname :</label>
+        <input type="text" id="customerfname" name="customerfname"><br>
 
-        <label for="category">Enter fname name :</label>
-        <input type="text" id="category" name="admin_name"><br>
+        <label for="category">Enter Customer lname :</label>
+        <input type="text" id="category" name="customerlname"><br>
 
-        <label for="category">Enter Password :</label>
-        <input type="number" id="category" name="password"><br>
-        <label for="productName">enter admin id :</label>
-        <input type="number" id="productName" name="admin_id"><br>
+        <label for="category">Enter Number :</label>
+        <input type="number" id="category" name="number"><br>
 
-        <label for="category">Enter admin name :</label>
-        <input type="text" id="category" name="admin_name"><br>
+        <label for="productName">enter email_id :</label>
+        <input type="email" id="productName" name="emailid"><br>
+
+        <label for="category">Enter Gender :</label>
+        <input type="text" id="category" name="gender"><br>
+
+        <label for="category">Enter DOB :</label>
+        <input type="date" id="category" name="customerdob"><br>
+
 
         <label for="category">Enter Password :</label>
         <input type="number" id="category" name="password"><br>
