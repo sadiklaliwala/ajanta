@@ -10,14 +10,14 @@
 <body>
 
     <h1>Add Production Details </h1>
-    <form method="POST" action="{% url 'production' %}">
+    <form method="POST" action="{% url 'production_add' %}">
         {% csrf_token %}
 
-        
-
-        <label for="category">Enter Product_Name:</label>
-        <input type="text" id="category" name="productname"><br>
-
+        <select name="" id="">
+        {% for production in production_object %}
+        <option value="{{production.production_id}}">{{production.production.product.product_name}}</option>
+        {% endfor %}
+    </select>
         <label for="category">Enter Quantity :</label>
         <input type="text" id="category" name="quantity"><br>
 

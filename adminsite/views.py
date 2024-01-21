@@ -170,8 +170,8 @@ def product_add(request):
 
 def recycling_add(request):
     if request.method=="POST":
-        vr_date=request.POST.get("")
-        vquantity=request.POST.get("")
+        vr_date=request.POST.get("recyclingdate")
+        vquantity=request.POST.get("quantity")
         recycling=Recycling(r_date=vr_date,quantity=vquantity)
         recycling.save()
         return render(request , "add_data/recycling_add.html")  
@@ -188,11 +188,9 @@ def production_add(request):
         vproduction=Production(production_id=vproduction_id,product=vproduct,quantity=vquantity,production_cost=vproduction_cost,production_date=vproduction_date)
         vproduction.save()
         params={'product_object':Product.objects.all(),'msg':'massage successfully '}
-        return render(request , "add_data/order_add.html")
-        # return render (request , 'purchaseform.html',params)
-        # from here all supplier name are coming 
+        return render(request , "add_data/production_add.html")
     params={'product_object':Product.objects.all()}
-    return render (request ,'add_data/purchase_add.html',params)    
+    return render (request ,'add_data/production_add.html',params)    
 
 def employee_add(request):
     if request.method=="POST":

@@ -59,6 +59,7 @@ urlpatterns = [
       path('offer_add' ,views.offer_add,name="offer_add"),
       path('rawmaterial_add',views.rawmaterial_add,name="rawmaterial_add"),
       path('recycling_add',views.recycling_add,name="recycling_add"),
+      path('production_add',views.production_add,name="production_add"),
 
       
 
