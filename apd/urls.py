@@ -21,9 +21,11 @@ from adminsite import views
 urlpatterns = [
     path('admin/', admin.site.urls),
       path('admindasheboard/', views.admindasheboard,name="admindasheboard"),
+      
     # path('',include('adminsite.urls'))
      #all data show 
       path('show/',views.show, name ="show"),
+      path('adminbase' ,views.adminbase , name= "adminbase"),
       path('bill_show',views.billingshow, name="billingshow"),
       path('admin_show', views.adminshow, name="adminshow"),
       path('category_show', views.categoryhow, name="categoryhow"),
@@ -40,7 +42,6 @@ urlpatterns = [
       path('sales_show', views.salesshow, name="salesshow"),
       path('supplier_show', views.suppliershow, name="suppliershow"),
       path('work_show', views.workshow, name="workshow"),
-      path('adminbase' ,views.adminbase , name= "adminbase"),
     #   path('nav/',views.nav, name ='nav'),
 
     #   add

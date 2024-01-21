@@ -8,6 +8,52 @@
     <title>Document</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
+<style type="text/css">
+		.sidebar {
+			height:100%;
+			width:160px;
+			position: fixed;
+					z-index:1;
+			top:0;
+			left:0;
+			background-color: #111;
+			overflow-x: hidden;
+			padding-top: 20px;
+		}
+		.sidebar a {
+			padding: 6px 8px 6px 16px;
+			text-decoration: none;
+			font-size: 20px;
+			color: #818181;
+			display: block;
+		}
+		.sidebar a:hover {
+			color: #f1f1f1;
+		}
+		.main {
+			margin-left: 160px; /* Same as the width of the sidenav */
+			padding: 0px 10px;
+		}
+        table, th, td {
+			border: 1px solid black;
+			border-collapse: collapse;
+			padding: 5px;
+			text-align: left;
+		}
+        @media screen and (max-width: 768px) {
+            .sidenav {
+              width: 100%;
+              height: auto;
+              position: relative;
+            }
+            .sidenav a {
+              float: left;
+            }
+            .main {
+              margin-left: 0;
+            }
+          }
+</style>
 <body>
     <div class="sidebar">
         <div class="logo-details">
@@ -113,5 +159,98 @@
             </div>
         </nav>
     </section>
+    <div class="main">
+		<h2>Table Example</h2>
+		<table>
+			<tr>
+				<th>Header 1</th>
+				<th>Header 2</th>
+			</tr>
+			<tr>
+				<td>Row 1, Cell 1</td>
+				<td>Row 1, Cell 2</td>
+			</tr>
+			<tr>
+				<td>Row 2, Cell 1</td>
+				<td>Row 2, Cell 2</td>
+			</tr>
+		</table>
+	</div>
 </body>
 </html>
+{% comment %} write a code for displaying sidebar leftside and table right side? {% endcomment %}
+
+{% comment %} <html>
+<head>
+	<style type="text/css">
+		.sidenav {
+			height:100%;
+			width:160px;
+			position: fixed;
+					z-index:1;
+			top:0;
+			left:0;
+			background-color: #111;
+			overflow-x: hidden;
+			padding-top: 20px;
+		}
+		.sidenav a {
+			padding: 6px 8px 6px 16px;
+			text-decoration: none;
+			font-size: 20px;
+			color: #818181;
+			display: block;
+		}
+		.sidenav a:hover {
+			color: #f1f1f1;
+		}
+		.main {
+			margin-left: 160px; /* Same as the width of the sidenav */
+			padding: 0px 10px;
+		}
+		table, th, td {
+			border: 1px solid black;
+			border-collapse: collapse;
+			padding: 5px;
+			text-align: left;
+		}
+        @media screen and (max-width: 768px) {
+            .sidenav {
+              width: 100%;
+              height: auto;
+              position: relative;
+            }
+            .sidenav a {
+              float: left;
+            }
+            .main {
+              margin-left: 0;
+            }
+          }
+	</style>
+</head>
+<body>
+	<div class="sidenav">
+		<a href="/">Home</a>
+		<a href="/about">About</a>
+		<a href="/contact">Contact</a>
+	</div>
+	<div class="main">
+		<h2>Table Example</h2>
+		<table>
+			<tr>
+				<th>Header 1</th>
+				<th>Header 2</th>
+			</tr>
+			<tr>
+				<td>Row 1, Cell 1</td>
+				<td>Row 1, Cell 2</td>
+			</tr>
+			<tr>
+				<td>Row 2, Cell 1</td>
+				<td>Row 2, Cell 2</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html> {% endcomment %}
