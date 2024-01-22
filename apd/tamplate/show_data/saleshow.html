@@ -29,6 +29,13 @@
                  <td>{{vtwork.sales_date}}</td>
                  <td>{{vtwork.product}}</td>
                  <td>{{vtwork.quantity}}</td>
+                 <td>
+                  <p class="table_cell">
+                     <a href="/delete_sale/{{vtwork.sales_id}}">
+                        <span class="icon"><i class="bi-x-circle-fill">delete</i></span>
+                     </a>
+                  </p>
+               </td>
               </tr>
               {% endfor %}
   

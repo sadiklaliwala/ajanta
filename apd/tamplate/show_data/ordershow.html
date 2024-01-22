@@ -30,6 +30,13 @@
                     <td>{{vtwork.product}}</td>
                     <td>{{vtwork.order_quantity}}</td>
                     <td>{{vtwork.payment}}</td>
+                    <td>
+                     <p class="table_cell">
+                        <a href="/delete_order/{{vtwork.order_id}}">
+                           <span class="icon"><i class="bi-x-circle-fill">delete</i></span>
+                        </a>
+                     </p>
+                  </td>
                  </tr>
                  {% endfor %}
   

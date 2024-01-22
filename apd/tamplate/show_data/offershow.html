@@ -26,6 +26,13 @@
                     <td>{{vtwork.start_date}}</td>
                     <td>{{vtwork.end_date}}</td>
                     <td>{{vtwork.description}}</td>
+                    <td>
+                     <p class="table_cell">
+                        <a href="/delete_offer/{{vtwork.offer_id}}">
+                           <span class="icon"><i class="bi-x-circle-fill">delete</i></span>
+                        </a>
+                     </p>
+                  </td>
                  </tr>
                  {% endfor %}
   

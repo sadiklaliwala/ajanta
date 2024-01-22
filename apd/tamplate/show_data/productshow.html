@@ -36,6 +36,13 @@
                     <td>{{vtwork.product_weight}}</td>
                     <td>{{vtwork.product_quantity}}</td>
                     <td>{{vtwork.product_color}}</td>
+                    <td>
+                     <p class="table_cell">
+                        <a href="/delete_product/{{vtwork.product_id}}">
+                           <span class="icon"><i class="bi-x-circle-fill">delete</i></span>
+                        </a>
+                     </p>
+                  </td>
                  </tr>
                  {% endfor %}
   

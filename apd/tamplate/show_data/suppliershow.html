@@ -30,6 +30,13 @@
                  <td>{{vtwork.contact_number}}</td>
                  <td>{{vtwork.sup_address}}</td>
                  <td>{{vtwork.sup_email}}</td>
+                 <td>
+                  <p class="table_cell">
+                     <a href="/delete_supplier/{{vtwork.sup_id}}">
+                        <span class="icon"><i class="bi-x-circle-fill">delete</i></span>
+                     </a>
+                  </p>
+               </td>
               </tr>
               {% endfor %}
         </div>

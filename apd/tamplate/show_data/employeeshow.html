@@ -40,6 +40,13 @@
                     <td>{{vtwork.emp_joindate}}</td>
                     <td>{{vtwork.emp_leavedate}}</td>
                     <td>{{vtwork.qualification}}</td>
+                    <td>
+                     <p class="table_cell">
+                        <a href="/delete_employee/{{vtwork.emp_id}}">
+                           <span class="icon"><i class="bi-x-circle-fill">delete</i></span>
+                        </a>
+                     </p>
+                      </td>
                  </tr>
                  {% endfor %}
   

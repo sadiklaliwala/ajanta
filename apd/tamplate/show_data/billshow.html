@@ -31,7 +31,13 @@
                     <td>{{vtwork.shipping_charges}}</td>
                     <td>{{vtwork.order_date}}</td>
                     <td>{{vtwork.total}}</td>
-  
+                    <td>
+                     <p class="table_cell">
+                        <a href="/delete_billing/{{vtwork.bill_id}}">
+                           <span class="icon"><i class="bi-x-circle-fill">delete</i></span>
+                        </a>
+                     </p>
+                  </td>
                  </tr>
                  {% endfor %}
   

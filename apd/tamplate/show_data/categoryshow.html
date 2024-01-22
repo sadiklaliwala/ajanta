@@ -22,6 +22,13 @@
                  <tr>
                     <td>{{vtwork.category_id}}</td>
                     <td>{{vtwork.category_name}}</td>
+                    <td>
+                     <p class="table_cell">
+                        <a href="/delete_category/{{vtwork.category_id}}">
+                           <span class="icon"><i class="bi-x-circle-fill">delete</i></span>
+                        </a>
+                     </p>
+                  </td>
                  </tr>
                  {% endfor %}
   

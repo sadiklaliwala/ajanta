@@ -29,6 +29,13 @@
                  <td>{{vtwork.material}}</td>
                  <td>{{vtwork.quantity}}</td>
                  <td>{{vtwork.amount}}</td>
+                 <td>
+                  <p class="table_cell">
+                     <a href="/delete_purchase/{{vtwork.purchase_id}}">
+                        <span class="icon"><i class="bi-x-circle-fill">delete</i></span>
+                     </a>
+                  </p>
+               </td>
               </tr>
   
               {% endfor %}

@@ -26,6 +26,13 @@
                     <td>{{vtwork.f_date}}</td>
                     <td>{{vtwork.feedback}}</td>
                     <td>{{vtwork.customer}}</td>
+                    <td>
+                     <p class="table_cell">
+                        <a href="/delete_feedback/{{vtwork.f_id}}">
+                           <span class="icon"><i class="bi-x-circle-fill">delete</i></span>
+                        </a>
+                     </p>
+                  </td>
                  </tr>
                  {% endfor %}
   

@@ -23,6 +23,13 @@
               <tr scope="col">
                  <td>{{vtwork.work_id}}</td>
                  <td>{{vtwork.work_name}}</td>
+                 <td>
+                  <p class="table_cell">
+                     <a href="/delete_work/{{vtwork.work_id}}">
+                        <span class="icon"><i class="bi-x-circle-fill">delete</i></span>
+                     </a>
+                  </p>
+               </td>
               </tr>
               {% endfor %}
         </div>
