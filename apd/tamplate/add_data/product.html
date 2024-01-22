@@ -10,11 +10,11 @@
 <body>
 
     <h1>Add feedback</h1>
-    <form method="POST" action="{% url 'product' %}">
+    <form method="POST" action="{% url 'product_add' %}">
         {% csrf_token %}
 
         <label for="category">choose Category Name :</label>
-        <select name="supplier">
+        <select name="category">
             {% for i in Category %}
             <option value="{{i.Category_id}}">{{i.Category_name}}</option>
             {% endfor %}

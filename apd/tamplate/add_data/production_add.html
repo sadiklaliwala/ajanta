@@ -13,7 +13,7 @@
     <form method="POST" action="{% url 'production_add' %}">
         {% csrf_token %}
 
-        <select name="" id="">
+        <select name="product">
         {% for production in production_object %}
         <option value="{{production.production_id}}">{{production.production.product.product_name}}</option>
         {% endfor %}

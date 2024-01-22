@@ -20,7 +20,7 @@ from adminsite import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-      path('admindasheboard/', views.admindasheboard,name="admindasheboard"),
+    path('admindasheboard/', views.admindasheboard,name="admindasheboard"),
       
     # path('',include('adminsite.urls'))
      #all data show 
@@ -60,11 +60,19 @@ urlpatterns = [
       path('rawmaterial_add',views.rawmaterial_add,name="rawmaterial_add"),
       path('recycling_add',views.recycling_add,name="recycling_add"),
       path('production_add',views.production_add,name="production_add"),
-
+      path('product_add',views.product_add,name="product_add"),
+      path('sales_add',views.sales_add,name="sales"),
+      path("stock_add", views.stock_add, name="stock_add"),
+      
+    #  update   
+      path('work_update/<int:pk>',views.workform_update, name ='workform_update'),
       
 
       # delete
       path('delete_admin/<int:admin_id>', views.delete_admin ,name="delete_admin"),
       path('delete_billing/<int:bill_id>', views.delete_billing ,name="delete_billing"),
       path('delete_delivery/<int:d_id>', views.delete_delivery ,name="delete_delivery"),
+
+
+
 ]
