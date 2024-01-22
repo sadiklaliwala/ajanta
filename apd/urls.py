@@ -62,14 +62,17 @@ urlpatterns = [
       path('production_add',views.production_add,name="production_add"),
       path('product_add',views.product_add,name="product_add"),
       path('sales_add',views.sales_add,name="sales"),
-      path("stock_add", views.stock_add, name="stock_add")
+      path("stock_add", views.stock_add, name="stock_add"),
       
-
+    #  update   
+      path('work_update/<int:pk>',views.workform_update, name ='workform_update'),
       
 
       # delete
       path('delete_admin/<int:admin_id>', views.delete_admin ,name="delete_admin"),
       path('delete_billing/<int:bill_id>', views.delete_billing ,name="delete_billing"),
       path('delete_delivery/<int:d_id>', views.delete_delivery ,name="delete_delivery"),
+
+
 
 ]
