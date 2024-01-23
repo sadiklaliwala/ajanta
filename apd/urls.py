@@ -66,6 +66,7 @@ urlpatterns = [
       
     #  update   
       path('work_update/<int:pk>',views.workform_update, name ='workform_update'),
+      path("/update_supplier/<int:pk>" , views.update_supplier, name="update_supplier"),
       
 
       #delete

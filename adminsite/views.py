@@ -305,6 +305,21 @@ def workform_update(request,pk):
     params={'work_object':Work.objects.get(work_id=pk)}
     return render (request , "update_data/workform_update.html",params)
 
+def update_supplier(request,pk):
+    if request.method=="POST":
+        # s=Work.objects.get(work_id=pk)
+        vsup_id=request.POST.get("")
+        vsup_name=request.POST.get("")
+        vcontact_number=request.POST.get("")
+        vsup_address=request.POST.get("")
+        vsup_email=request.POST.get("")
+        vsup=Supplier(sup_id=pk,
+        sup_name=vsup_name,contact_number=vcontact_number,sup_address=vsup_address,sup_email=vsup_email)
+        vsup.save()       
+        return redirect ("suppliershow")
+    params={'work_object':Work.objects.get(work_id=pk)}
+    return render (request , "update_data/workform_update.html",params)
+
 
 
 
