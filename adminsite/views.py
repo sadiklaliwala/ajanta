@@ -310,23 +310,7 @@ def workform_update(request,pk):
 
 
 
-def delete_admin(request,admin_id):
-    deletestaff=Admin.objects.get(admin_id=admin_id)
-    deletestaff.delete()
-    ans=Admin.objects.all()
-    return redirect("show")
 
-def delete_billing(request,bill_id):    
-    deletestaff=Billing.objects.get(bill_id=bill_id)
-    deletestaff.delete()
-    ans=Admin.objects.all()
-    return redirect("show")
-
-def delete_delivery(request , d_id):
-    deletestaff=Delivery.objects.get(d_id=d_id)
-    deletestaff.delete()
-    ans=Admin.objects.all()
-    return redirect("show")
 
 def admindasheboard(request ):
     return render (request , "admindasheboard.html")
@@ -423,6 +407,115 @@ def offershow(request):
     offer=Offer.objects.all()
     params ={'offer':offer}
     return render (request , "show_data/offershow.html",params)
+
+def delete_admin(request,admin_id):
+    
+    deletestaff=Admin.objects.get(admin_id=admin_id)
+    deletestaff.delete()
+    ans=Admin.objects.all()
+    return redirect("adminshow")
+
+def delete_billing(request,bill_id):    
+    deletestaff=Billing.objects.get(bill_id=bill_id)
+    deletestaff.delete()
+    ans=Admin.objects.all()
+    return redirect("billingshow")
+
+def delete_category(request,category_id):
+    deletestaff=Category.objects.get(category_id=category_id)
+    deletestaff.delete()
+    ans=Admin.objects.all()
+    return redirect("categoryhow")
+
+def delete_customer(request,customer_id):
+    deletestaff=Customer.objects.get(customer_id=customer_id)
+    deletestaff.delete()
+    ans=Admin.objects.all()
+    return redirect("customershow")
+
+def delete_delivery(request , d_id):
+    deletestaff=Delivery.objects.get(d_id=d_id)
+    deletestaff.delete()
+    ans=Admin.objects.all()
+    return redirect("deliveryshow")
+
+def delete_employee(request , emp_id):
+    deletestaff=Employee.objects.get(emp_id=emp_id)
+    deletestaff.delete()
+    ans=Admin.objects.all()
+    return redirect("employeeshow")
+
+def delete_feedback(request , f_id):
+    deletestaff=Feedback.objects.get(f_id=f_id)
+    deletestaff.delete()
+    ans=Admin.objects.all()
+    return redirect("feedbackshow")
+
+def delete_offer(request , offer_id):
+    deletestaff=Offer.objects.get(offer_id=offer_id)
+    deletestaff.delete()
+    ans=Admin.objects.all()
+    return redirect("offershow")
+
+def delete_order(request , order_id):
+    deletestaff=Order1.objects.get(order_id=order_id)
+    deletestaff.delete()
+    ans=Admin.objects.all()
+    return redirect("order1show")
+
+def delete_production(request , production_id):
+    deletestaff=Production.objects.get(production_id=production_id)
+    deletestaff.delete()
+    ans=Admin.objects.all()
+    return redirect("productionshow")
+
+def delete_product(request , product_id):
+    deletestaff=Product.objects.get(product_id=product_id)
+    deletestaff.delete()
+    ans=Admin.objects.all()
+    return redirect("productshow")
+
+def delete_purchase(request , purchase_id):
+    deletestaff=Purchase.objects.get(purchase_id=purchase_id)
+    deletestaff.delete()
+    ans=Admin.objects.all()
+    return redirect("purchaseshow")
+
+def delete_rawmaterial(request , raw_id):
+    deletestaff=RawMaterial.objects.get(raw_id=raw_id)
+    deletestaff.delete()
+    ans=Admin.objects.all()
+    return redirect("rawmaterialshow")
+
+def delete_recycle(request , r_id):
+    deletestaff=Recycling.objects.get(r_id=r_id)
+    deletestaff.delete()
+    ans=Admin.objects.all()
+    return redirect("recyclingshow")
+
+def delete_sale(request , sales_id):
+    deletestaff=Sales.objects.get(sales_id=sales_id)
+    deletestaff.delete()
+    ans=Admin.objects.all()
+    return redirect("salesshow")
+
+def delete_stock(request , stock_id):
+    deletestaff=Stock.objects.get(stock_id=stock_id)
+    deletestaff.delete()
+    ans=Admin.objects.all()
+    return redirect("stockshow")
+
+def delete_supplier(request , sup_id):
+    deletestaff=Supplier.objects.get(sup_id=sup_id)
+    deletestaff.delete()
+    ans=Admin.objects.all()
+    return redirect("suppliershow")
+
+def delete_work(request , work_id):
+    deletestaff=Work.objects.get(work_id=work_id)
+    deletestaff.delete()
+    ans=Admin.objects.all()
+    return redirect("workshow")
 
 
 
