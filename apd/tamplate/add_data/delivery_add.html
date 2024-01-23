@@ -10,7 +10,7 @@
 <body>
 
     <h1>Add a New Product</h1>
-    <form method="POST" action="{% url 'delivery_add' %}">
+    <form method="POST" action="{% url 'deliveryshow' %}">
         {% csrf_token %}
 
         <label for="category">Choose customer :</label>
@@ -24,7 +24,11 @@
         <input type="text" id="category" name="address"><br>
 
         <label for="category">Enter Product:</label>
-        <input type="text" id="category" name="product"><br>
+        <select name="product">
+            {% for i in product %}
+            <option value="{{i.product_id}}">{{i.product_name}}</option>
+            {% endfor %}
+        </select><br>
 
 
         <label for="category">Enter Delivery_date :</label>
@@ -33,7 +37,7 @@
         <label for="category">Choose Employee :</label>
         <select name="employee">
             {% for i in employee %}
-            <option value="{{i.Emp_id}}">{{i.Emp_name}}</option>
+            <option value="{{i.emp_id}}">{{i.emp_name}}</option>
             {% endfor %}
         </select><br>
         

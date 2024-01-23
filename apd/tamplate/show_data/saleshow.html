@@ -18,6 +18,7 @@
                     <th>product</th>
                     <th>quantity</th>
                     <th scope="col">delete </th>
+                    <th scope="col">Update </th>
                  </tr>
               </thead>
   
@@ -25,12 +26,19 @@
               <tr>
                  <td>{{vtwork.sales_id}}</td>
                  <td>{{vtwork.sales_date}}</td>
-                 <td>{{vtwork.product}}</td>
+                 <td>{{vtwork.product.product_name}}</td>
                  <td>{{vtwork.quantity}}</td>
                  <td>
                   <p class="table_cell">
                      <a href="/delete_sale/{{vtwork.sales_id}}">
                         <span class="icon"><i class="bi-x-circle-fill">delete</i></span>
+                     </a>
+                  </p>
+               </td>
+                 <td>
+                  <p class="table_cell">
+                     <a href="/update_sales/{{vtwork.sales_id}}">
+                        <span class="icon"><i class="bi-x-circle-fill">Update</i></span>
                      </a>
                   </p>
                </td>

@@ -30,7 +30,6 @@ def show(request ):
     works =Work.objects.all()
     params ={ 'works':works ,'billing':billing ,'category':category,'customer':customer ,'delivery': delivery ,'employee': employee,'feedback' : feedback ,'offer' : offer,'order1': order1,'product':product,'production':production,'vpurchase':purchase,'rawMaterial':rawMaterial,'recycling':recycling,'sales':sales ,'stock':stock ,'supplier':supplier, 'admin':admin}
     return render (request , "show.html", params)
-
 # navebar
 def nav(request):
   return render (request , "nav.html" )
@@ -78,17 +77,18 @@ def customer_add(request):
 
 def delivery_add(request):
     if request.method=="POST":
-        vcustomername=request.POST.get('customername')
-        fvcustomer=Customer.objects.get(customer=vcustomername)
+        vcustome=request.POST.get('customer')
+        fvcustomer=Customer.objects.get(customer_id=vcustome)
         vaddress =request.POST.get("address")
         vproduct =request.POST.get("product")
+        fvproduct =Product.objects.get(product_id=vproduct)
         vd_date =request.POST.get("deliverydate")
         vemp =request.POST.get("employee")
+        fvemp=Employee.objects.get(emp_id=vemp)
         vquantity =request.POST.get("quantity")
-        vdelivery=Delivery(customer=fvcustomer,address=vaddress,product=vproduct,d_date=vd_date,emp=vemp,quantity=vquantity)
+        vdelivery=Delivery(customer=fvcustomer,address=vaddress,product=fvproduct,d_date=vd_date,emp=fvemp,quantity=vquantity)
         vdelivery.save()
-        return render (request , "add_data/delivery_add.html")
-    params={'customer':Customer.objects.all()}
+    params={'customer':Customer.objects.all(),"employee":Employee.objects.all(),'product':Product.objects.all()}
     return render (request , "add_data/delivery_add.html",params)
 
 def purchase_add(request):
@@ -236,11 +236,11 @@ def order_add(request):
         customer_object=Customer.objects.all()
         product_object=Product.objects.all()
         params={'customer_object':Customer.objects.all(),'product_object':Product.objects.all(),'msg':'massage successfully '}
-        return render(request , "add_data/order_add.html")
+        return render(request , "add_data/order.html")
         # return render (request , 'purchaseform.html',params)
         # from here all supplier name are coming 
     params={'customer_object':Customer.objects.all(),'product_object':Product.objects.all()}
-    return render (request ,'add_data/purchase_adsd.html',params)
+    return render (request ,'add_data/order.html',params)
 
 def feedback_add(request):
     if request.method == "POST" : 
@@ -283,17 +283,17 @@ def stock_add(request):
     if request.method =="POST":
         vproduct=request.POST.get("product")
         fvproduct=Product.objects.get(product_id=vproduct)
-        vr_id=request.POST.get("rawmaterial")
-        fvr_id=RawMaterial.objects.get(raw_id=vr_id)
+        vr_id=request.POST.get("rawmaterial_id")
+        # fvr_id=RawMaterial.objects.get(raw_id=vr_id)
         vquantity=request.POST.get("quantity")
         vmaterial_quantity=request.POST.get("materialquantity")
-        stock=Stock(product=fvproduct,r_id=fvr_id,quantity=vquantity,material_quantity=vmaterial_quantity)
+        stock=Stock(product=fvproduct,r_id=vr_id,quantity=vquantity,material_quantity=vmaterial_quantity)
+        stock.save()
+        # return redirect("stockshow")
         params={'rawMaterial_object':RawMaterial.objects.all(),'product_object':Product.objects.all()}
-        return render(request , "add_data/sales.html")
-    params={'rawMaterial_object':RawMaterial.objects.all(),'product_object':Product.objects.all()}
-    return render (request ,'add_data/sales.html',params)
-
-
+        return render(request , "add_data/stock.html",params)
+    params={'rawmaterial_object':RawMaterial.objects.all(),'product_object':Product.objects.all()}
+    return render (request ,'add_data/stock.html',params)
 #update
 def workform_update(request,pk):
     if request.method=="POST":
@@ -303,25 +303,73 @@ def workform_update(request,pk):
         worksave.save()
         return redirect ("workshow")
     params={'work_object':Work.objects.get(work_id=pk)}
-    return render (request , "update_data/workform_update.html",params)
+    return render (request , "update_data/work_update.html",params)
 
 def update_supplier(request,pk):
     if request.method=="POST":
         # s=Work.objects.get(work_id=pk)
-        vsup_id=request.POST.get("")
-        vsup_name=request.POST.get("")
-        vcontact_number=request.POST.get("")
-        vsup_address=request.POST.get("")
-        vsup_email=request.POST.get("")
-        vsup=Supplier(sup_id=pk,
-        sup_name=vsup_name,contact_number=vcontact_number,sup_address=vsup_address,sup_email=vsup_email)
-        vsup.save()       
+        vsup_name=request.POST.get("s_name")
+        vcontact_number=request.POST.get("s_con")
+        vsup_address=request.POST.get("s_add")
+        vsup_email=request.POST.get("s_email")
+        vsupplier=Supplier(sup_id=pk,sup_name=vsup_name,contact_number=vcontact_number,sup_address=vsup_address,sup_email=vsup_email)
+        vsupplier.save()
         return redirect ("suppliershow")
-    params={'work_object':Work.objects.get(work_id=pk)}
-    return render (request , "update_data/workform_update.html",params)
+    params={'supplier_object':Supplier.objects.get(sup_id=pk)}
+    return render (request , "update_data/update_supplier.html",params)
+
+def update_stock(request,pk):
+    if request.method =="POST":
+        vproduct=request.POST.get("product")
+        fvproduct=Product.objects.get(product_id=vproduct)
+        vquantity=request.POST.get("quantity")
+        vmaterial_quantity=request.POST.get("materialquantity")
+        stock=Stock( stock_id=pk,product=fvproduct,quantity=vquantity,material_quantity=vmaterial_quantity)
+        stock.save()
+        params={'rawMaterial_object':RawMaterial.objects.all(),'product_object':Product.objects.all()}
+        return render(request , "update_data/update_stock.html",params)
+    params={'rawMaterial_object':RawMaterial.objects.all(),'product_object':Product.objects.all(),"stock_object": Stock.objects.get(stock_id=pk)}
+    return render (request ,"update_data/update_stock.html",params)
+
+def update_sales(request,pk):
+    if request.method=="POST":
+        vsales_date=request.POST.get("salesdate")
+        vproduct=request.POST.get("product")
+        fvproduct=Product.objects.get(product_id=vproduct)
+        vquantity=request.POST.get("quantity")
+        vsales=Sales(sales_id=pk, sales_date=vsales_date,product=fvproduct,quantity=vquantity)
+        vsales.save()
+        params={'product_object':Product.objects.all(),'msg':'massage successfully '}
+        return render(request , "add_data/sales.html")
+    params={'product_object':Product.objects.all(),'sales_object':Sales.objects.get(sales_id=pk)}
+    return render (request ,'update_data/update_sales.html',params)
+
+def update_rawmaterial(request,pk):
+    if request.method=="POST":
+        vsup=request.POST.get("supplier")
+        fvsup=Supplier.objects.get(sup_id=vsup)
+        vraw_name=request.POST.get("rawmaterialname")
+        vraw_quantity=request.POST.get("quantity")
+        rawmaterial=RawMaterial(raw_id=pk,sup=fvsup,raw_name=vraw_name,raw_quantity=vraw_quantity)
+        rawmaterial.save()
+        
+    params={'supplier_object': Supplier.objects.all,'rawmaterial_object':RawMaterial.objects.get(raw_id=pk)}
+    return render(request , "update_data/update_rawmaterial.html",params)
 
 
-
+def update_purchase(request,pk):
+    if request.method =="POST":
+        supplier_id=request.POST.get('supplier')
+        vsupplier=Supplier.objects.get(sup_id=supplier_id)
+        material_name=request.POST.get('materialname')
+        vquantity=request.POST.get('quantity')
+        vamount=request.POST.get('amount')
+        vpur=Purchase(purchase_id=pk,sup=vsupplier,material=material_name,quantity=vquantity,amount=vamount)
+        vpur.save()
+        supplier_object=Supplier.objects.all()
+        params={'suppliers':supplier_object ,'msg':'massage successfully '}
+    params={'suppliers':Supplier.objects.all(),'purchase_object':Purchase.objects.get(purchase_id=pk)}
+    return render (request ,'update_data/update_purchase.html',params)
 
 
 
@@ -400,13 +448,13 @@ def workshow(request):
 
 def purchaseshow(request):
     vpurchase =Purchase.objects.all()
-    params ={'purchase':Purchase.objects.all()}
+    params ={'vpurchase':Purchase.objects.all()}
     return render (request , "show_data/purchaseshow.html",params)
 
 def rawmaterialshow(request):
     rawMaterial=RawMaterial.objects.all()
     params ={'rawmaterial':rawMaterial}
-    return render (request , "show_data/rawmaterialshow.html",params)
+    return render (request , "show_data/rawshow.html",params)
 
 def recyclingshow(request):
     recycling=Recycling.objects.all()

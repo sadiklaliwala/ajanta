@@ -18,13 +18,14 @@
                     <th>quantity</th>
                     <th>material_quantity</th>
                     <th scope="col">delete </th>
+                    <th scope="col">Update </th>
                  </tr>
               </thead>
   
               {% for vtwork in stock %}
               <tr>
                  <td>{{vtwork.stock_id}}</td>
-                 <td>{{vtwork.product}}</td>
+                 <td>{{vtwork.product.product_name}}</td>
                  <td>{{vtwork.r_id}}</td>
                  <td>{{vtwork.quantity}}</td>
                  <td>{{vtwork.material_quantity}}</td>
@@ -32,6 +33,13 @@
                   <p class="table_cell">
                      <a href="/delete_stock/{{vtwork.stock_id}}">
                         <span class="icon"><i class="bi-x-circle-fill">delete</i></span>
+                     </a>
+                  </p>
+               </td>
+                 <td>
+                  <p class="table_cell">
+                     <a href="/update_stock/{{vtwork.stock_id}}">
+                        <span class="icon"><i class="bi-x-circle-fill">Update</i></span>
                      </a>
                   </p>
                </td>

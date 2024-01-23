@@ -40,6 +40,7 @@ urlpatterns = [
       path('raw_show', views.rawmaterialshow, name="rawmaterialshow"),
       path('recycle_show', views.recyclingshow, name="recyclingshow"),
       path('sales_show', views.salesshow, name="salesshow"),
+      path('stock_show', views.stockshow, name="stockshow"),
       path('supplier_show', views.suppliershow, name="suppliershow"),
       path('work_show', views.workshow, name="workshow"),
     #   path('nav/',views.nav, name ='nav'),
@@ -66,7 +67,11 @@ urlpatterns = [
       
     #  update   
       path('work_update/<int:pk>',views.workform_update, name ='workform_update'),
-      path("/update_supplier/<int:pk>" , views.update_supplier, name="update_supplier"),
+      path("update_supplier/<int:pk>" , views.update_supplier, name="update_supplier"),
+      path("update_stock/<int:pk>" , views.update_stock, name="update_stock"),
+      path("update_sales/<int:pk>" , views.update_sales, name="update_sales"),
+      path("update_rawmaterial/<int:pk>" , views.update_rawmaterial, name="update_rawmaterial"),
+      path("update_purchase/<int:pk>" , views.update_purchase, name="update_purchase"),
       
 
       #delete
