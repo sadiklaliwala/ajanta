@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <!-- <h2>HTML Table</h2> -->
+        <div style="width: 50vw; height: auto;">
+           <table class="table table-striped">
+              <thead class="thead-dark">
+                 <tr>
+                    <th>f_id</th>
+                    <th>f_date</th>
+                    <th>feedback</th>
+                    <th>customer</th>
+                    <th scope="col">delete </th>
+                 </tr>
+                 {% for vtwork in feedback %}
+                 <tr>
+                    <td>{{vtwork.f_id}}</td>
+                    <td>{{vtwork.f_date}}</td>
+                    <td>{{vtwork.feedback}}</td>
+                    <td>{{vtwork.customer}}</td>
+                    <td>
+                     <p class="table_cell">
+                        <a href="/delete_feedback/{{vtwork.f_id}}">
+                           <span class="icon"><i class="bi-x-circle-fill">delete</i></span>
+                        </a>
+                     </p>
+                  </td>
+                 </tr>
+                 {% endfor %}
+  
+        </div>
+     </center>
+</body>
+</html>

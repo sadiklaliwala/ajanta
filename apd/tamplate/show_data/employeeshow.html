@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <!-- <h2>HTML Table</h2> -->
+        <div style="width: 50vw; height: auto;">
+           <table class="table table-striped table-responsive">
+              <thead class="thead-dark">
+                 <tr>
+                    <th>emp_id </th>
+                    <th>work</th>
+                    <th>emp_name </th>
+                    <th>emp_dob</th>
+                    <th>d_date </th>
+                    <th>contact_number </th>
+                    <th>emp_salary </th>
+                    <th>work_experience </th>
+                    <th> emp_joindate</th>
+                    <th>emp_leavedate </th>
+                    <th>qualification </th>
+                    <th scope="col">delete </th>
+                 </tr>
+                 {% for vtwork in employee %}
+                 <tr>
+                    <td>{{vtwork.emp_id}}</td>
+                    <td>{{vtwork.work}}</td>
+                    <td>{{vtwork.emp_name}}</td>
+                    <td>{{vtwork.emp_dob}}</td>
+                    <td>{{vtwork.d_date}}</td>
+                    <td>{{vtwork.contact_number}}</td>
+                    <td>{{vtwork.emp_salary}}</td>
+                    <td>{{vtwork.work_experience}}</td>
+                    <td>{{vtwork.emp_joindate}}</td>
+                    <td>{{vtwork.emp_leavedate}}</td>
+                    <td>{{vtwork.qualification}}</td>
+                    <td>
+                     <p class="table_cell">
+                        <a href="/delete_employee/{{vtwork.emp_id}}">
+                           <span class="icon"><i class="bi-x-circle-fill">delete</i></span>
+                        </a>
+                     </p>
+                  </td>
+                 </tr>
+                 {% endfor %}
+  
+        </div>
+     </center>
+</body>
+</html>
