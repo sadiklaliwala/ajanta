@@ -29,8 +29,22 @@
                   </p>
                </td>
               </tr>
+              <tr scope="col">
+               <td>{{vtwork.work_id}}</td>
+               <td>{{vtwork.work_name}}</td>
+               <td>
+                <p class="table_cell">
+                   <a href="work_update/{{vtwork.work_id>}}">
+                      <span class="icon"><i class="bi-x-circle-fill">update</i></span>
+                   </a>
+                </p>
+             </td>
+            </tr>
               {% endfor %}
         </div>
+
+
+
      </center>
 </body>
 </html>
