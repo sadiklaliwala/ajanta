@@ -166,7 +166,7 @@
 
             <!-- ================ Order Details List ================= -->
 
-            <div class="details">
+          <div class="details">
                 <div class="recentOrders">
                     <div class="cardHeader">
                         <h2>Recent Bookings</h2>
@@ -184,15 +184,14 @@
                                 <td>Status</td>
                             </tr>
                         </thead>
-                        {% comment %} {% for i in  ServiceBook %} {% endcomment %}
+                        {% for i in  ServiceBook %}
                         <tbody>
                            <td>{{i.service.service_name}} </td>
                            <td>{{i.book_date}} </td>
                            <td> {{i.book_price}}</td>
                            <td> paid </td>
-                            
                         </tbody>
-                        {% comment %} {% endfor %} {% endcomment %}
+                        {% endfor %}
                     </table>
                 </div>
 
