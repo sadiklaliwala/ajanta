@@ -21,6 +21,7 @@ from adminsite import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('admindasheboard/', views.admindasheboard,name="admindasheboard"),
+      path('nav/',views.nav, name ='nav'),
       
     # path('',include('adminsite.urls'))
      #all data show 
@@ -43,7 +44,6 @@ urlpatterns = [
       path('stock_show', views.stockshow, name="stockshow"),
       path('supplier_show', views.suppliershow, name="suppliershow"),
       path('work_show', views.workshow, name="workshow"),
-    #   path('nav/',views.nav, name ='nav'),
 
     #   add
       path('admin_add/',views.admin_add, name ="admin_add"),
