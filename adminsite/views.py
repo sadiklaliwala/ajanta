@@ -383,7 +383,7 @@ def adminbase(request ):
 
 def adminshow(request):
     admin=Admin.objects.all()
-    params ={'admin':admin}
+    params ={'admin_object':admin}
     return render (request , "show_data/adminshow.html",params)
 
 def billingshow(request):
