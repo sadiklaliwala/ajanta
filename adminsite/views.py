@@ -368,6 +368,7 @@ def update_purchase(request,pk):
         vpur.save()
         supplier_object=Supplier.objects.all()
         params={'suppliers':supplier_object ,'msg':'massage successfully '}
+        return redirect("purchaseshow")
     params={'suppliers':Supplier.objects.all(),'purchase_object':Purchase.objects.get(purchase_id=pk)}
     return render (request ,'update_data/update_purchase.html',params)
 
