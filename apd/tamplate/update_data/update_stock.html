@@ -23,23 +23,17 @@
             {% endfor %}
         </select><br>
 
+        
+
         <label for="category">Enter Quantity :</label>
-        <input type="number" id="category" name="quantity"><br>
+        <input type="number" id="category" name="quantity" value="{{stock_object.quantity}}"><br>
 
-        <!-- <label for="category">Enter Row_material :</label>
-        <input type="number" id="category" name="rowmaterial"><br> -->
-
-        <label for="category">Choose rawmaterial :</label>
-        <select name="rawmaterial_id" >
-            {% for i in rawmaterial_object %}
-            <option value="{{i.raw_id}}">{{i.raw_name}}</option>
-            {% endfor %}
-        </select><br>
-        
+        <!--<label for="category">Enter Row_material :</label>
+        <input type="number" id="category" name="rowmaterial"><br>-->
         <label for="category">Enter material_quantity:</label>
-        <input type="text" id="category" name="materialquantity"><br>
-        
-       
+        <input type="text" id="category" name="materialquantity" value="{{stock_object.material_quantity}}" ><br>
+
+
 
         <input type="submit" value="Submit">
     </form>

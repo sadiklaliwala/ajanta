@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Row_Material Form</title>
+</head>
+
+<body>
+
+    <h1>Row_Material</h1>
+    <form method="POST" action="{% url 'rawmaterialshow' %}">
+        {% csrf_token %}
+
+        <label for="category">Enter Raw_Material name:</label>
+        <input type="text" id="category" name="rawmaterialname" value="{{rawmaterial_object.raw_name}}"><br>
+
+        <label for="category">Enter Quantity :</label>
+        <input type="text" id="category" name="quantity " value="{{rawmaterial_object.raw_quantity}}"><br>
+
+        
+        <label for="category">choose supplier Name :</label>
+        <select name="supplier">
+            {% for supplier in supplier_object %}
+            <option value="{{supplier.sup_id}}">{{supplier.sup_name}}</option>
+            {% endfor %}
+        </select><br>
+
+        <input type="submit" value="Submit">
+    </form>
+    {% if msg %}
+    {{msg}}
+    {% endif %}
+
+</body>
+
+</html>
