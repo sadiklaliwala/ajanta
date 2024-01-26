@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Form</title>
+</head>
+
+<body>
+    
+        <h1>Add a New Product</h1>
+        <form method="POST"  >
+            {% csrf_token %}
+
+            
+            <label for="productName">Enter Category Name  :</label>
+            <input type="text" id="productName" value="{{category_object.category_name}}" name="categoryname"><br>
+            
+            <input type="submit" value="Submit">
+        </form>
+        {{n}}
+    
+</body>
+
+</html>

@@ -15,7 +15,7 @@
 
         <select name="product">
         {% for production in production_object %}
-        <option value="{{production.production_id}}">{{production.production.product.product_name}}</option>
+        <option value="{{production.production_id}}">{{production.product.product_name}}</option>
         {% endfor %}
     </select>
         <label for="category">Enter Quantity :</label>

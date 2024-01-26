@@ -67,11 +67,33 @@ urlpatterns = [
       
     #  update   
       path('work_update/<int:pk>',views.workform_update, name ='workform_update'),
+<<<<<<< Updated upstream
       path("update_supplier/<int:pk>" , views.update_supplier, name="update_supplier"),
       path("update_stock/<int:pk>" , views.update_stock, name="update_stock"),
       path("update_sales/<int:pk>" , views.update_sales, name="update_sales"),
       path("update_rawmaterial/<int:pk>" , views.update_rawmaterial, name="update_rawmaterial"),
       path("update_purchase/<int:pk>" , views.update_purchase, name="update_purchase"),
+      path("update_billing/<int:pk>" , views.update_billing, name="update_billing"),
+      path("update_customer/<int:pk>" , views.update_customer, name="update_customer"),
+      path("update_employee/<int:pk>" , views.update_employee, name="update_employee"),
+      path("update_offer/<int:pk>" , views.update_offer, name="update_offer"),
+      path("update_recycle/<int:pk>" , views.update_recycle, name="update_recycle"),
+      path("update_product/<int:pk>" , views.update_product, name="update_product"),
+      
+=======
+      path("update_admin/<int:pk>" , views.update_admin, name="update_admin"),
+      path("update_billing/<int:pk>" , views.update_billing, name="update_billing"),
+      path("update_category/<int:pk>" , views.update_category, name="update_category"),
+      path("update_delivery/<int:pk>" , views.update_delivery, name="update_delivery"),
+      path("update_employee/<int:pk>" , views.update_employee, name="update_employee"),
+      path("update_offer/<int:pk>" , views.update_offer, name="update_offer"),
+      path("update_order/<int:pk>" , views.update_order, name="update_order"),
+      path("update_production/<int:pk>" , views.update_production, name="update_production"),
+      path("update_product/<int:pk>" , views.update_product, name="update_product"),
+      path("update_purchase/<int:pk>" , views.update_purchase, name="update_purchase"),
+      path("update_rawmaterial/<int:pk>" , views.update_rawmaterial, name="update_rawmaterial"),   
+      path("update_supplier/<int:pk>" , views.update_supplier, name="update_supplier"),
+>>>>>>> Stashed changes
       
 
       #delete
