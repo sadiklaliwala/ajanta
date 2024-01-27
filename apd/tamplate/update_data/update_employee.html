@@ -18,37 +18,33 @@
         <label for="category">choose work :</label>
         <select name="work">
             {% for i in Work %}
-<<<<<<< Updated upstream
             <option value="{{i.Work_id}}">{{i.Work_name}}</option>
-=======
-            <option value="{{i.work_id}}">{{i.work_name}}</option>
->>>>>>> Stashed changes
             {% endfor %}
         </select><br>
 
         <label for="category">Enter Employee Name :</label>
-        <input type="text" id="category" name="employeename"><br>
+        <input type="text" id="category" name="employeename" value="{{employee_object.emp_name}}"><br>
 
         <label for="category">Enter Employee_DOB :</label>
-        <input type="date" id="category" name="employeedob"><br>
+        <input type="date" id="category" name="employeedob" value="{{employee_object.emp_dob}}"><br>
 
         <label for="category">Enter contact no.:</label>
-        <input type="number" id="category" name="contact"><br>
+        <input type="number" id="category" name="contact" value="{{employee_object.contact_number}}"><br>
         
         <label for="category">Enter salary :</label>
-        <input type="number" id="category" name="salary"><br>
+        <input type="number" id="category" name="salary" value="{{employee_object.emp_salary}}"><br>
 
         <label for="category">Enter Work Experience:</label>
-        <input type="text" id="category" name="experience"><br>
+        <input type="text" id="category" name="experience" value="{{employee_object.work_experience}}"><br>
 
         <label for="category">Enter join_date :</label>
-        <input type="date" id="category" name="joiningdate"><br>
+        <input type="date" id="category" name="joiningdate" value="{{employee_object.emp_joindate}}"><br>
 
         <label for="category">Enter leave_date :</label>
-        <input type="date" id="category" name="leavedate"><br>
+        <input type="date" id="category" name="leavedate" value="{{employee_object.emp_leavedate}}"><br>
         
         <label for="category">Enter Qualification :</label>
-        <input type="text" id="category" name="qualification"><br>
+        <input type="text" id="category" name="qualification" value="{{employee_object.qualification}}"><br>
 
         <input type="submit" value="Submit">
     </form>

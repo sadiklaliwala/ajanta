@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Form</title>
+</head>
+
+<body>
+
+    <h1>Add a New Product</h1>
+    <form method="POST" action="{% url 'offer_add' %}">
+        {% csrf_token %}
+
+        <label for="category">Enter Starting_date:</label>
+<<<<<<< Updated upstream
+        <input type="number" id="category" name="start_date" values="{{offer_object.start_date}}"><br>
+
+        <label for="category">Enter Ending_date:</label>
+        <input type="number" id="category" name="end_date" values="{{offer_object.end_date}}"><br>
+
+        <label for="category">Enter offer_description :</label>
+        <input type="text" id="category" name="description" values="{{offer_object.description}}"><br>
+=======
+        <input type="number" id="category" value="{{offer_object.offer_sdate}}" name="sdate"><br>
+
+        <label for="category">Enter Ending_date:</label>
+        <input type="number" id="category" value= "{{offer_object.offer_edate}}" name="edate"><br>
+
+        <label for="category">Enter offer_description :</label>
+        <input type="text" id="category"value="{{offer_object.offer_description}}" name="description"><br>
+>>>>>>> Stashed changes
+
+        
+
+        <input type="submit" value="Submit">
+    </form>
+    {% if msg %}
+    {{msg}}
+    {% endif %}
+
+</body>
+
+</html>

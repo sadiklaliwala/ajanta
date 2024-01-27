@@ -24,7 +24,7 @@
         
 
         <label for="category">Enter order_date:</label>
-        <input type="date" id="category" name="orderdate"><br>
+        <input type="date" id="category" name="orderdate" values="{{order_object.order_date}}"><br>
 
         <label for="category">Choose product :</label>
         <select name="product">
@@ -33,14 +33,14 @@
             {% endfor %}
         </select><br>
 
-        <label for="category">Enter contact no.:</label>
-        <input type="number" id="category" name="contact"><br>
+        <!--<label for="category">Enter contact no.:</label>
+        <input type="number" id="category" name="contact"><br>-->
         
         <label for="category">Enter order quantity :</label>
-        <input type="number" id="category" name="order_quantity"><br>
+        <input type="number" id="category" name="order_quantity" values="{{order_object.order_quantity}}"><br>
 
         <label for="category">Enter Payment:</label>
-        <input type="text" id="category" name="payment"><br>
+        <input type="text" id="category" name="payment" values="{{order_object.payment}}"><br>
 
         
 

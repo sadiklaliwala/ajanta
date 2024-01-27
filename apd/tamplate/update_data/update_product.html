@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add a product </title>
+</head>
+
+<body>
+
+    <h1>Add feedback</h1>
+    <form method="POST" action="{% url 'product_add' %}">
+        {% csrf_token %}
+
+        <label for="category">choose Category Name :</label>
+        <select name="category">
+            {% for i in Category %}
+            <option value="{{i.Category_id}}">{{i.Category_name}}</option>
+            {% endfor %}
+        </select><br>
+
+        <label for="category">Enter Product_Name:</label>
+        <input type="text" id="category" name="productname" values="{{product_object.product_name}}"><br>
+
+        <label for="category">Enter Material :</label>
+        <input type="text" id="category" name="material" values="{{product_object.material}}"><br>
+
+        <label for="category">Add image :</label>
+        <input type="url" id="category" name="image" values="{{product_object.image}}"><br>
+
+
+        <label for="category">Enter Product_Price :</label>
+        <input type="number" id="category" name="productprice" values="{{product_object.product_price}}"><br>
+
+        <label for="category">Enter Product_Weight :</label>
+        <input type="text" id="category" name="productweight" values="{{product_object.product_weight}}"><br>
+
+
+        <label for="category">Enter Product_Quantity :</label>
+        <input type="text" id="category" name="productquantity" values="{{product_object.product_quantity}}"><br>
+
+        <label for="category">Enter Product_Color :</label>
+        <input type="text" id="category" name="productcolor" values="{{product_object.product_color}}"><br>
+
+        <input type="submit" value="Submit">
+    </form>
+    {% if msg %}
+    {{msg}}
+    {% endif %}
+
+</body>
+
+</html>

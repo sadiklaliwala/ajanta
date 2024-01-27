@@ -19,14 +19,14 @@
         {% endfor %}
     </select>
         <label for="category">Enter Quantity :</label>
-        <input type="text" id="category" name="quantity"><br>
+        <input type="text" id="category" name="quantity" values="{{production_object:quantity}}"><br>
 
 
         <label for="category">Enter Production_cost :</label>
-        <input type="number" id="category" name="productioncost"><br>
+        <input type="number" id="category" name="productioncost" values="{{production_object:production_cost}}"><br>
 
         <label for="category">Enter Production_date :</label>
-        <input type="date" id="category" name="productiondate"><br>
+        <input type="date" id="category" name="productiondate" values="{{production_object:production_date}}"><br>
 
         <input type="submit" value="Submit">
     </form>

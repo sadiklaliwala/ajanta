@@ -352,7 +352,6 @@ def update_rawmaterial(request,pk):
         vraw_quantity=request.POST.get("quantity")
         rawmaterial=RawMaterial(raw_id=pk,sup=fvsup,raw_name=vraw_name,raw_quantity=vraw_quantity)
         rawmaterial.save()
-        
     params={'supplier_object': Supplier.objects.all,'rawmaterial_object':RawMaterial.objects.get(raw_id=pk)}
     return render(request , "update_data/update_rawmaterial.html",params)
 
@@ -371,6 +370,185 @@ def update_purchase(request,pk):
         return redirect("purchaseshow")
     params={'suppliers':Supplier.objects.all(),'purchase_object':Purchase.objects.get(purchase_id=pk)}
     return render (request ,'update_data/update_purchase.html',params)
+
+def update_billing(request,pk):
+    if request.method =="POST":
+        customer_id=request.POST.get('customer')
+        vcustomer=Customer.objects.get(Customer_id=customer_id)
+        vorder=request.POST.get('order')
+        scharges=request.POST.get('shippingcharges')
+        odate=request.POST.get('orderdate')
+        tamount=request.POST.get('totalamount')
+        vpur=Billing(bill_id=pk,customer=vcustomer,order=vorder,shipping_charges=scharges,order_date=odate,total=tamount)
+        vpur.save()
+        customer_object=Customer.objects.all()
+        params={'customerss':customer_object ,'msg':'massage successfully '}
+    params={'customerss':Customer.objects.all(),'billing_object':Billing.objects.get(bill_id=pk)}
+    return render (request ,'update_data/update_billing.html',params)
+
+def update_employee(request,pk):
+    if request.method=="POST":
+        work_id=request.post.get("work")
+        vwork=Work.object.get(Work_id=work_id)
+        ename=request.POST.get("emp_name")
+        edob=request.POST.get("emp_dob")
+        number=request.post.get("contact_number")
+        salary=request.post.get("emp_salary")
+        experience=request.post.get("work_experience")
+        joindate=request.post.get("emp_joindate")
+        leavedate=request.post.get("emp_leavedate")
+        qualification=request.post.get("qualification")
+        emp=Employee(emp_id=pk,work=vwork,emp_name=ename,emp_dob=edob,contact_number=number,emp_salary=salary,work_experience=experience,emp_joindate=joindate,emp_leavedate=leavedate,qualification=qualification)
+        emp.save()
+        employee_object=Employee.objects.all()
+        params={'Work':work_object ,'msg':'massage successfully '}
+    params={'Work':Work.objects.all(),'employee_object':Employee.objects.get(emp_id=pk)}
+    return render (request ,'update_data/update_employee.html',params)
+
+
+def update_admin(request,pk):
+    if request.method=="POST":
+        vadminname=request.POST.get("admin_name")
+        vadimnpassword=request.POST.get("password")
+        adminsave=Admin(admin_id=pk,admin_name=vadminname,password=vadimnpassword)
+        adminsave.save()
+        return redirect("adminshow")
+    params={'admn_object':Admin.objects.get(admin_id=pk)}
+    return render (request , "update_data/update_admin.html",params)
+
+
+def update_customer(request,pk):
+    if request.method=="POST":
+        # s=Work.objects.get(work_id=pk)
+        vcust_fname=request.POST.get("customer_fname")
+        vcust_lname=request.POST.get("customer_lname")
+        vcustno=request.POST.get("customer_number")
+        vcust_email=request.POST.get("customer_email")
+        vcust_gender=request.POST.get("customer_gender")
+        vdob=request.POST.get("customer_dob")
+        vpassword=request.POST.get("customer_password")
+        vcustomer=Customer(customer_id=pk,customer_fname=vcust_fname,customer_lname=vcust_lname,contact_number=vcustno,customer_email=vcust_email,customer_gender=vcust_gender,customer_dob=vdob,customer_password=vpassword)
+        vcustomer.save()
+        return redirect ("customershow")
+    params={'customer_object':Customer.objects.get(customer_id=pk)}
+    return render (request , "update_data/update_customer.html",params)
+
+'''def update_offer(request,pk):
+    if request.method=="POST":
+        sadte=request.POST.get("start_date")
+        edate=request.POST.get("end_date")
+        descr=request.POST.get("description")
+        ofer=Offer(offer_id=pk,start_date=sdate,end_date=edate,description=descr)
+        ofer.save()'''
+
+def upadte_category(request,pk):
+    if request.method=="POST":
+        vcategoryname=request.POST.get("categoryname")
+        catsave=Category(category_id=pk,category_name = vcategoryname)
+        catsave.save()
+        return redirect ("categoryshow")
+    params={'category_object':Category.objects.get(category_id=pk)}
+    return render (request , "update_data/update_category.html",params)
+
+def update_offer(request,pk):
+    if request.method=="POST":
+        offersdate=request.POST.get("sdate")
+        offeredate=request.POST.get("edate")
+        offerdescription=request.POST.get("description")
+        catsave=Category(offer_id=pk,start_date=offersdate,end_date=offeredate,description=offerdescription)
+        catsave.save()
+        return redirect ("offershow")
+    params={'offer_object':Offer.objects.get(offer_id=pk)}
+    return render (request , "update_data/update_offer.html",params)
+
+
+def update_recycle(request,pk):
+    if request.method=="POST":
+        rdate=request.POST.get("r_date")
+        rquan=request.POST.get("quantity")
+        recycle=Recycling(r_id=pk,r_date=rdate,quantity=rquan)
+        recycle.save()
+        return redirect ("recycleshow")
+    params={'recycling_object':Recycling.objects.get(r_id=pk)}
+    return render (request , "update_data/update_recycle.html",params)
+
+def update_product(request,pk):
+    if request.method=="POST":
+        category_id=request.post.get("category")
+        vwork=Category.object.get(Category_id=category_id)
+        pname=request.POST.get("product_name")
+        pmaterial=request.POST.get("material")
+        pimage=request.POST.get("image")
+        pprice=request.POST.get("product_price")
+        pweight=request.POST.get("product_weight")
+        pquantity=request.POST.get("product_quantity")
+        pcolor=request.POST.get("product_color")
+        product=Product(product_id=pk,category=vwork,product_name=pname,material=pmaterial,image=pimage,product_price=pprice,product_weight=pweight,product_quantity=pquantity,product_color=pcolor)
+        product.save()
+        return redirect ("productshow")
+    params={'product_object':Product.objects.get(product_id=pk)}
+    return render (request , "update_data/update_product.html",params)
+
+'''def update_recycling(request,pk):
+    if request.method=="POST":
+        rdate=request.POST.get("recyclingdate")
+        rquantity=request.POST.get("quantity")
+        rsave=Category(r_id=pk,r_date=rdate,quantity=rquantity)
+        rsave.save()
+        return redirect ("recycleshow")
+    params={'recycling_object':Recycling.objects.get(r_id=pk)}
+    return render (request , "update_data/update_recycle.html",params)'''
+
+def update_delivery(request,pk):
+    if request.method=="POST":
+        customer_id=request.post.get("customer")
+        cust=Customer.object.get(Customer_id=customer_id)
+        daddress=request.POST.get("address")
+        product_id=request.post.get("product")
+        prod=Product.object.get(Product_id=product_id)
+        ddate=request.POST.get("d_date")
+        emp_id=request.post.get("employee")
+        emp=Employee.object.get(Emp_id=emp_id)
+        quan=request.POST.get("quantity")
+        employee=Employee(d_id=pk,customer=cust,address=daddress,product=prod,d_date=ddate,emp=emp,quantity=quan)
+        employee.save()
+        return redirect("deliveryshow")
+    params={'delivery_object':Delivery.objects.get(d_id=pk)}
+    return render (request , "update_data/update_delivery.html",params)
+
+def update_order(request,pk):
+    if request.method=="POST":
+        customer_id=request.post.get("customer")
+        cust=Customer.object.get(Customer_id=customer_id)
+        odate=request.POST.get("order_date")
+        product_id=request.post.get("product")
+        prod=Product.object.get(Product_id=product_id)
+        quantity=request.POST.get("order_quantity")
+        payment=request.POST.get("payment")
+        order=Order1(order_id=pk,customer=cust,order_date=odate,product=prod,order_quantity=quantity,payment=payment)
+        order.save()
+        return redirect("ordershow")
+    params={'order_object':Order1.objects.get(order_id=pk)}
+    return render (request , "update_data/update_order.html",params)
+
+def update_production(request,pk):
+    if request.method=="POST":
+        product_id=request.post.get("product")
+        prod=Product.object.get(Product_id=product_id)
+        quantity=request.POST.get("quantity")
+        cost=request.POST.get("production_cost")
+        date=request.POST.get("production_date")
+        production=Production(production_id=pk,product=prod,quantity=quantity,production_cost=cost,production_date=date)
+        production.save()
+        return redirect("productshow")
+    params={'production_object':Production.objects.get(Production_id=pk)}
+    return render (request , "update_data/update_production.html",params)
+
+
+
+
+    
+
 
 def admindasheboard(request ):
     return render (request , "admindasheboard.html")
