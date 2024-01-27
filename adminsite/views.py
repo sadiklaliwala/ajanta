@@ -357,7 +357,7 @@ def update_rawmaterial(request,pk):
 
 
 def update_purchase(request,pk):
-    if request.method =="POST":def update_rawmaterial(request,pk):
+    if request.method =="POST":
         supplier_id=request.POST.get('supplier')
         vsupplier=Supplier.objects.get(sup_id=supplier_id)
         material_name=request.POST.get('materialname')
@@ -416,7 +416,7 @@ def update_admin(request,pk):
     params={'admn_object':Admin.objects.get(admin_id=pk)}
     return render (request , "update_data/update_admin.html",params)
 
-<<<<<<< Updated upstream
+
 def update_customer(request,pk):
     if request.method=="POST":
         # s=Work.objects.get(work_id=pk)
@@ -433,18 +433,17 @@ def update_customer(request,pk):
     params={'customer_object':Customer.objects.get(customer_id=pk)}
     return render (request , "update_data/update_customer.html",params)
 
-def update_offer(request,pk):
+'''def update_offer(request,pk):
     if request.method=="POST":
         sadte=request.POST.get("start_date")
         edate=request.POST.get("end_date")
         descr=request.POST.get("description")
         ofer=Offer(offer_id=pk,start_date=sdate,end_date=edate,description=descr)
-        ofer.save()
-=======
+        ofer.save()'''
+
 def upadte_category(request,pk):
     if request.method=="POST":
-        
-        vcategoryname=request.POST.get("categoryname")
+         vcategoryname=request.POST.get("categoryname")
         catsave=Category(category_id=pk,category_name = vcategoryname)
         catsave.save()
         return redirect ("categoryshow")
@@ -458,12 +457,11 @@ def update_offer(request,pk):
         offerdescription=request.POST.get("description")
         catsave=Category(offer_id=pk,start_date=offersdate,end_date=offeredate,description=offerdescription)
         catsave.save()
->>>>>>> Stashed changes
         return redirect ("offershow")
     params={'offer_object':Offer.objects.get(offer_id=pk)}
     return render (request , "update_data/update_offer.html",params)
 
-<<<<<<< Updated upstream
+
 def update_recycle(request,pk):
     if request.method=="POST":
         rdate=request.POST.get("r_date")
@@ -490,8 +488,8 @@ def update_product(request,pk):
         return redirect ("productshow")
     params={'product_object':Product.objects.get(product_id=pk)}
     return render (request , "update_data/update_product.html",params)
-=======
-def update_recycling(request,pk):
+
+'''def update_recycling(request,pk):
     if request.method=="POST":
         rdate=request.POST.get("recyclingdate")
         rquantity=request.POST.get("quantity")
@@ -499,8 +497,54 @@ def update_recycling(request,pk):
         rsave.save()
         return redirect ("recycleshow")
     params={'recycling_object':Recycling.objects.get(r_id=pk)}
-    return render (request , "update_data/update_recycle.html",params)
->>>>>>> Stashed changes
+    return render (request , "update_data/update_recycle.html",params)'''
+
+def update_delivery(request,pk):
+    if request.method=="POST":
+        customer_id=request.post.get("customer")
+        cust=Customer.object.get(Customer_id=customer_id)
+        daddress=request.POST.get("address")
+        product_id=request.post.get("product")
+        prod=Product.object.get(Product_id=product_id)
+        ddate=request.POST.get("d_date")
+        emp_id=request.post.get("employee")
+        emp=Employee.object.get(Emp_id=emp_id)
+        quan=request.POST.get("quantity")
+        employee=Employee(d_id=pk,customer=cust,address=daddress,product=prod,d_date=ddate,emp=emp,quantity=quan)
+        employee.save()
+        return redirect("deliveryshow")
+    params={'delivery_object':Delivery.objects.get(d_id=pk)}
+    return render (request , "update_data/update_delivery.html",params)
+
+def update_order(request,pk):
+    if request.method=="POST":
+        customer_id=request.post.get("customer")
+        cust=Customer.object.get(Customer_id=customer_id)
+        odate=request.POST.get("order_date")
+        product_id=request.post.get("product")
+        prod=Product.object.get(Product_id=product_id)
+        quantity=request.POST.get("order_quantity")
+        payment=request.POST.get("payment")
+        order=Order1(order_id=pk,customer=cust,order_date=odate,product=prod,order_quantity=quantity,payment=payment)
+        order.save()
+        return redirect("ordershow")
+    params={'order_object':Order1.objects.get(order_id=pk)}
+    return render (request , "update_data/update_order.html",params)
+
+def update_production(request,pk):
+    if request.method=="POST":
+        product_id=request.post.get("product")
+        prod=Product.object.get(Product_id=product_id)
+        quantity=request.POST.get("quantity")
+        cost=request.POST.get("production_cost")
+        date=request.POST.get("production_date")
+        production=Production(production_id=pk,product=prod,quantity=quantity,production_cost=cost,production_date=date)
+        production.save()
+        return redirect("productshow")
+    params={'production_object':Production.objects.get(Production_id=pk)}
+    return render (request , "update_data/update_production.html",params)
+
+
 
 
     
