@@ -295,7 +295,7 @@ def stock_add(request):
     params={'rawmaterial_object':RawMaterial.objects.all(),'product_object':Product.objects.all()}
     return render (request ,'add_data/stock.html',params)
 #update
-def workform_update(request,pk):
+def work_update(request,pk):
     if request.method=="POST":
         # s=Work.objects.get(work_id=pk)
         vworkname=request.POST.get("workname")
@@ -389,7 +389,7 @@ def update_billing(request,pk):
 def update_employee(request,pk):
     if request.method=="POST":
         work_id=request.post.get("work")
-        vwork=Work.object.get(Work_id=work_id)
+        vwork=Work.objects.get(Work_id=work_id)
         ename=request.POST.get("emp_name")
         edob=request.POST.get("emp_dob")
         number=request.post.get("contact_number")
@@ -400,8 +400,8 @@ def update_employee(request,pk):
         qualification=request.post.get("qualification")
         emp=Employee(emp_id=pk,work=vwork,emp_name=ename,emp_dob=edob,contact_number=number,emp_salary=salary,work_experience=experience,emp_joindate=joindate,emp_leavedate=leavedate,qualification=qualification)
         emp.save()
-        employee_object=Employee.objects.all()
-        params={'Work':work_object ,'msg':'massage successfully '}
+        # employee_object=Employee.objects.all()
+        # params={'Work':work_object ,'msg':'massage successfully '}
     params={'Work':Work.objects.all(),'employee_object':Employee.objects.get(emp_id=pk)}
     return render (request ,'update_data/update_employee.html',params)
 
@@ -441,7 +441,7 @@ def update_customer(request,pk):
         ofer=Offer(offer_id=pk,start_date=sdate,end_date=edate,description=descr)
         ofer.save()'''
 
-def upadte_category(request,pk):
+def update_category(request,pk):
     if request.method=="POST":
         vcategoryname=request.POST.get("categoryname")
         catsave=Category(category_id=pk,category_name = vcategoryname)
@@ -475,7 +475,7 @@ def update_recycle(request,pk):
 def update_product(request,pk):
     if request.method=="POST":
         category_id=request.post.get("category")
-        vwork=Category.object.get(Category_id=category_id)
+        vwork=Category.objects.get(Category_id=category_id)
         pname=request.POST.get("product_name")
         pmaterial=request.POST.get("material")
         pimage=request.POST.get("image")
@@ -502,13 +502,13 @@ def update_product(request,pk):
 def update_delivery(request,pk):
     if request.method=="POST":
         customer_id=request.post.get("customer")
-        cust=Customer.object.get(Customer_id=customer_id)
+        cust=Customer.objects.get(Customer_id=customer_id)
         daddress=request.POST.get("address")
         product_id=request.post.get("product")
-        prod=Product.object.get(Product_id=product_id)
+        prod=Product.objects.get(Product_id=product_id)
         ddate=request.POST.get("d_date")
         emp_id=request.post.get("employee")
-        emp=Employee.object.get(Emp_id=emp_id)
+        emp=Employee.objects.get(Emp_id=emp_id)
         quan=request.POST.get("quantity")
         employee=Employee(d_id=pk,customer=cust,address=daddress,product=prod,d_date=ddate,emp=emp,quantity=quan)
         employee.save()
@@ -519,10 +519,10 @@ def update_delivery(request,pk):
 def update_order(request,pk):
     if request.method=="POST":
         customer_id=request.post.get("customer")
-        cust=Customer.object.get(Customer_id=customer_id)
+        cust=Customer.objects.get(Customer_id=customer_id)
         odate=request.POST.get("order_date")
         product_id=request.post.get("product")
-        prod=Product.object.get(Product_id=product_id)
+        prod=Product.objects.get(Product_id=product_id)
         quantity=request.POST.get("order_quantity")
         payment=request.POST.get("payment")
         order=Order1(order_id=pk,customer=cust,order_date=odate,product=prod,order_quantity=quantity,payment=payment)
@@ -534,7 +534,7 @@ def update_order(request,pk):
 def update_production(request,pk):
     if request.method=="POST":
         product_id=request.post.get("product")
-        prod=Product.object.get(Product_id=product_id)
+        prod=Product.objects.get(Product_id=product_id)
         quantity=request.POST.get("quantity")
         cost=request.POST.get("production_cost")
         date=request.POST.get("production_date")
@@ -543,12 +543,6 @@ def update_production(request,pk):
         return redirect("productshow")
     params={'production_object':Production.objects.get(Production_id=pk)}
     return render (request , "update_data/update_production.html",params)
-
-
-
-
-    
-
 
 def admindasheboard(request ):
     return render (request , "admindasheboard.html")
