@@ -19,9 +19,9 @@ from django.urls import path,include
 from adminsite import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    # path('admin/', admin.site.urls),
     path('admindasheboard/', views.admindasheboard,name="admindasheboard"),
-      path('nav/',views.nav, name ='nav'),
+    path('admin/',views.admin_deshboard, name ='nav'),
       
     # path('',include('adminsite.urls'))
      #all data show 

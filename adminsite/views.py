@@ -31,8 +31,8 @@ def show(request ):
     params ={ 'works':works ,'billing':billing ,'category':category,'customer':customer ,'delivery': delivery ,'employee': employee,'feedback' : feedback ,'offer' : offer,'order1': order1,'product':product,'production':production,'vpurchase':purchase,'rawMaterial':rawMaterial,'recycling':recycling,'sales':sales ,'stock':stock ,'supplier':supplier, 'admin':admin}
     return render (request , "show.html", params)
 # navebar
-def nav(request):
-  return render (request , "nav.html" )
+def admin_deshboard(request):
+  return render (request , "admin_panel/admin.html" )
 
 def billing_add(request):
     if request.method=='POST':
@@ -628,7 +628,7 @@ def rawmaterialshow(request):
 def recyclingshow(request):
     recycling=Recycling.objects.all()
     params ={'recycling':recycling}
-    return render (request , "show_data/recyclingshow.html",params)
+    return render (request , "show_data/recycleshow.html",params)
 
 def feedbackshow(request):
     feedback=Feedback.objects.all()
