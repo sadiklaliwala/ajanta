@@ -372,10 +372,6 @@ def update_purchase(request,pk):
     params={'suppliers':Supplier.objects.all(),'purchase_object':Purchase.objects.get(purchase_id=pk)}
     return render (request ,'update_data/update_purchase.html',params)
 
-
-
-
-
 def admindasheboard(request ):
     return render (request , "admindasheboard.html")
 
