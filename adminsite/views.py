@@ -8,6 +8,7 @@ from .models import Admin ,Work ,Purchase ,Supplier,Billing,Category
 from .models import Customer,Delivery,Employee,Feedback,Offer
 from .models import Order1,Product,Production,RawMaterial,Recycling,Sales,Stock
 from .forms import adminform
+from django.db.models import Sum
 from django.contrib import messages
 
 
@@ -802,6 +803,48 @@ def delete_work(request , work_id):
     deletestaff.delete()
     ans=Admin.objects.all()
     return redirect("workshow")
+
+def adminpanel(request):
+    adm=Admin.objects.all().count()
+    bill=Billing.objects.all().count()
+    cate=Category.objects.all().count()
+    cust=Customer.objects.all().count()
+    deliv=Delivery.objects.all().count()
+    empl=Employee.objects.all().count()
+    feed=Feedback.objects.all().count()
+    off=Offer.objects.all().count()
+    or1=Order1.objects.all().count()
+    prd=Product.objects.all().count()
+    prod=Production.objects.aggregate(Sum('quantity')).get('quantity__sum',0.00)
+    purc =Purchase.objects.aggregate(Sum('amount')).get('amount__sum',0.00)
+    raw=RawMaterial.objects.aggregate(Sum('raw_quantity')).get('raw_quantity__sum')
+    recycle=Recycling.objects.aggregate(Sum('quantity')).get('quantity__sum',0.00)
+    sal=Sales.objects.aggregate(Sum('quantity')).get('quantity__sum',0.00)
+    stoc=Stock.objects.all().count()
+    supp=Supplier.objects.all().count()
+    work =Work.objects.all().count()
+    context={'admin_count':adm,'bill_count':bill,'category_count':cate,'customer_count':cust,'delivery_count':deliv,
+    'employee_count':empl,'feedback_count':feed,'offer_count':off,'order_count':or1,'product_count':prd,
+    'production_count':prod,'purchase_count':purc,'raw_count':raw,'recycle_count':recycle,
+    'sales_count':sal,'stock_count':stoc,'supplier_count':supp,'work_count':work}
+    return render(request,"admin_panel/admin.html",context)
+
+def emppanel(request):
+    deliv=Delivery.objects.all().count()
+    or1=Order1.objects.all().count()
+    prod=Production.objects.aggregate(Sum('quantity')).get('quantity__sum',0.00)
+    raw=RawMaterial.objects.aggregate(Sum('raw_quantity')).get('raw_quantity__sum')
+    recycle=Recycling.objects.aggregate(Sum('quantity')).get('quantity__sum',0.00)
+    sal=Sales.objects.aggregate(Sum('quantity')).get('quantity__sum',0.00)
+    context={'delivery_count':deliv,'order_count':or1,'production_count':prod,'raw_count':raw,
+    'recycle_count':recycle,'sales_count':sal,}
+    return render(request,"employee_panel/employee_panel.html",context)
+
+def login(request):
+  return render (request , "customer_logreg/login.html" )
+
+def registration(request):
+    return render (request,"customer_logreg/registration.html")
 
 
 
