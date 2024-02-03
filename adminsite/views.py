@@ -97,7 +97,7 @@ def billing_add(request):
         vbilling=Billing(customer=fvcustomer,order=vorder,shipping_charges=vshipping_charges,order_date=vorder_date,total=vtotal)
         vbilling.save()
         return render(request , "add_data/billing.html")
-    params={'customerss':Customer.objects.all()}
+    params={'customers_object':Customer.objects.all()}
     return render (request ,'add_data/billing.html',params)    
 
 def admin_add(request):
@@ -124,7 +124,7 @@ def customer_add(request):
             customer_pincode=request.POST.get('admin_name'))
         vcustomer.save()
         params={'msg':'massage successfully '}
-        return render (request , "create.html",params)
+        return render (request , "add_data/customer_add.html",params)
     return render (request , "add_data/customer_add.html")
 
 def delivery_add(request):
@@ -159,7 +159,7 @@ def purchase_add(request):
     params={'suppliers':Supplier.objects.all()}
     return render (request ,'add_data/purchase_add.html',params)
 
-def workform(request):
+def work_add(request):
 
     try :
         n=''
@@ -179,7 +179,7 @@ def workform(request):
     except :
         return HttpResponse( "bad url")
     params={'n':n}
-    return render (request , "workform.html", params)
+    return render (request , "work_add.html", params)
 
 def sup_add(request):
     if request.method=="POST":    
@@ -217,7 +217,7 @@ def product_add(request):
         return render(request , "add_data/product_add.html")
         # return render (request , 'purchaseform.html',params)
         # from here all supplier name are coming 
-    params={'category_object':Category.objects.all()}
+    params={'category':Category.objects.all()}
     return render (request ,'add_data/product_add.html',params)    
 
 def recycling_add(request):
@@ -302,9 +302,9 @@ def feedback_add(request):
         fvcustomer=Customer.objects.get(customer_id=vcustomer)
         feedback=Feedback(f_date=vf_date,feedback=vfeedback,customer=fvcustomer)
         feedback.save()
-        params={'msg':'massage successfully ','customer_object':Customer.objects.all()}
+        params={'msg':'massage successfully ','customer_objects':Customer.objects.all()}
         return render (request , "add_data/feedback_add.html",params)
-    params={'msg':'massage successfully ','customer_object':Customer.objects.all()}
+    params={'msg':'massage successfully ','customer_objects':Customer.objects.all()}
     return render (request , "add_data/feedback_add.html")
 
 def offer_add(request):

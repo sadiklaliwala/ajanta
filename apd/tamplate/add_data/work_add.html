@@ -10,7 +10,7 @@
 <body>
     
         <h1>Add a New Product</h1>
-        <form method="POST"  >
+        <form method="POST" action=" {% url 'workform' %} " >
             {% csrf_token %}
            
             <label for="category">Enter Work Name :</label>

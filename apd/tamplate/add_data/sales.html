@@ -18,7 +18,7 @@
 
         <label for="category">Choose product :</label>
         <select name="product">
-            {% for i in product %}
+            {% for i in product_object %}
             <option value="{{i.product_id}}">{{i.product_name}}</option>
             {% endfor %}
         </select><br>

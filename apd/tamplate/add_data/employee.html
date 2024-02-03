@@ -17,12 +17,8 @@
 
         <label for="category">choose work :</label>
         <select name="work">
-            {% for i in Work %}
-<<<<<<< Updated upstream
-            <option value="{{i.Work_id}}">{{i.Work_name}}</option>
-=======
+            {% for i in work_object %}
             <option value="{{i.work_id}}">{{i.work_name}}</option>
->>>>>>> Stashed changes
             {% endfor %}
         </select><br>
 

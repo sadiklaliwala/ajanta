@@ -10,7 +10,7 @@
 <body>
 
     <h1>Row_Material</h1>
-    <form method="POST" action="{% url 'rawmaterial' %}">
+    <form method="POST" action="{% url 'rawmaterial_add' %}">
         {% csrf_token %}
 
         <label for="category">Enter Raw_Material name:</label>
@@ -22,7 +22,7 @@
         
         <label for="category">choose supplier Name :</label>
         <select name="supplier">
-            {% for supplier in suppliers %}
+            {% for supplier in supplier_object %}
             <option value="{{supplier.sup_id}}">{{supplier.sup_name}}</option>
             {% endfor %}
         </select><br>

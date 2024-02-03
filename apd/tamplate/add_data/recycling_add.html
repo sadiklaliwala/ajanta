@@ -10,7 +10,7 @@
 <body>
 
     <h1>Recycling</h1>
-    <form method="POST" action="{% url 'recycling' %}">
+    <form method="POST" action="{% url 'recycling_add' %}">
         {% csrf_token %}
 
         <label for="category">Enter Recycling_date:</label>
