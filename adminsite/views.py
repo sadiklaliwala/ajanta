@@ -38,7 +38,7 @@ def admin_panel(request):
   return render (request , "admin_panel/admin.html" )
 
 # admin_login
-def admin_login(request):
+def admin_signup(request):
     if request.method=="POST":
         name=request.POST.get("username")
         password=request.POST.get("password")
@@ -49,11 +49,42 @@ def admin_login(request):
             for ad in admins:
                 i=i+1
                 request.session['adminn']=ad.admin_name
-                return redirect('/admin_deshboard/')
+                return redirect('/admin_panel/')
         else:
             messages.info(request,'Invalid Credentials', extra_tags='info')
             return redirect('admin_login')
     return render(request,"admin_login.html")
+
+def signin(request):
+    # user = Customer.objects.all()
+
+    if request.method=='POST':
+        email=request.POST['email']
+        pass1=request.POST['pass']
+
+        if Customer.objects.filter(cust_email=email).exists():
+
+            if Customer.objects.filter(cust_password=pass1).exists():
+
+                data = Customer.objects.get(cust_email=email)
+
+                if data.cust_password == pass1 and data.cust_email == email:
+                    request.session['cid']=data.cust_id
+                    return redirect('webcourse')
+                else:
+                    messages.info(request, 'Invalid Credentials')
+                    return redirect('signin')
+            else:
+                messages.info(request,'Invalid Password')
+                return redirect('signin')
+        else:
+            messages.info(request,'Invalid Email', extra_tags='info')
+            # messages.success(request,'Success from login', extra_tags='success')
+            return redirect('signin')
+    else :
+        return render(request,'webpages/login.html')
+
+
 # add_tables
 def billing_add(request):
     if request.method=='POST':
