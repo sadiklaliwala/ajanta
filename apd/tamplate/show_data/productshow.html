@@ -16,11 +16,12 @@
                     <th>product_quantity</th>
                     <th>product_color</th>
                     <th scope="col">delete </th>
+                    <th scope="col">update </th>
                   </tr>
                   {% for vtwork in product %}
                  <tr>
                     <td>{{vtwork.product_id}}</td>
-                    <td>{{vtwork.category}}</td>
+                    <td>{{vtwork.category.category_name}}</td>
                     <td>{{vtwork.product_name}}</td>
                     <td>{{vtwork.material}}</td>
                     <td>{{vtwork.image}}</td>
@@ -35,6 +36,13 @@
                            </a>
                         </p>
                      </td>
+                     <td>
+                        <p class="table_cell">
+                           <a href="/update_product/{{vtwork.product_id}}">
+                              <span class="icon"><i class="bi-x-circle-fill">update</i></span>
+                            </a>
+                         </p>
+                      </td>
                  </tr>
                  {% endfor %}
   

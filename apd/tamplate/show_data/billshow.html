@@ -18,12 +18,13 @@
                     <th scope="col">order_date</th>
                     <th scope="col">total</th>
                     <th scope="col">delete </th>
+                    <th scope="col">update </th>
                  </tr>
   
                  {% for vtwork in billing %}
                  <tr>
                     <td>{{vtwork.bill_id}}</td>
-                    <td>{{vtwork.customer}}</td>
+                    <td>{{vtwork.customer.customer_fname}}</td>
                     <td>{{vtwork.order}}</td>
                     <td>{{vtwork.shipping_charges}}</td>
                     <td>{{vtwork.order_date}}</td>
@@ -32,6 +33,13 @@
                      <p class="table_cell">
                         <a href="/delete_billing/{{vtwork.bill_id}}">
                            <span class="icon"><i class="bi-x-circle-fill">delete</i></span>
+                        </a>
+                     </p>
+                  </td>
+                  <td>
+                     <p class="table_cell">
+                        <a href="/update_billing/{{vtwork.bill_id}}">
+                           <span class="icon"><i class="bi-x-circle-fill">update</i></span>
                         </a>
                      </p>
                   </td>

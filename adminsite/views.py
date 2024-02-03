@@ -434,8 +434,8 @@ def update_billing(request,pk):
         vpur=Billing(bill_id=pk,customer=vcustomer,order=vorder,shipping_charges=scharges,order_date=odate,total=tamount)
         vpur.save()
         customer_object=Customer.objects.all()
-        params={'customerss':customer_object ,'msg':'massage successfully '}
-    params={'customerss':Customer.objects.all(),'billing_object':Billing.objects.get(bill_id=pk)}
+        #params={'customerss':customer_object ,'msg':'massage successfully '}
+    params={'customers_object':Customer.objects.all(),'billing_object':Billing.objects.get(bill_id=pk)}
     return render (request ,'update_data/update_billing.html',params)
 
 def update_employee(request,pk):
@@ -479,7 +479,9 @@ def update_customer(request,pk):
         vcust_gender=request.POST.get("customer_gender")
         vdob=request.POST.get("customer_dob")
         vpassword=request.POST.get("customer_password")
-        vcustomer=Customer(customer_id=pk,customer_fname=vcust_fname,customer_lname=vcust_lname,contact_number=vcustno,customer_email=vcust_email,customer_gender=vcust_gender,customer_dob=vdob,customer_password=vpassword)
+        vaddress=request.POST.get("address")
+        vpincode=request.POST.get("customer_pincode")
+        vcustomer=Customer(customer_id=pk,customer_fname=vcust_fname,customer_lname=vcust_lname,contact_number=vcustno,customer_email=vcust_email,customer_gender=vcust_gender,customer_dob=vdob,customer_password=vpassword,address=vaddress,vpincode=customer_pincode)
         vcustomer.save()
         return redirect ("customershow")
     params={'customer_object':Customer.objects.get(customer_id=pk)}
@@ -528,17 +530,17 @@ def update_product(request,pk):
     if request.method=="POST":
         category_id=request.post.get("category")
         vwork=Category.objects.get(Category_id=category_id)
-        pname=request.POST.get("product_name")
-        pmaterial=request.POST.get("material")
-        pimage=request.POST.get("image")
-        pprice=request.POST.get("product_price")
-        pweight=request.POST.get("product_weight")
-        pquantity=request.POST.get("product_quantity")
-        pcolor=request.POST.get("product_color")
-        product=Product(product_id=pk,category=vwork,product_name=pname,material=pmaterial,image=pimage,product_price=pprice,product_weight=pweight,product_quantity=pquantity,product_color=pcolor)
-        product.save()
+        vname=request.POST.get("product_name")
+        vmaterial=request.POST.get("material")
+        vimage=request.POST.get("image")
+        vprice=request.POST.get("product_price")
+        vweight=request.POST.get("product_weight")
+        vquantity=request.POST.get("product_quantity")
+        vcolor=request.POST.get("product_color")
+        vroduct=Product(product_id=pk,category=vwork,product_name=vname,material=vmaterial,image=vimage,product_price=vprice,product_weight=vweight,product_quantity=vquantity,product_color=vcolor)
+        vroduct.save()
         return redirect ("productshow")
-    params={'product_object':Product.objects.get(product_id=pk)}
+    params={'Category':Category.objects.all(),'product_object':Product.objects.get(product_id=pk)}
     return render (request , "update_data/update_product.html",params)
 
 '''def update_recycling(request,pk):
@@ -565,7 +567,7 @@ def update_delivery(request,pk):
         employee=Employee(d_id=pk,customer=cust,address=daddress,product=prod,d_date=ddate,emp=emp,quantity=quan)
         employee.save()
         return redirect("deliveryshow")
-    params={'delivery_object':Delivery.objects.get(d_id=pk)}
+    params={'customer':Customer.objects.all(),'product':Product.objects.all(),'employee':Employee.objects.all(),'delivery_object':Delivery.objects.get(d_id=pk)}
     return render (request , "update_data/update_delivery.html",params)
 
 def update_order(request,pk):
@@ -587,13 +589,13 @@ def update_production(request,pk):
     if request.method=="POST":
         product_id=request.post.get("product")
         prod=Product.objects.get(Product_id=product_id)
-        quantity=request.POST.get("quantity")
+        pquantity=request.POST.get("pquantity")
         cost=request.POST.get("production_cost")
         date=request.POST.get("production_date")
-        production=Production(production_id=pk,product=prod,quantity=quantity,production_cost=cost,production_date=date)
+        production=Production(production_id=pk,product=prod,pquantity=quantity,production_cost=cost,production_date=date)
         production.save()
         return redirect("productshow")
-    params={'production_object':Production.objects.get(Production_id=pk)}
+    params={'product_object':Product.objects.all(),'production_object':Production.objects.get(production_id=pk)}
     return render (request , "update_data/update_production.html",params)
 
 def admindasheboard(request ):

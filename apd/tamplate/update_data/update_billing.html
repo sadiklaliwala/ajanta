@@ -18,8 +18,8 @@
         <input type="text" id="category" name="customername"><br>-->
         <label for="category">choose customer Name :</label>
         <select name="customer">
-            {% for customer in customerss %}
-            <option value="{{customer.Customer_id}}">{{customer.Customer_fname}}</option>
+            {% for customer in customers_object %}
+            <option value="{{customer.customer_id}}">{{customer.customer_fname}}</option>
             {% endfor %}
         </select><br>
 
@@ -40,6 +40,7 @@
         
 
         <input type="submit" value="Submit">
+        
     </form>
     {% if msg %}
     {{msg}}
