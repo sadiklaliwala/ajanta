@@ -113,6 +113,12 @@ urlpatterns = [
       path('delete_supplier/<int:sup_id>', views.delete_supplier ,name="delete_supplier"),
       path('delete_work/<int:work_id>', views.delete_work ,name="delete_work"),
 
+    
+      path('adminpanel',views.adminpanel,name="adminpanel"),
+      path('emppanel',views.emppanel,name="employeepanel"),
+      path('login',views.login,name="customerlogin"),
+      path('registration',views.registration,name="customerregistration"),
+
 
 
 ]
