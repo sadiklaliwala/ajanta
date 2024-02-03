@@ -1,4 +1,5 @@
 from email.contentmanager import raw_data_manager
+from msilib import add_tables
 from statistics import quantiles
 from urllib import request
 from django.shortcuts import render,HttpResponse ,redirect
@@ -7,6 +8,8 @@ from .models import Admin ,Work ,Purchase ,Supplier,Billing,Category
 from .models import Customer,Delivery,Employee,Feedback,Offer
 from .models import Order1,Product,Production,RawMaterial,Recycling,Sales,Stock
 from .forms import adminform
+from django.contrib import messages
+
 
 # show all table info
 def show(request ):
@@ -34,6 +37,27 @@ def show(request ):
 def admin_deshboard(request):
   return render (request , "admin_panel/admin.html" )
 
+# admin_login
+def admin_login(request):
+    if request.method=="POST":
+        name=request.POST.get("username")
+        password=request.POST.get("password")
+
+        if Admin.objects.filter(admin_name=name).exists() and Admin.objects.filter(password=password).exists():
+            admins=Admin.objects.filter(admin_name=name,password=password)
+            i=0
+            for ad in admins:
+                i=i+1
+                request.session['adminn']=ad.admin_name
+                return redirect('/admin_deshboard/')
+        else:
+            messages.info(request,'Invalid Credentials', extra_tags='info')
+            return redirect('admin_login')
+    return render(request,"admin_login.html")
+
+
+
+# add_tables
 def billing_add(request):
     if request.method=='POST':
         vcustomer=request.POST.get("customer")
