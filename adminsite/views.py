@@ -34,7 +34,7 @@ def show(request ):
     params ={ 'works':works ,'billing':billing ,'category':category,'customer':customer ,'delivery': delivery ,'employee': employee,'feedback' : feedback ,'offer' : offer,'order1': order1,'product':product,'production':production,'vpurchase':purchase,'rawMaterial':rawMaterial,'recycling':recycling,'sales':sales ,'stock':stock ,'supplier':supplier, 'admin':admin}
     return render (request , "show.html", params)
 # navebar
-def admin_deshboard(request):
+def admin_panel(request):
   return render (request , "admin_panel/admin.html" )
 
 # admin_login
@@ -54,9 +54,6 @@ def admin_login(request):
             messages.info(request,'Invalid Credentials', extra_tags='info')
             return redirect('admin_login')
     return render(request,"admin_login.html")
-
-
-
 # add_tables
 def billing_add(request):
     if request.method=='POST':

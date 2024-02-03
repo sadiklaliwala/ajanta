@@ -20,8 +20,8 @@ from adminsite import views
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
-    path('admindasheboard/', views.admindasheboard,name="admindasheboard"),
-    path('admin/',views.admin_deshboard, name ='nav'),
+    #path('admindasheboard/', views.admindasheboard,name="admindasheboard"),
+    path('admin/',views.admin_panel, name ='admin_panel'),
       
     # path('',include('adminsite.urls'))
      #all data show 
