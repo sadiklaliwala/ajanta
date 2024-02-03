@@ -10,6 +10,7 @@ from .models import Order1,Product,Production,RawMaterial,Recycling,Sales,Stock
 from .forms import adminform
 from django.db.models import Sum
 from django.contrib import messages
+from django.contrib.auth import logout
 
 
 # show all table info
@@ -39,7 +40,7 @@ def admin_panel(request):
   return render (request , "admin_panel/admin.html" )
 
 # admin_login
-def admin_signup(request):
+def admin_login(request):
     if request.method=="POST":
         name=request.POST.get("username")
         password=request.POST.get("password")
@@ -49,14 +50,19 @@ def admin_signup(request):
             i=0
             for ad in admins:
                 i=i+1
-                request.session['adminn']=ad.admin_name
-                return redirect('/admin_panel/')
+                request.session['admin']=ad.admin_name
+                return redirect('admin_panel')
         else:
             messages.info(request,'Invalid Credentials', extra_tags='info')
             return redirect('admin_login')
-    return render(request,"admin_login.html")
+    return render(request,"admin_panel/admin_login.html")
+def admin_logout(request):
+    logout(request)
+    request.session.flush()
+    request.session['admin'] = None
+    return redirect("admin_login")
 
-def signin(request):
+#def signin(request):
     # user = Customer.objects.all()
 
     if request.method=='POST':
@@ -69,21 +75,21 @@ def signin(request):
 
                 data = Customer.objects.get(cust_email=email)
 
-                if data.cust_password == pass1 and data.cust_email == email:
-                    request.session['cid']=data.cust_id
-                    return redirect('webcourse')
-                else:
-                    messages.info(request, 'Invalid Credentials')
-                    return redirect('signin')
-            else:
-                messages.info(request,'Invalid Password')
-                return redirect('signin')
-        else:
-            messages.info(request,'Invalid Email', extra_tags='info')
-            # messages.success(request,'Success from login', extra_tags='success')
-            return redirect('signin')
-    else :
-        return render(request,'webpages/login.html')
+    #              if data.cust_password == pass1 and data.cust_email == email:
+    #                  request.session['cid']=data.cust_id
+    #                  return redirect('webcourse')
+    #             else:
+    #                 messages.info(request, 'Invalid Credentials')
+    #                 return redirect('signin')
+    #         else:
+    #             messages.info(request,'Invalid Password')
+    #             return redirect('signin')
+    #     else:
+    #         messages.info(request,'Invalid Email', extra_tags='info')
+    #         # messages.success(request,'Success from login', extra_tags='success')
+    #         return redirect('signin')
+    # else :
+    #     return render(request,'webpages/login.html')
 
 
 # add_tables
@@ -482,7 +488,7 @@ def update_customer(request,pk):
         vpassword=request.POST.get("customer_password")
         vaddress=request.POST.get("address")
         vpincode=request.POST.get("customer_pincode")
-        vcustomer=Customer(customer_id=pk,customer_fname=vcust_fname,customer_lname=vcust_lname,contact_number=vcustno,customer_email=vcust_email,customer_gender=vcust_gender,customer_dob=vdob,customer_password=vpassword,address=vaddress,vpincode=customer_pincode)
+        vcustomer=Customer(customer_id=pk,customer_fname=vcust_fname,customer_lname=vcust_lname,contact_number=vcustno,customer_email=vcust_email,customer_gender=vcust_gender,customer_dob=vdob,customer_password=vpassword,address=vaddress,customer_pincode=vpincode)
         vcustomer.save()
         return redirect ("customershow")
     params={'customer_object':Customer.objects.get(customer_id=pk)}
@@ -593,7 +599,7 @@ def update_production(request,pk):
         pquantity=request.POST.get("pquantity")
         cost=request.POST.get("production_cost")
         date=request.POST.get("production_date")
-        production=Production(production_id=pk,product=prod,pquantity=quantity,production_cost=cost,production_date=date)
+        production=Production(production_id=pk,product=prod,quantity=pquantity,production_cost=cost,production_date=date)
         production.save()
         return redirect("productshow")
     params={'product_object':Product.objects.all(),'production_object':Production.objects.get(production_id=pk)}
