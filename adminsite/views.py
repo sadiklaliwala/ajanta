@@ -658,7 +658,7 @@ def stockshow(request):
 def salesshow(request):
     sales=Sales.objects.all()
     params ={'sales':sales}
-    return render (request , "show_data/saleshow.html",params)
+    return render (request , "show_data/salesshow.html",params)
 
 def suppliershow(request):
     supplier=Supplier.objects.all()
@@ -678,12 +678,12 @@ def purchaseshow(request):
 def rawmaterialshow(request):
     rawMaterial=RawMaterial.objects.all()
     params ={'rawmaterial':rawMaterial}
-    return render (request , "show_data/rawshow.html",params)
+    return render (request , "show_data/rawmaterialshow.html",params)
 
 def recyclingshow(request):
     recycling=Recycling.objects.all()
     params ={'recycling':recycling}
-    return render (request , "show_data/recycleshow.html",params)
+    return render (request , "show_data/recyclingshow.html",params)
 
 def feedbackshow(request):
     feedback=Feedback.objects.all()
@@ -748,7 +748,7 @@ def delete_order(request , order_id):
     deletestaff=Order1.objects.get(order_id=order_id)
     deletestaff.delete()
     ans=Admin.objects.all()
-    return redirect("order1show")
+    return redirect("ordershow")
 
 def delete_production(request , production_id):
     deletestaff=Production.objects.get(production_id=production_id)
