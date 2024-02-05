@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-
+{% load static %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delivery Form</title>
 </head>
-
 <body>
-
+    <center>
     <h1>Add a New Product</h1>
     <form method="POST" action="{% url 'category_add' %}">
         {% csrf_token %}
@@ -22,7 +21,7 @@
     {% if msg %}
     {{msg}}
     {% endif %}
-
+</center>
 </body>
 
 </html>
