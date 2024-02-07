@@ -94,6 +94,10 @@ def admin_logout(request):
 
 # add_tables
 def billing_add(request):
+    if request.session.has_key('admin'):
+        pass
+    else:
+        return redirect('admin_login')
     if request.method=='POST':
         vcustomer=request.POST.get("customer")
         fvcustomer=request.POST.get(customer=vcustomer)
@@ -617,16 +621,25 @@ def adminshow(request):
     return render (request , "show_data/adminshow.html",params)
 
 def billingshow(request):
+    if request.session.has_key('admin'):
+        pass
+    else:
+        return redirect('admin_login')
     billing=Billing.objects.all()
     params ={'billing':billing}
     return render (request , "show_data/billshow.html",params)
 
 def categoryhow(request):
+    if request.session.has_key('admin'):
+        pass
+    else:
+        return redirect('admin_login')
     category=Category.objects.all()
     params ={'category':category}
     return render (request , "show_data/categoryshow.html",params)
 
 def customershow(request):
+    
     customer=Customer.objects.all()
     params ={'customer':customer}
     return render (request , "show_data/customershow.html",params)
