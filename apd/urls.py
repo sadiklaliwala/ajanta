@@ -19,6 +19,8 @@ from django.urls import path,include
 from adminsite import views
 
 urlpatterns = [
+    path('',include('app.urls')),
+
     # path('',views.home,name='home'),
     # path('admin/', admin.site.urls),
     #path('admindasheboard/', views.admindasheboard,name="admindasheboard"),
