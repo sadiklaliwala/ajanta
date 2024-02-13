@@ -10,6 +10,7 @@ from .models import Order1,Product,Production,RawMaterial,Recycling,Sales,Stock
 from .forms import adminform
 from django.db.models import Sum
 from django.contrib import messages
+from django.contrib.auth import logout
 
 
 # show all table info
@@ -34,29 +35,45 @@ def show(request ):
     works =Work.objects.all()
     params ={ 'works':works ,'billing':billing ,'category':category,'customer':customer ,'delivery': delivery ,'employee': employee,'feedback' : feedback ,'offer' : offer,'order1': order1,'product':product,'production':production,'vpurchase':purchase,'rawMaterial':rawMaterial,'recycling':recycling,'sales':sales ,'stock':stock ,'supplier':supplier, 'admin':admin}
     return render (request , "show.html", params)
+
+# homepage
+# def home(request):
+#     if request.session.has_key('adminn'):
+#         pass
+#     else:
+#         return redirect('admin_login')
+#     return render (request , "admin_panel/admin.html" )
+
+
+
+
 # navebar
 def admin_panel(request):
   return render (request , "admin_panel/admin.html" )
 
 # admin_login
-def admin_signup(request):
+def admin_login(request):
     if request.method=="POST":
         name=request.POST.get("username")
         password=request.POST.get("password")
-
-        if Admin.objects.filter(admin_name=name).exists() and Admin.objects.filter(password=password).exists():
+        if Admin.objects.filter(admin_name=name).exists() and Admin.objects.filter(admin_name=name).exists():
             admins=Admin.objects.filter(admin_name=name,password=password)
             i=0
             for ad in admins:
                 i=i+1
                 request.session['adminn']=ad.admin_name
-                return redirect('/admin_panel/')
+                return redirect('admin_panel')
         else:
             messages.info(request,'Invalid Credentials', extra_tags='info')
             return redirect('admin_login')
-    return render(request,"admin_login.html")
+    return render(request,"admin_panel/admin_login.html")
+def admin_logout(request):
+    logout(request)
+    request.session.flush()
+    request.session['adminn'] = None
+    return redirect("admin_login")
 
-def signin(request):
+#def signin(request):
     # user = Customer.objects.all()
 
     if request.method=='POST':
@@ -69,25 +86,29 @@ def signin(request):
 
                 data = Customer.objects.get(cust_email=email)
 
-                if data.cust_password == pass1 and data.cust_email == email:
-                    request.session['cid']=data.cust_id
-                    return redirect('webcourse')
-                else:
-                    messages.info(request, 'Invalid Credentials')
-                    return redirect('signin')
-            else:
-                messages.info(request,'Invalid Password')
-                return redirect('signin')
-        else:
-            messages.info(request,'Invalid Email', extra_tags='info')
-            # messages.success(request,'Success from login', extra_tags='success')
-            return redirect('signin')
-    else :
-        return render(request,'webpages/login.html')
+    #              if data.cust_password == pass1 and data.cust_email == email:
+    #                  request.session['cid']=data.cust_id
+    #                  return redirect('webcourse')
+    #             else:
+    #                 messages.info(request, 'Invalid Credentials')
+    #                 return redirect('signin')
+    #         else:
+    #             messages.info(request,'Invalid Password')
+    #             return redirect('signin')
+    #     else:
+    #         messages.info(request,'Invalid Email', extra_tags='info')
+    #         # messages.success(request,'Success from login', extra_tags='success')
+    #         return redirect('signin')
+    # else :
+    #     return render(request,'webpages/login.html')
 
 
 # add_tables
 def billing_add(request):
+    if request.session.has_key('adminn'):
+        pass
+    else:
+        return redirect('admin_login')
     if request.method=='POST':
         vcustomer=request.POST.get("customer")
         fvcustomer=request.POST.get(customer=vcustomer)
@@ -113,16 +134,16 @@ def admin_add(request):
 
 def customer_add(request): 
     if request.method=="POST":
-        vcustomer_fname=request.POST.get('customer_fname'),
-        vcustomer_lname=request.POST.get('customer_lname'),
-        vcontact_number=request.POST.get('contact_number'),
-        vcustomer_gender=request.POST.get('customer_gender'),
-        vcustomer_dob=request.POST.get('customer_dob'),
-        vcustomer_email=request.POST.get('customer_email'),
-        vcustomer_password=request.POST.get('customer_password'),
-        vcustomer_address=request.POST.get('address'),
-        vcustomer_pincode=request.POST.get('customer_pincode')
-        vcustomer=Customer(customer_fname=vcustomer_fname,customer_lname=vcustomer_lname,contact_number=vcontact_number,customer_gender=vcustomer_gender,customer_dob=vcustomer_dob,customer_email=vcustomer_email,customer_password=vcustomer_password,address=vcustomer_address,customer_pincode=vcustomer_pincode)
+        vcustomer=Customer(
+            customer_fname=request.POST.get('customerfname'),
+            customer_lname=request.POST.get('customerlname'),
+            contact_number=request.POST.get('number'),
+            customer_gender=request.POST.get('gender'),
+            customer_dob=request.POST.get('customerdob'),
+            customer_email=request.POST.get('emailid'),
+            customer_password=request.POST.get('password'),
+            address=request.POST.get('address'),
+            customer_pincode=request.POST.get('pincode'))
         vcustomer.save()
         params={'customer':Customer.objects.all(),'msg':'massage successfully '}
         return render (request , "add_data/customer_add.html",params)
@@ -484,7 +505,7 @@ def update_customer(request,pk):
         vpassword=request.POST.get("customer_password")
         vaddress=request.POST.get("address")
         vpincode=request.POST.get("customer_pincode")
-        vcustomer=Customer(customer_id=pk,customer_fname=vcust_fname,customer_lname=vcust_lname,contact_number=vcustno,customer_email=vcust_email,customer_gender=vcust_gender,customer_dob=vdob,customer_password=vpassword,address=vaddress,vpincode=customer_pincode)
+        vcustomer=Customer(customer_id=pk,customer_fname=vcust_fname,customer_lname=vcust_lname,contact_number=vcustno,customer_email=vcust_email,customer_gender=vcust_gender,customer_dob=vdob,customer_password=vpassword,address=vaddress,customer_pincode=vpincode)
         vcustomer.save()
         return redirect ("customershow")
     params={'customer_object':Customer.objects.get(customer_id=pk)}
@@ -595,104 +616,184 @@ def update_production(request,pk):
         pquantity=request.POST.get("quantity")
         cost=request.POST.get("production_cost")
         date=request.POST.get("production_date")
-        production=Production(production_id=pk,product=prod,pquantity=quantity,production_cost=cost,production_date=date)
+        production=Production(production_id=pk,product=prod,quantity=pquantity,production_cost=cost,production_date=date)
         production.save()
         return redirect("productshow")
     params={'product_object':Product.objects.all(),'production_object':Production.objects.get(production_id=pk)}
     return render (request , "update_data/update_production.html",params)
 
 def admindasheboard(request ):
+    if request.session.has_key('adminn'):
+        pass
+    else:
+        return redirect('admin_login')
     return render (request , "admindasheboard.html")
 
 def adminbase(request ):
+    if request.session.has_key('adminn'):
+        pass
+    else:
+        return redirect('admin_login')
     return render (request , "basepage.html")
 
 def adminshow(request):
+    if request.session.has_key('adminn'):
+        pass
+    else:
+        return redirect('admin_login')
     admin=Admin.objects.all()
     params ={'admin_object':admin}
     return render (request , "show_data/adminshow.html",params)
 
 def billingshow(request):
+    if request.session.has_key('adminn'):
+        pass
+    else:
+        return redirect('admin_login')
     billing=Billing.objects.all()
     params ={'billing':billing}
     return render (request , "show_data/billshow.html",params)
 
 def categoryhow(request):
+    if request.session.has_key('adminn'):
+        pass
+    else:
+        return redirect('admin_login')
     category=Category.objects.all()
     params ={'category':category}
     return render (request , "show_data/categoryshow.html",params)
 
 def customershow(request):
+    if request.session.has_key('adminn'):
+        pass
+    else:
+        return redirect('admin_login')
     customer=Customer.objects.all()
     params ={'customer':customer}
     return render (request , "show_data/customershow.html",params)
 
 def deliveryshow(request):
+    if request.session.has_key('adminn'):
+        pass
+    else:
+        return redirect('admin_login')
     delivery=Delivery.objects.all()
     params ={'delivery':delivery}
     return render (request , "show_data/deliveryshow.html",params)
 
 def employeeshow(request):
+    if request.session.has_key('adminn'):
+        pass
+    else:
+        return redirect('admin_login')
     employee=Employee.objects.all()
     params ={'employee':employee}
     return render (request , "show_data/employeeshow.html",params)
 
 def order1show(request):
+    if request.session.has_key('adminn'):
+        pass
+    else:
+        return redirect('admin_login')
     order1=Order1.objects.all()
     params ={'order1':order1}
     return render (request , "show_data/ordershow.html",params)
 
 def productshow(request):
+    if request.session.has_key('adminn'):
+        pass
+    else:
+        return redirect('admin_login')
     product=Product.objects.all()
     params ={'product':product}
     return render (request , "show_data/productshow.html",params)
 
 def productionshow(request):
+    if request.session.has_key('adminn'):
+        pass
+    else:
+        return redirect('admin_login')
     production=Production.objects.all()
     params ={'production':production}
     return render (request , "show_data/productionshow.html",params)
         
 def stockshow(request):
+    if request.session.has_key('adminn'):
+        pass
+    else:
+        return redirect('admin_login')
     stock=Stock.objects.all()
     params ={'stock':stock}
     return render (request , "show_data/stockshow.html",params)
 
 def salesshow(request):
+    if request.session.has_key('adminn'):
+        pass
+    else:
+        return redirect('admin_login')
     sales=Sales.objects.all()
     params ={'sales':sales}
     return render (request , "show_data/salesshow.html",params)
 
 def suppliershow(request):
+    if request.session.has_key('adminn'):
+        pass
+    else:
+        return redirect('admin_login')
     supplier=Supplier.objects.all()
     params ={'supplier':supplier}
     return render (request , "show_data/suppliershow.html",params)
 
 def workshow(request):
+    if request.session.has_key('adminn'):
+        pass
+    else:
+        return redirect('admin_login')
     works =Work.objects.all()
     params ={'works':works}
     return render (request , "show_data/workshow.html",params)
 
 def purchaseshow(request):
+    if request.session.has_key('adminn'):
+        pass
+    else:
+        return redirect('admin_login')
     vpurchase =Purchase.objects.all()
     params ={'vpurchase':Purchase.objects.all()}
     return render (request , "show_data/purchaseshow.html",params)
 
 def rawmaterialshow(request):
+    if request.session.has_key('adminn'):
+        pass
+    else:
+        return redirect('admin_login')
     rawMaterial=RawMaterial.objects.all()
     params ={'rawmaterial':rawMaterial}
     return render (request , "show_data/rawmaterialshow.html",params)
 
 def recyclingshow(request):
+    if request.session.has_key('adminn'):
+        pass
+    else:
+        return redirect('admin_login')
     recycling=Recycling.objects.all()
     params ={'recycling':recycling}
     return render (request , "show_data/recyclingshow.html",params)
 
 def feedbackshow(request):
+    if request.session.has_key('adminn'):
+        pass
+    else:
+        return redirect('admin_login')
     feedback=Feedback.objects.all()
     params ={'feedback':feedback}
     return render (request , "show_data/feedbackshow.html",params)
 
 def offershow(request):
+    if request.session.has_key('adminn'):
+        pass
+    else:
+        return redirect('admin_login')
     offer=Offer.objects.all()
     params ={'offer':offer}
     return render (request , "show_data/offershow.html",params) 

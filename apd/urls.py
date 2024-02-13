@@ -19,10 +19,15 @@ from django.urls import path,include
 from adminsite import views
 
 urlpatterns = [
+    path('',include('app.urls')),
+
+    # path('',views.home,name='home'),
     # path('admin/', admin.site.urls),
     #path('admindasheboard/', views.admindasheboard,name="admindasheboard"),
     path('admin/',views.admin_panel, name ='admin_panel'),
-
+    # Login 
+    path("admin_login",views.admin_login,name="admin_login"),
+    path("admin_logout",views.admin_logout,name="admin_logout"),
 
 
 

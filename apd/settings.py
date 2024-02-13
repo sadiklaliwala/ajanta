@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'app.apps.AppConfig',
     'adminsite.apps.AdminsiteConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -77,10 +78,10 @@ WSGI_APPLICATION = 'apd.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ajanta',
+        'NAME': 'apd',
         'USER': 'root',
         'HOST': 'localhost',
-        'PORT': 3306,
+        'PORT': 4306,
         'PASSWORD':''
 
     }
