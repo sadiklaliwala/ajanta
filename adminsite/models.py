@@ -115,7 +115,7 @@ class Customer(models.Model):
     customer_id = models.IntegerField(db_column='Customer_id', primary_key=True)  # Field name made lowercase.
     customer_fname = models.CharField(db_column='Customer_fname', max_length=15)  # Field name made lowercase.
     customer_lname = models.CharField(db_column='Customer_lname', max_length=15)  # Field name made lowercase.
-    contact_number = models.IntegerField()
+    contact_number = models.IntegerField(db_column='Contact_number')
     customer_gender = models.CharField(db_column='Customer_gender', max_length=6)  # Field name made lowercase.
     customer_dob = models.DateField(db_column='Customer_dob')  # Field name made lowercase.
     customer_email = models.CharField(db_column='Customer_email', max_length=30)  # Field name made lowercase.

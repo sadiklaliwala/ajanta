@@ -88,9 +88,6 @@ urlpatterns = [
       path("update_delivery/<int:pk>" , views.update_delivery, name="update_delivery"),
       path("update_order/<int:pk>" , views.update_order, name="update_order"),
       path("update_production/<int:pk>" , views.update_production, name="update_production"),
-
-
-
       
       
 
@@ -119,7 +116,6 @@ urlpatterns = [
       path('emppanel',views.emppanel,name="employeepanel"),
       path('login',views.login,name="customerlogin"),
       path('registration',views.registration,name="customerregistration"),
-
 
 
 ]

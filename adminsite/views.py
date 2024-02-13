@@ -113,18 +113,18 @@ def admin_add(request):
 
 def customer_add(request): 
     if request.method=="POST":
-        vcustomer=Customer(
-            customer_fname=request.POST.get('admin_name'),
-            customer_lname=request.POST.get('admin_name'),
-            contact_number=request.POST.get('admin_name'),
-            customer_gender=request.POST.get('admin_name'),
-            customer_dob=request.POST.get('admin_name'),
-            customer_email=request.POST.get('admin_name'),
-            customer_password=request.POST.get('admin_name'),
-            address=request.POST.get('admin_name'),
-            customer_pincode=request.POST.get('admin_name'))
+        vcustomer_fname=request.POST.get('customer_fname'),
+        vcustomer_lname=request.POST.get('customer_lname'),
+        vcontact_number=request.POST.get('contact_number'),
+        vcustomer_gender=request.POST.get('customer_gender'),
+        vcustomer_dob=request.POST.get('customer_dob'),
+        vcustomer_email=request.POST.get('customer_email'),
+        vcustomer_password=request.POST.get('customer_password'),
+        vcustomer_address=request.POST.get('address'),
+        vcustomer_pincode=request.POST.get('customer_pincode')
+        vcustomer=Customer(customer_fname=vcustomer_fname,customer_lname=vcustomer_lname,contact_number=vcontact_number,customer_gender=vcustomer_gender,customer_dob=vcustomer_dob,customer_email=vcustomer_email,customer_password=vcustomer_password,address=vcustomer_address,customer_pincode=vcustomer_pincode)
         vcustomer.save()
-        params={'msg':'massage successfully '}
+        params={'customer':Customer.objects.all(),'msg':'massage successfully '}
         return render (request , "add_data/customer_add.html",params)
     return render (request , "add_data/customer_add.html")
 
@@ -180,7 +180,7 @@ def work_add(request):
     except :
         return HttpResponse( "bad url")
     params={'n':n}
-    return render (request , "work_add.html", params)
+    return render (request , "add_data/work_add.html", params)
 
 def sup_add(request):
     if request.method=="POST":    
@@ -247,7 +247,7 @@ def production_add(request):
 def employee_add(request):
     if request.method=="POST":
         fvwork=request.POST.get("work")
-        vwork=Work.objects.get(work=fvwork)
+        vwork=Work.objects.get(work_id=fvwork)
         vemp_name=request.POST.get("employeename")
         vemp_dob=request.POST.get("employeedob")
         vcontact_number=request.POST.get("contact")
@@ -301,11 +301,12 @@ def feedback_add(request):
         vfeedback=request.POST.get("feedback") 
         vcustomer=request.POST.get("customer")
         fvcustomer=Customer.objects.get(customer_id=vcustomer)
+        customer_object=Customer.objects.all()
         feedback=Feedback(f_date=vf_date,feedback=vfeedback,customer=fvcustomer)
         feedback.save()
-        params={'msg':'massage successfully ','customer_objects':Customer.objects.all()}
+        params={'msg':'massage successfully ','customer_object':Customer.objects.all()}
         return render (request , "add_data/feedback_add.html",params)
-    params={'msg':'massage successfully ','customer_objects':Customer.objects.all()}
+    params={'msg':'massage successfully ','customer_object':Customer.objects.all()}
     return render (request , "add_data/feedback_add.html")
 
 def offer_add(request):
@@ -356,6 +357,7 @@ def work_update(request,pk):
         worksave.save()
         return redirect ("workshow")
     params={'work_object':Work.objects.get(work_id=pk)}
+    
     return render (request , "update_data/work_update.html",params)
 
 def update_supplier(request,pk):
@@ -583,14 +585,14 @@ def update_order(request,pk):
         order=Order1(order_id=pk,customer=cust,order_date=odate,product=prod,order_quantity=quantity,payment=payment)
         order.save()
         return redirect("ordershow")
-    params={'order_object':Order1.objects.get(order_id=pk)}
+    params={'customer_object':Customer.objects.all(),'product_object':Product.objects.all(),'order_object':Order1.objects.get(order_id=pk)}
     return render (request , "update_data/update_order.html",params)
 
 def update_production(request,pk):
     if request.method=="POST":
         product_id=request.post.get("product")
         prod=Product.objects.get(Product_id=product_id)
-        pquantity=request.POST.get("pquantity")
+        pquantity=request.POST.get("quantity")
         cost=request.POST.get("production_cost")
         date=request.POST.get("production_date")
         production=Production(production_id=pk,product=prod,pquantity=quantity,production_cost=cost,production_date=date)
@@ -693,7 +695,7 @@ def feedbackshow(request):
 def offershow(request):
     offer=Offer.objects.all()
     params ={'offer':offer}
-    return render (request , "show_data/offershow.html",params)
+    return render (request , "show_data/offershow.html",params) 
 
 def delete_admin(request,admin_id):
     
