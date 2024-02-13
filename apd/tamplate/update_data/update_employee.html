@@ -12,11 +12,8 @@
 <body>
 
     <h1>Add a New Product</h1>
-    <form method="POST" action="{% url 'employee' %}">
+    <form method="POST" action="{% url 'employeeshow' %}">
         {% csrf_token %}
-
-        
-
         <label for="category">choose work :</label>
         <select name="work">
             {% for i in Work %}

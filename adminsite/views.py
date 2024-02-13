@@ -378,7 +378,6 @@ def work_update(request,pk):
         worksave.save()
         return redirect ("workshow")
     params={'work_object':Work.objects.get(work_id=pk)}
-    
     return render (request , "update_data/work_update.html",params)
 
 def update_supplier(request,pk):
@@ -458,7 +457,7 @@ def update_billing(request,pk):
         vpur=Billing(bill_id=pk,customer=vcustomer,order=vorder,shipping_charges=scharges,order_date=odate,total=tamount)
         vpur.save()
         customer_object=Customer.objects.all()
-        #params={'customerss':customer_object ,'msg':'massage successfully '}
+        params={'customerss':customer_object ,'msg':'massage successfully '}
     params={'customers_object':Customer.objects.all(),'billing_object':Billing.objects.get(bill_id=pk)}
     return render (request ,'update_data/update_billing.html',params)
 
@@ -476,6 +475,19 @@ def update_employee(request,pk):
         qualification=request.post.get("qualification")
         emp=Employee(emp_id=pk,work=vwork,emp_name=ename,emp_dob=edob,contact_number=number,emp_salary=salary,work_experience=experience,emp_joindate=joindate,emp_leavedate=leavedate,qualification=qualification)
         emp.save()
+    # if request.method=="POST":
+    #     e=Employee.objects.get(emp_id=pk)
+    #     work_id=request.post.get("work")
+    #     vwork=Work.objects.get(Work_id=work_id)
+    #     e.emp_name=request.POST.get("emp_name")
+    #     e.emp_dob=request.POST.get("emp_dob")
+    #     e.contact_number=request.post.get("contact_number")
+    #     e.emp_salary=request.post.get("emp_salary")
+    #     e.work_experience=request.post.get("work_experience")
+    #     e.emp_joindate=request.post.get("emp_joindate")
+    #     e.emp_leavedate=request.post.get("emp_leavedate")
+    #     e.qualification=request.post.get("qualification")
+        # e.save()
         # employee_object=Employee.objects.all()
         # params={'Work':work_object ,'msg':'massage successfully '}
     params={'Work':Work.objects.all(),'employee_object':Employee.objects.get(emp_id=pk)}
@@ -495,18 +507,19 @@ def update_admin(request,pk):
 
 def update_customer(request,pk):
     if request.method=="POST":
-        # s=Work.objects.get(work_id=pk)
-        vcust_fname=request.POST.get("customer_fname")
-        vcust_lname=request.POST.get("customer_lname")
-        vcustno=request.POST.get("customer_number")
-        vcust_email=request.POST.get("customer_email")
-        vcust_gender=request.POST.get("customer_gender")
-        vdob=request.POST.get("customer_dob")
-        vpassword=request.POST.get("customer_password")
-        vaddress=request.POST.get("address")
-        vpincode=request.POST.get("customer_pincode")
-        vcustomer=Customer(customer_id=pk,customer_fname=vcust_fname,customer_lname=vcust_lname,contact_number=vcustno,customer_email=vcust_email,customer_gender=vcust_gender,customer_dob=vdob,customer_password=vpassword,address=vaddress,customer_pincode=vpincode)
-        vcustomer.save()
+        s=Customer.objects.get(customer_id=pk)
+        s.customer_fname=request.POST.get("customerfname")
+        s.customer_lname=request.POST.get("customerlname")
+        s.contact_number=request.POST.get("number")
+        s.customer_email=request.POST.get("emailid")
+        s.customer_gender=request.POST.get("gender")
+        s.customer_dob=request.POST.get("customerdob")
+        s.customer_password=request.POST.get("password")
+        s.address=request.POST.get("address")
+        s.customer_pincode=request.POST.get("pincode")
+        # vcustomer=Customer(customer_id=pk,customer_fname=vcust_fname,customer_lname=vcust_lname,contact_number=vcustno,customer_email=vcust_email,customer_gender=vcust_gender,customer_dob=vdob,customer_password=vpassword,address=vaddress,customer_pincode=vpincode)
+        # vcustomer.save()
+        s.save();
         return redirect ("customershow")
     params={'customer_object':Customer.objects.get(customer_id=pk)}
     return render (request , "update_data/update_customer.html",params)
