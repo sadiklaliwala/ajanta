@@ -11,19 +11,20 @@
 
 <body>
 
-    <h1>Add a New Product</h1>
-    <form method="POST" action="{% url 'employeeshow' %}">
+    <h1><p>{{employee_object.emp_id}}</p></h1>
+    <form method="POST" action="#">
         {% csrf_token %}
+        
+        <label for="category">Enter Employee Name :</label>
+        <input type="text" id="category" name="employeename" value="{{employee_object.emp_name}}"><br>
+        
         <label for="category">choose work :</label>
         <select name="work">
-            {% for i in Work %}
+            {% for i in work_object %}
             <option value="{{i.work_id}}">{{i.work_name}}</option>
             {% endfor %}
         </select><br>
-
-        <label for="category">Enter Employee Name :</label>
-        <input type="text" id="category" name="employeename" value="{{employee_object.emp_name}}"><br>
-
+        
         <label for="category">Enter Employee_DOB :</label>
         <input type="date"  id="category" name="employeedob"  value="{{employee_object.emp_dob}}"><br>
 

@@ -463,35 +463,23 @@ def update_billing(request,pk):
 
 def update_employee(request,pk):
     if request.method=="POST":
-        work_id=request.post.get("work")
-        vwork=Work.objects.get(Work_id=work_id)
-        ename=request.POST.get("emp_name")
-        edob=request.POST.get("emp_dob")
-        number=request.post.get("contact_number")
-        salary=request.post.get("emp_salary")
-        experience=request.post.get("work_experience")
-        joindate=request.post.get("emp_joindate")
-        leavedate=request.post.get("emp_leavedate")
-        qualification=request.post.get("qualification")
-        emp=Employee(emp_id=pk,work=vwork,emp_name=ename,emp_dob=edob,contact_number=number,emp_salary=salary,work_experience=experience,emp_joindate=joindate,emp_leavedate=leavedate,qualification=qualification)
-        emp.save()
-    # if request.method=="POST":
-    #     e=Employee.objects.get(emp_id=pk)
-    #     work_id=request.post.get("work")
-    #     vwork=Work.objects.get(Work_id=work_id)
-    #     e.emp_name=request.POST.get("emp_name")
-    #     e.emp_dob=request.POST.get("emp_dob")
-    #     e.contact_number=request.post.get("contact_number")
-    #     e.emp_salary=request.post.get("emp_salary")
-    #     e.work_experience=request.post.get("work_experience")
-    #     e.emp_joindate=request.post.get("emp_joindate")
-    #     e.emp_leavedate=request.post.get("emp_leavedate")
-    #     e.qualification=request.post.get("qualification")
-        # e.save()
-        # employee_object=Employee.objects.all()
-        # params={'Work':work_object ,'msg':'massage successfully '}
-    params={'Work':Work.objects.all(),'employee_object':Employee.objects.get(emp_id=pk)}
-    return render (request ,'update_data/update_employee.html',params)
+        s=Employee.objects.get(emp_id=pk)
+        # fvwork=request.POST.get("work")
+        s.work=Work.objects.get(work_id=request.POST['work'])
+        s.emp_name=request.POST["employeename"]
+        s.emp_dob=request.POST["employeedob"]
+        s.contact_number=request.POST["contact"]
+        s.emp_salary=request.POST["salary"]
+        s.work_experience=request.POST["experience"]
+        s.emp_joindate=request.POST["joiningdate"]
+        s.emp_leavedate=request.POST["leavedate"]
+        s.qualification=request.POST["qualification"]
+        s.save()
+        params={'work_object':Work.objects.all(),'msg':'massage successfully '}
+        return render(request , "update_data/update_employee.html")
+    params={'work_object':Work.objects.all(),'employee_object':Employee.objects.get(emp_id=pk)}
+    return render (request ,'update_data/update_employee.html',params)    
+
 
 
 def update_admin(request,pk):
