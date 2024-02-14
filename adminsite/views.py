@@ -476,7 +476,7 @@ def update_employee(request,pk):
         s.qualification=request.POST["qualification"]
         s.save()
         params={'work_object':Work.objects.all(),'msg':'massage successfully '}
-        return render(request , "update_data/update_employee.html")
+        redirect("employeeshow")
     params={'work_object':Work.objects.all(),'employee_object':Employee.objects.get(emp_id=pk)}
     return render (request ,'update_data/update_employee.html',params)    
 
