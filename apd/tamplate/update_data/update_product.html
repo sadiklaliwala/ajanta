@@ -12,7 +12,7 @@
 <body>
 
     <h1>Add feedback</h1>
-    <form method="POST" action="{% url 'productshow' %}">
+    <form method="POST">
         {% csrf_token %}
 
         <label for="category">choose Category Name :</label>
@@ -21,29 +21,30 @@
             <option value="{{i.category_id}}">{{i.category_name}}</option>
             {% endfor %}
         </select><br>
+        {{product_object.product_name}}
 
         <label for="category">Enter Product_Name:</label>
-        <input type="text" id="category" name="productname" values="{{product_object.product_name}}"><br>
+        <input type="text" id="category" name="productname" value="{{product_object.product_name}}"><br>
 
         <label for="category">Enter Material :</label>
-        <input type="text" id="category" name="material" values="{{product_object.material}}"><br>
+        <input type="text" id="category" name="material" value="{{product_object.material}}"><br>
 
         <label for="category">Add image :</label>
-        <input type="text" id="category" name="image" values="{{product_object.image}}"><br>
+        <input type="text" id="category" name="image" value="{{product_object.image}}"><br>
 
 
         <label for="category">Enter Product_Price :</label>
-        <input type="number" id="category" name="productprice" values="{{product_object.product_price}}"><br>
+        <input type="number" id="category" name="productprice" value="{{product_object.product_price}}"><br>
 
         <label for="category">Enter Product_Weight :</label>
-        <input type="text" id="category" name="productweight" values="{{product_object.product_weight}}"><br>
+        <input type="text" id="category" name="productweight" value="{{product_object.product_weight}}"><br>
 
 
         <label for="category">Enter Product_Quantity :</label>
-        <input type="text" id="category" name="productquantity" values="{{product_object.product_quantity}}"><br>
+        <input type="text" id="category" name="productquantity" value="{{product_object.product_quantity}}"><br>
 
         <label for="category">Enter Product_Color :</label>
-        <input type="text" id="category" name="productcolor" values="{{product_object.product_color}}"><br>
+        <input type="text" id="category" name="productcolor" value="{{product_object.product_color}}"><br>
 
         <button type="submit" name="submit">Update</button>
 

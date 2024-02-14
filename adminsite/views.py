@@ -304,14 +304,14 @@ def order_add(request):
         vorder_date=request.POST.get("orderdate")
         vproduct=request.POST.get("product")
         fvproduct=Product.objects.get(product_id=vproduct)
-        vorder_quantity=request.POST.get("o_quantity")
+        vorder_quantity=request.POST.get("order_quantity")
         vpayment=request.POST.get("payment")
         vorder1=Order1(customer=vcustomer,order_date=vorder_date,product=fvproduct,order_quantity=vorder_quantity,payment=vpayment)
         vorder1.save()
         customer_object=Customer.objects.all()
         product_object=Product.objects.all()
         params={'customer_object':Customer.objects.all(),'product_object':Product.objects.all(),'msg':'massage successfully '}
-        return render(request , "add_data/order.html")
+        return redirect("ordershow")
         # return render (request , 'purchaseform.html',params)
         # from here all supplier name are coming 
     params={'customer_object':Customer.objects.all(),'product_object':Product.objects.all()}
@@ -459,6 +459,7 @@ def update_billing(request,pk):
         vpur=Billing(bill_id=pk,customer=vcustomer,order=vorder,shipping_charges=scharges,order_date=odate,total=tamount)
         vpur.save()
         customer_object=Customer.objects.all()
+        return redirect("billingshow")
         params={'customerss':customer_object ,'msg':'massage successfully '}
     params={'customers_object':Customer.objects.all(),'order_object':Order1.objects.all(), 'billing_object':Billing.objects.get(bill_id=pk)}
     return render (request ,'update_data/update_billing.html',params)
@@ -533,10 +534,10 @@ def update_category(request,pk):
 
 def update_offer(request,pk):
     if request.method=="POST":
-        offersdate=request.POST.get("sdate")
-        offeredate=request.POST.get("edate")
+        offersdate=request.POST.get("start_date")
+        offeredate=request.POST.get("end_date")
         offerdescription=request.POST.get("description")
-        catsave=Category(offer_id=pk,start_date=offersdate,end_date=offeredate,description=offerdescription)
+        catsave=Offer(offer_id=pk,start_date=offersdate,end_date=offeredate,description=offerdescription)
         catsave.save()
         return redirect ("offershow")
     params={'offer_object':Offer.objects.get(offer_id=pk)}
@@ -555,15 +556,15 @@ def update_recycle(request,pk):
 
 def update_product(request,pk):
     if request.method=="POST":
-        category_id=request.post.get("category")
-        vwork=Category.objects.get(Category_id=category_id)
-        vname=request.POST.get("product_name")
+        category_id=request.POST.get("category")
+        vwork=Category.objects.get(category_id=category_id)
+        vname=request.POST.get("productname")
         vmaterial=request.POST.get("material")
         vimage=request.POST.get("image")
-        vprice=request.POST.get("product_price")
-        vweight=request.POST.get("product_weight")
-        vquantity=request.POST.get("product_quantity")
-        vcolor=request.POST.get("product_color")
+        vprice=request.POST.get("productprice")
+        vweight=request.POST.get("productweight")
+        vquantity=request.POST.get("productquantity")
+        vcolor=request.POST.get("productcolor")
         vroduct=Product(product_id=pk,category=vwork,product_name=vname,material=vmaterial,image=vimage,product_price=vprice,product_weight=vweight,product_quantity=vquantity,product_color=vcolor)
         vroduct.save()
         return redirect ("productshow")
@@ -599,11 +600,11 @@ def update_delivery(request,pk):
 
 def update_order(request,pk):
     if request.method=="POST":
-        customer_id=request.post.get("customer")
-        cust=Customer.objects.get(Customer_id=customer_id)
+        customer_id=request.POST.get("customer")
+        cust=Customer.objects.get(customer_id=customer_id)
         odate=request.POST.get("order_date")
-        product_id=request.post.get("product")
-        prod=Product.objects.get(Product_id=product_id)
+        product_id=request.POST.get("product")
+        prod=Product.objects.get(product_id=product_id)
         quantity=request.POST.get("order_quantity")
         payment=request.POST.get("payment")
         order=Order1(order_id=pk,customer=cust,order_date=odate,product=prod,order_quantity=quantity,payment=payment)
@@ -614,14 +615,14 @@ def update_order(request,pk):
 
 def update_production(request,pk):
     if request.method=="POST":
-        product_id=request.post.get("product")
-        prod=Product.objects.get(Product_id=product_id)
+        product_id=request.POST.get("product")
+        prod=Product.objects.get(product_id=product_id)
         pquantity=request.POST.get("quantity")
         cost=request.POST.get("production_cost")
         date=request.POST.get("production_date")
         production=Production(production_id=pk,product=prod,quantity=pquantity,production_cost=cost,production_date=date)
         production.save()
-        return redirect("productshow")
+        return redirect("productionshow")
     params={'product_object':Product.objects.all(),'production_object':Production.objects.get(production_id=pk)}
     return render (request , "update_data/update_production.html",params)
 

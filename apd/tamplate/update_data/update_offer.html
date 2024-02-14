@@ -12,19 +12,17 @@
 <body>
 
     <h1>Add a New Product</h1>
-    <form method="POST" action="{% url 'offer_add' %}">
+    <form method="POST">
         {% csrf_token %}
 
         <label for="category">Enter Starting_date:</label>
-        <input type="date" id="category" name="start_date" values="{{offer_object.start_date}}"><br>
+        <input type="date" id="category" name="start_date" required value="{{offer_object.start_date}}"><br>
 
         <label for="category">Enter Ending_date:</label>
-        <input type="date" id="category" name="end_date" values="{{offer_object.end_date}}"><br>
+        <input type="date" id="category" name="end_date" required value="{{offer_object.end_date}}"><br>
 
         <label for="category">Enter offer_description :</label>
-        <input type="text" id="category" name="description" values="{{offer_object.description}}"><br>
-
-       
+        <input type="text" id="category" name="description" required value="{{offer_object.description}}"><br>
         
         <button type="submit" name="submit">Update</button>
 

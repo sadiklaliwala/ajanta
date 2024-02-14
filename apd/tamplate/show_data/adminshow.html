@@ -15,6 +15,7 @@
                   <th scope="col">admin_name </th>
                   <th scope="col">password </th>
                   <th scope="col">delete </th>
+                  <th scope="col">Update </th>
                </tr>
 
                {% for i in admin_object %}
@@ -29,9 +30,18 @@
                         </a>
                      </p>
                   </td>
+                  <td>
+                     <p class="table_cell">
+                        <a href="/update_admin/{{i.admin_id}}">
+                           <span class="icon"><i class="bi-x-circle-fill">Update</i></span>
+                        </a>
+                     </p>
+                  </td>
                </tr>
                {% endfor %}
-               
+
+               <a href="{% url 'admin_add' %}"><button type="button" class="btn btn-outline-primary">Add</button></a>
+
       </div>
    </center>
 {% endblock body %}

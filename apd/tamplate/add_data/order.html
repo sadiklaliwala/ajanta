@@ -12,7 +12,7 @@
 <body>
 
     <h1>Add a New Order</h1>
-    <form method="POST" action="{% url 'order' %}">
+    <form method="POST">
         {% csrf_token %}
 
         
@@ -26,7 +26,7 @@
         
 
         <label for="category">Enter order_date:</label>
-        <input type="date" id="category" name="orderdate"><br>
+        <input type="date" id="category" name="orderdate" required><br>
 
         <label for="category">Choose product :</label>
         <select name="product">
