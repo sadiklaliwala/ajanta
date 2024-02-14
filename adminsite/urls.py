@@ -7,7 +7,7 @@ urlpatterns = [
       path('show/',views.show, name ="show"),
       
       # navbar
-      path('nav/',views.nav, name ='nav'),
+      #path('nav/',views.nav, name ='nav'),
 
       path('admindasheboard/', views.admindasheboard,name="admindasheboard"),
       
@@ -15,7 +15,7 @@ urlpatterns = [
       path('purchase_add/',views.purchase_add, name ='purchase_add'),
       
       #work
-      path('workform/',views.workform, name ='workform'),
+      # path('workform/',views.workform, name ='workform'),
       
       #customer
       path('customer_add/',views.customer_add, name ="customer_add"),
