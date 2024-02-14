@@ -1,3 +1,4 @@
+from ast import Del
 from email.contentmanager import raw_data_manager
 from msilib import add_tables
 from statistics import quantiles
@@ -14,27 +15,27 @@ from django.contrib.auth import logout
 
 
 # show all table info
-def show(request ):
-    admin=Admin.objects.all()
-    billing=Billing.objects.all()
-    category=Category.objects.all()
-    customer=Customer.objects.all()
-    delivery=Delivery.objects.all()
-    employee=Employee.objects.all()
-    feedback=Feedback.objects.all()
-    offer=Offer.objects.all()
-    order1=Order1.objects.all()
-    product=Product.objects.all()
-    production=Production.objects.all()
-    purchase =Purchase.objects.all()
-    rawMaterial=RawMaterial.objects.all()
-    recycling=Recycling.objects.all()
-    sales=Sales.objects.all()
-    stock=Stock.objects.all()
-    supplier=Supplier.objects.all()
-    works =Work.objects.all()
-    params ={ 'works':works ,'billing':billing ,'category':category,'customer':customer ,'delivery': delivery ,'employee': employee,'feedback' : feedback ,'offer' : offer,'order1': order1,'product':product,'production':production,'vpurchase':purchase,'rawMaterial':rawMaterial,'recycling':recycling,'sales':sales ,'stock':stock ,'supplier':supplier, 'admin':admin}
-    return render (request , "show.html", params)
+# def show(request ):
+#     admin=Admin.objects.all()
+#     billing=Billing.objects.all()
+#     category=Category.objects.all()
+#     customer=Customer.objects.all()
+#     delivery=Delivery.objects.all()
+#     employee=Employee.objects.all()
+#     feedback=Feedback.objects.all()
+#     offer=Offer.objects.all()
+#     order1=Order1.objects.all()
+#     product=Product.objects.all()
+#     production=Production.objects.all()
+#     purchase =Purchase.objects.all()
+#     rawMaterial=RawMaterial.objects.all()
+#     recycling=Recycling.objects.all()
+#     sales=Sales.objects.all()
+#     stock=Stock.objects.all()
+#     supplier=Supplier.objects.all()
+#     works =Work.objects.all()
+#     params ={ 'works':works ,'billing':billing ,'category':category,'customer':customer ,'delivery': delivery ,'employee': employee,'feedback' : feedback ,'offer' : offer,'order1': order1,'product':product,'production':production,'vpurchase':purchase,'rawMaterial':rawMaterial,'recycling':recycling,'sales':sales ,'stock':stock ,'supplier':supplier, 'admin':admin}
+#     return render (request , "show.html", params)
 
 # homepage
 # def home(request):
@@ -416,7 +417,7 @@ def update_sales(request,pk):
         vsales=Sales(sales_id=pk, sales_date=vsales_date,product=fvproduct,quantity=vquantity)
         vsales.save()
         params={'product_object':Product.objects.all(),'msg':'massage successfully '}
-        return render(request , "add_data/sales.html")
+        return redirect("salesshow")
     params={'product_object':Product.objects.all(),'sales_object':Sales.objects.get(sales_id=pk)}
     return render (request ,'update_data/update_sales.html',params)
 
@@ -428,6 +429,7 @@ def update_rawmaterial(request,pk):
         vraw_quantity=request.POST.get("quantity")
         rawmaterial=RawMaterial(raw_id=pk,sup=fvsup,raw_name=vraw_name,raw_quantity=vraw_quantity)
         rawmaterial.save()
+        return redirect("rawmaterialshow")
     params={'supplier_object': Supplier.objects.all,'rawmaterial_object':RawMaterial.objects.get(raw_id=pk)}
     return render(request , "update_data/update_rawmaterial.html",params)
 
@@ -550,7 +552,7 @@ def update_recycle(request,pk):
         rquan=request.POST.get("quantity")
         recycle=Recycling(r_id=pk,r_date=rdate,quantity=rquan)
         recycle.save()
-        return redirect ("recycleshow")
+        return redirect ("recyclingshow")
     params={'recycling_object':Recycling.objects.get(r_id=pk)}
     return render (request , "update_data/update_recycle.html",params)
 
@@ -583,17 +585,17 @@ def update_product(request,pk):
 
 def update_delivery(request,pk):
     if request.method=="POST":
-        customer_id=request.post.get("customer")
-        cust=Customer.objects.get(Customer_id=customer_id)
-        daddress=request.POST.get("address")
-        product_id=request.post.get("product")
-        prod=Product.objects.get(Product_id=product_id)
-        ddate=request.POST.get("d_date")
-        emp_id=request.post.get("employee")
-        emp=Employee.objects.get(Emp_id=emp_id)
-        quan=request.POST.get("quantity")
-        employee=Employee(d_id=pk,customer=cust,address=daddress,product=prod,d_date=ddate,emp=emp,quantity=quan)
-        employee.save()
+        s=Delivery.objects.get(d_id=pk)
+        customer_id=request.POST.get("customer")
+        s.customer=Customer.objects.get(customer_id=customer_id)
+        s.address=request.POST.get("address")
+        product_id=request.POST.get("product")
+        s.product=Product.objects.get(product_id=product_id)
+        s.d_date=request.POST.get("d_date")
+        emp_id=request.POST.get("employee")
+        s.emp=Employee.objects.get(emp_id=emp_id)
+        s.quantity=request.POST.get("quantity")
+        s.save()
         return redirect("deliveryshow")
     params={'customer':Customer.objects.all(),'product':Product.objects.all(),'employee':Employee.objects.all(),'delivery_object':Delivery.objects.get(d_id=pk)}
     return render (request , "update_data/update_delivery.html",params)

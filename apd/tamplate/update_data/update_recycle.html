@@ -12,15 +12,15 @@
 <body>
 
     <h1>Recycling</h1>
-    <form method="POST" action="{% url 'recycling_add' %}">
+    <form method="POST">
         {% csrf_token %}
 
         <label for="category">Enter Recycling_date:</label>
-        <input type="date" id="category" name="recyclingdate" values="{{recycling_object.r_date}}"><br>
+        <input type="date" id="category" name="r_date" required   value="{{recycling_object.r_date}}"><br>
 
         <label for="category">Enter Quantity :</label>
-        <input type="number" id="category" name="quantity" values="{{recycling_object.quantity}}"><br>
-
+        <input type="text" id="category" name="quantity" value="{{recycling_object.quantity}}"><br>
+        
         <button type="submit" name="submit">Update</button>
 
         <!--<input type="submit" value="Update">-->

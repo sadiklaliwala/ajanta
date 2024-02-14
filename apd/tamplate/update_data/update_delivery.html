@@ -12,7 +12,7 @@
 <body>
 
     <h1>Add a New Product</h1>
-    <form method="POST" action="{% url 'deliveryshow' %}">
+    <form method="POST" >
         {% csrf_token %}
 
         <label for="category">Choose customer :</label>
@@ -23,7 +23,7 @@
         </select><br>
 
         <label for="category">Enter Address:</label>
-        <input type="text" id="category" name="address" values="{{delivery_object.address}}"><br>
+        <input type="text" id="category" name="address" value="{{delivery_object.address}}"><br>
 
         <label for="category">Enter Product:</label>
         <select name="product">
@@ -34,7 +34,7 @@
 
 
         <label for="category">Enter Delivery_date :</label>
-        <input type="date" id="category" name="deliverydate" values="{{delivery_object.d_date}}"><br>
+        <input type="date" id="category" name="deliverydate" value="{{delivery_object.d_date}}" ><br>
 
         <label for="category">Choose Employee :</label>
         <select name="employee">
@@ -44,7 +44,7 @@
         </select><br>
         
         <label for="category">Enter quantity :</label>
-        <input type="number" id="category" name="quantity" values="{{delivery_object.quantity}}"><br>
+        <input type="number" id="category" name="quantity" value="{{delivery_object.quantity}}"><br>
         
         <button type="submit" name="submit">Update</button>
 

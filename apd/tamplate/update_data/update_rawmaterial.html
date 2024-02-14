@@ -12,15 +12,8 @@
 <body>
 
     <h1>Row_Material</h1>
-    <form method="POST" action="{% url 'rawmaterialshow' %}">
+    <form method="POST">
         {% csrf_token %}
-
-        <label for="category">Enter Raw_Material name:</label>
-        <input type="text" id="category" name="rawmaterialname" value="{{rawmaterial_object.raw_name}}"><br>
-
-        <label for="category">Enter Quantity :</label>
-        <input type="text" id="category" name="quantity " value="{{rawmaterial_object.raw_quantity}}"><br>
-
         
         <label for="category">choose supplier Name :</label>
         <select name="supplier">
@@ -28,6 +21,13 @@
             <option value="{{supplier.sup_id}}">{{supplier.sup_name}}</option>
             {% endfor %}
         </select><br>
+
+        <label for="category">Enter Raw_Material name:</label>
+        <input type="text" id="category" name="rawmaterialname" value="{{rawmaterial_object.raw_name}}"><br>
+
+        <label for="category">Enter Quantity :</label>
+        <input type="text" id="category" name="quantity " value="{{rawmaterial_object.raw_quantity}}"><br>
+
         <button type="submit" name="submit">Update</button>
 
         <!--<input type="submit" value="Update">-->

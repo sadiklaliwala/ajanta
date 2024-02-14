@@ -34,7 +34,7 @@ urlpatterns = [
     path("admin_logout",views.admin_logout,name="admin_logout"),
     
      #all data show 
-      path('show/',views.show, name ="show"),
+    #   path('show/',views.show, name ="show"),f
       path('adminbase' ,views.adminbase , name= "adminbase"),
       path('bill_show',views.billingshow, name="billingshow"),
       path('admin_show', views.adminshow, name="adminshow"),
