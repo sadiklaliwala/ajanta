@@ -230,7 +230,7 @@ class Order1(models.Model):
     order_id= models.IntegerField(db_column='Order_id', primary_key=True)  # Field name made lowercase.
     customer= models.ForeignKey(Customer, models.DO_NOTHING, db_column='Customer_id', blank=True, null=True)  # Field name made lowercase.
     order_date= models.DateField(db_column='Order_date')  # Field name made lowercase.
-    product= models.ForeignKey('Product', models.DO_NOTHING, db_column='Product_id', blank=True, null=True)  # Field name made lowercase.
+    product= models.ForeignKey('Product', models.DO_NOTHING, db_column='Product_id', blank=True, null=True)  # Field name mductade lowercase.
     order_quantity = models.IntegerField(db_column='Order_quantity')  # Field name made lowercase.
     payment= models.CharField(max_length=10)
 

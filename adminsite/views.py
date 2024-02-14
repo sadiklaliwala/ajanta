@@ -111,15 +111,16 @@ def billing_add(request):
         return redirect('admin_login')
     if request.method=='POST':
         vcustomer=request.POST.get("customer")
-        fvcustomer=request.POST.get(customer=vcustomer)
-        vorder=request.POST.get("order")
+        fvcustomer=Customer.objects.get(customer_id=vcustomer)
+        order_id=request.POST.get('order')
+        vorder=Order1.objects.get(order_id=order_id)
         vshipping_charges=request.POST.get("shippingcharges")
         vorder_date=request.POST.get("orderdate")
         vtotal=request.POST.get("totalamount")
         vbilling=Billing(customer=fvcustomer,order=vorder,shipping_charges=vshipping_charges,order_date=vorder_date,total=vtotal)
         vbilling.save()
         return render(request , "add_data/billing.html")
-    params={'customers_object':Customer.objects.all()}
+    params={'customers_object':Customer.objects.all(),'product_object':Product.objects.all(),'order_object':Order1.objects.all()}
     return render (request ,'add_data/billing.html',params)    
 
 def admin_add(request):
@@ -448,9 +449,10 @@ def update_purchase(request,pk):
 
 def update_billing(request,pk):
     if request.method =="POST":
-        customer_id=request.POST.get('customer')
-        vcustomer=Customer.objects.get(Customer_id=customer_id)
-        vorder=request.POST.get('order')
+        customer=request.POST.get('customer')
+        vcustomer=Customer.objects.get(customer_id=customer)
+        order_id=request.POST.get('order')
+        vorder=Order1.objects.get(order_id=order_id)
         scharges=request.POST.get('shippingcharges')
         odate=request.POST.get('orderdate')
         tamount=request.POST.get('totalamount')
@@ -458,7 +460,7 @@ def update_billing(request,pk):
         vpur.save()
         customer_object=Customer.objects.all()
         params={'customerss':customer_object ,'msg':'massage successfully '}
-    params={'customers_object':Customer.objects.all(),'billing_object':Billing.objects.get(bill_id=pk)}
+    params={'customers_object':Customer.objects.all(),'order_object':Order1.objects.all(), 'billing_object':Billing.objects.get(bill_id=pk)}
     return render (request ,'update_data/update_billing.html',params)
 
 def update_employee(request,pk):

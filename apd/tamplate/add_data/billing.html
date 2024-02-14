@@ -26,11 +26,12 @@ integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLP
             <option value="{{customer.customer_id}}">{{customer.customer_fname}}</option>
             {% endfor %}
         </select><br>
-
-        
-
-        <label for="category">Enter Order :</label>
-        <input type="number" id="category" name="order"><br>
+        <label for="category">choose product  :</label>
+        <select name="order">
+            {% for order in order_object %}
+            <option value="{{order.order_id}}">{{order.product.product_name}}</option>
+            {% endfor %}
+        </select><br>
 
         <label for="category">Enter Shipping Charges :</label>
         <input type="number" id="category" name="shippingcharges"><br>
