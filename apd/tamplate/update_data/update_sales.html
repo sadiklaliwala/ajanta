@@ -16,7 +16,7 @@
         {% csrf_token %}
 
         <label for="category">Enter sales_date :</label>
-        <input type="date" id="category" name="salesdate" value="{{sales_object.sales_date}}"><br>
+        <input type="text" type="text" onfocus="(this.type='date' )"  id="category" name="salesdate" value="{{sales_object.sales_date}}"><br>
 
         <label for="category">Choose product :</label>
         <select name="product">

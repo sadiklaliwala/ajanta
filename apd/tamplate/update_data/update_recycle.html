@@ -16,7 +16,7 @@
         {% csrf_token %}
 
         <label for="category">Enter Recycling_date:</label>
-        <input type="date" id="category" name="r_date" required   value="{{recycling_object.r_date}}"><br>
+        <input type="text" type="text" onfocus="(this.type='date' )"  id="category" name="r_date" required   value="{{recycling_object.r_date}}"><br>
 
         <label for="category">Enter Quantity :</label>
         <input type="text" id="category" name="quantity" value="{{recycling_object.quantity}}"><br>
