@@ -967,6 +967,56 @@ def login(request):
 
 def registration(request):
     return render (request,"customer_logreg/registration.html")
+  
+def prodc(request):
+    production1=Production.objects.all()
+    prodtotal=Production.objects.aggregate(Sum('quantity')).get('quantity__sum',0.00)
+    params ={'production1':production1,'prodtotal':prodtotal}
+    return render (request,"emp/production1.html",params)
+
+def ord(request):
+    order2=Order1.objects.all()
+    params ={'order2':order2}
+    return render (request,"emp/order_show.html",params)
+
+def pur(request):
+    vpurchase1 =Purchase.objects.all()
+    purctotal =Purchase.objects.aggregate(Sum('amount')).get('amount__sum',0.00)
+    params ={'vpurchase1':vpurchase1,'purctotal':purctotal}
+    return render (request , "emp/purchase_show.html",params)
+
+def rwm(request):
+    rawMaterial1=RawMaterial.objects.all()
+    rawtotal=RawMaterial.objects.aggregate(Sum('raw_quantity')).get('raw_quantity__sum')
+    params ={'rawmaterial1':rawMaterial1,'rawtotal':rawtotal}
+    return render (request , "emp/raw_show.html",params)
+
+def recy(request):
+    recycling1=Recycling.objects.all()
+    recycletotal=Recycling.objects.aggregate(Sum('quantity')).get('quantity__sum',0.00)
+    params ={'recycling1':recycling1,'recycletotal':recycletotal}
+    return render (request , "emp/recycling_show.html",params)
+
+def feed(request):
+    feedback1=Feedback.objects.all()
+    params ={'feedback1':feedback1}
+    return render (request , "emp/feedback_show.html",params)
+
+def sto(request):
+    stock1=Stock.objects.all()
+    params ={'stock1':stock1}
+    return render (request , "emp/stock_show.html",params)
+
+def sa(request):
+    sales1=Sales.objects.all()
+    saletotal=Sales.objects.aggregate(Sum('quantity')).get('quantity__sum',0.00)
+    params ={'sales1':sales1,'saletotal':saletotal}
+    return render (request , "emp/sales_show.html",params)
+
+def del1(request):
+    delivery1=Delivery.objects.all()
+    params ={'delivery1':delivery1}
+    return render (request , "emp/delivery_show.html",params)
 
 
 
