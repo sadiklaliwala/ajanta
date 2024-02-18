@@ -733,7 +733,8 @@ def productionshow(request):
     else:
         return redirect('admin_login')
     production=Production.objects.all()
-    params ={'production':production}
+    prod1=Production.objects.aggregate(Sum('quantity')).get('quantity__sum',0.00)
+    params ={'production':production,'prod1':prod1}
     return render (request , "show_data/productionshow.html",params)
         
 def stockshow(request):
@@ -751,7 +752,8 @@ def salesshow(request):
     else:
         return redirect('admin_login')
     sales=Sales.objects.all()
-    params ={'sales':sales}
+    sal=Sales.objects.aggregate(Sum('quantity')).get('quantity__sum',0.00)
+    params ={'sales':sales,'sales_count':sal}
     return render (request , "show_data/salesshow.html",params)
 
 def suppliershow(request):
@@ -778,7 +780,8 @@ def purchaseshow(request):
     else:
         return redirect('admin_login')
     vpurchase =Purchase.objects.all()
-    params ={'vpurchase':Purchase.objects.all()}
+    purc1 =Purchase.objects.aggregate(Sum('amount')).get('amount__sum',0.00)
+    params ={'vpurchase':Purchase.objects.all(),'purc1':purc1}
     return render (request , "show_data/purchaseshow.html",params)
 
 def rawmaterialshow(request):
@@ -787,7 +790,8 @@ def rawmaterialshow(request):
     else:
         return redirect('admin_login')
     rawMaterial=RawMaterial.objects.all()
-    params ={'rawmaterial':rawMaterial}
+    raw12=RawMaterial.objects.aggregate(Sum('raw_quantity')).get('raw_quantity__sum')
+    params ={'rawmaterial':rawMaterial,'raw12':raw12}
     return render (request , "show_data/rawmaterialshow.html",params)
 
 def recyclingshow(request):
@@ -796,7 +800,8 @@ def recyclingshow(request):
     else:
         return redirect('admin_login')
     recycling=Recycling.objects.all()
-    params ={'recycling':recycling}
+    recycle1=Recycling.objects.aggregate(Sum('quantity')).get('quantity__sum',0.00)
+    params ={'recycling':recycling,'recycle1':recycle1}
     return render (request , "show_data/recyclingshow.html",params)
 
 def feedbackshow(request):
