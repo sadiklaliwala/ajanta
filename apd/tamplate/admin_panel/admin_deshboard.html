@@ -11,204 +11,192 @@
 
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <style type="text/css">
-        *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Times New Roman', Times, serif;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Times New Roman', Times, serif;
+        }
 
-body{
-    min-height: 100vh;
-    width: 100%;
-}
-.sidebar{
-    position:fixed;
-    height: 100%;
-    width: 240px;
-    background: #0A2558;
-    transition: all 0.5s ease;
-}
+        body {
+            min-height: 100vh;
+            width: 100%;
+        }
 
-.sidebar.active
-{
-    width: 80px;
-}
+        .sidebar {
+            position: fixed;
+            height: 100%;
+            width: 240px;
+            background: #0A2558;
+            transition: all 0.5s ease;
+        }
 
-.sidebar .logo-details
-{
-    height: 80px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-}
+        .sidebar.active {
+            width: 80px;
+        }
 
-.sidebar .logo-details img
-{
-    object-fit: contain;
-    width: 50px;
-    margin-left: 15px;
-    border-radius: 50%;
-}
+        .sidebar .logo-details {
+            height: 80px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+        }
 
-.sidebar .logo-details .logo_name
-{
-    font-size: 24px;
-    font-weight: 500;
-    color: #fff;
-    margin-left: 16px;
-}
+        .sidebar .logo-details img {
+            object-fit: contain;
+            width: 50px;
+            margin-left: 15px;
+            border-radius: 50%;
+        }
 
-.sidebar .nav-links
-{
-    margin-top: 16px;
-    overflow-y: scroll;
-    position: relative;
-    height: 561px;
-    overflow-x: hidden;
-}
+        .sidebar .logo-details .logo_name {
+            font-size: 24px;
+            font-weight: 500;
+            color: #fff;
+            margin-left: 16px;
+        }
 
-.sidebar .nav-links li{
-    height: 50px;
-    width:100%;
-    list-style: none;
-}
+        .sidebar .nav-links {
+            margin-top: 16px;
+            overflow-y: scroll;
+            position: relative;
+            height: 561px;
+            overflow-x: hidden;
+        }
 
-.sidebar .nav-links li a
-{
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    transition: all 0.4s ease;
-}
+        .sidebar .nav-links li {
+            height: 50px;
+            width: 100%;
+            list-style: none;
+        }
 
-.sidebar .nav-links li a img
-{
-    object-fit: contain;
-    width: 33px;
-    margin-left: 15px;
-}
+        .sidebar .nav-links li a {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            transition: all 0.4s ease;
+        }
 
-.sidebar .nav-links li a:hover{
-    background: #081D45;
-}
+        .sidebar .nav-links li a img {
+            object-fit: contain;
+            width: 33px;
+            margin-left: 15px;
+        }
 
-.sidebar .nav-links li a .link_name
-{
-    color: #fff;
-    font-size: 21px;
-    font-weight: 400;
-    margin-left:15px;
-    white-space: nowrap;
-}
+        .sidebar .nav-links li a:hover {
+            background: #081D45;
+        }
 
-.home-section{
-    background: #f5f5f5;
-    position: relative;
-    min-height: 100vh;
-    width: calc(100% - 240px);
-    left:240px;
-    transition: all 0.5s ease;
-}
+        .sidebar .nav-links li a .link_name {
+            color: #fff;
+            font-size: 21px;
+            font-weight: 400;
+            margin-left: 15px;
+            white-space: nowrap;
+        }
 
-.sidebar.active ~ .home-section{
-    width: calc(100% - 80px);
-    left:80px;
-}
+        .home-section {
+            background: #f5f5f5;
+            position: relative;
+            min-height: 100vh;
+            width: calc(100% - 240px);
+            left: 240px;
+            transition: all 0.5s ease;
+        }
 
-.home-section nav{
-    width: calc(100% - 0px);
-    left: 240px;
-    height: 80px;
-    background: #fff;
-    padding: 0 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
+        .sidebar.active~.home-section {
+            width: calc(100% - 80px);
+            left: 80px;
+        }
 
-.home-section nav .sidebar-button
-{
-    display: flex;
-    align-items: center;
-    font-size: 24px;
-    font-weight: 500;
-}
+        .home-section nav {
+            width: calc(100% - 0px);
+            left: 240px;
+            height: 80px;
+            background: #fff;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
 
-.home-section nav .sidebar-button i{
-    font-size: 40px;
-}
+        .home-section nav .sidebar-button {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: 500;
+        }
 
-.home-section nav .search-box
-{
-    height:50px ;
-    width: 550px;
-    margin: 0 20px;
-    position: relative;
-}
+        .home-section nav .sidebar-button i {
+            font-size: 40px;
+        }
 
-nav .search-box input{
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    border-radius: 6px;
-    padding: 0 15px;
-    font-size: 17px;
-    background: #F5F6FA;
-    border: 2px solid #EFEEF1;
-    outline: none;
-}
+        .home-section nav .search-box {
+            height: 50px;
+            width: 550px;
+            margin: 0 20px;
+            position: relative;
+        }
 
-nav .search-box .bx-search
-{
-        position: absolute;
-        right:5px;
-        top: 50%;
-        transform: translateY(-50%);
-        height: 40px;
-        width: 40px;
-        background: #2697FF;
-        border-radius: 6px;
-        color: #fff;
-        font-size: 22px;
-        line-height: 40px;
-        text-align: center;
-}
-.home-section nav .profile-details
-{
-    display: flex;
-    align-items: center;
-    height: 50px;
-    min-width: 100px;
-    background: #F5F6FA;
-    border: 2px solid #EFEEF1;
-    border-radius: 6px;
-    padding: 0 15px 0 2px;
-}
+        nav .search-box input {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            border-radius: 6px;
+            padding: 0 15px;
+            font-size: 17px;
+            background: #F5F6FA;
+            border: 2px solid #EFEEF1;
+            outline: none;
+        }
 
-nav .profile-details img
-{
-    height: 40px;
-    width: 40px;
-    object-fit: cover;
-    border-radius: 6px;
-}
+        nav .search-box .bx-search {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 40px;
+            width: 40px;
+            background: #2697FF;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 22px;
+            line-height: 40px;
+            text-align: center;
+        }
 
-nav .profile-details .admin_name
-{
-    font-size: 15px;
-    font-weight: 500;
-    color: #333;
-    margin: 0 10px;
-    white-space: nowrap;
-}
+        .home-section nav .profile-details {
+            display: flex;
+            align-items: center;
+            height: 50px;
+            min-width: 100px;
+            background: #F5F6FA;
+            border: 2px solid #EFEEF1;
+            border-radius: 6px;
+            padding: 0 15px 0 2px;
+        }
 
-nav .profile-details i{
-    color: #333;
-    font-size: 25px;
-}
+        nav .profile-details img {
+            height: 40px;
+            width: 40px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+        nav .profile-details .admin_name {
+            font-size: 15px;
+            font-weight: 500;
+            color: #333;
+            margin: 0 10px;
+            white-space: nowrap;
+        }
+
+        nav .profile-details i {
+            color: #333;
+            font-size: 25px;
+        }
     </style>
 </head>
 
@@ -219,7 +207,7 @@ nav .profile-details i{
             <span class="logo_name">AjantaPlastics</span>
         </div>
 
-    
+
         <ul class="nav-links">
             <li>
                 <a href="#">
@@ -349,10 +337,18 @@ nav .profile-details i{
             <div class="sidebar-button">
                 <i class='bx bx-menu sidebarBtn'></i>
             </div>
-            <div class="search-box">
-                <input type="text" placeholder="Search...">
+            <!-- <div class="search">
+                <label>
+                    <input type="text" id="search-input" name="search" placeholder="Search here">
+                </label>
+            </div> -->
+
+
+            <div class="search-box ,search">
+                <input type="text" id="search-input" name="search" placeholder="Search...">
                 <i class='bx bx-search'></i>
             </div>
+
             <div class="profile-details">
                 <img src="images/tiger.jpg" alt="">
                 <span class="admin_name">Raj Shah</span>

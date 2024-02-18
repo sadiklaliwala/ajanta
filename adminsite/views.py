@@ -12,8 +12,8 @@ from .forms import adminform
 from django.db.models import Sum
 from django.contrib import messages
 from django.contrib.auth import logout
-
-
+from django.http import JsonResponse
+from django.core.serializers import serialize
 # show all table info
 # def show(request ):
 #     admin=Admin.objects.all()
@@ -647,6 +647,11 @@ def adminshow(request):
         pass
     else:
         return redirect('admin_login')
+    # if request.method == "GET":
+    #     st = request.GET.get('search')
+    #     if st is not None:
+    #         result = Admin.objects.filter(admin_name=st)
+
     admin=Admin.objects.all()
     params ={'admin_object':admin}
     return render (request , "show_data/adminshow.html",params)
@@ -675,6 +680,14 @@ def customershow(request):
     else:
         return redirect('admin_login')
     customer=Customer.objects.all()
+    # if request.method == "GET":
+    #     st = request.GET.get('search')
+    #     if st is not None:
+    #         customer = Customer.objects.filter(customer_fname=st)
+    # if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+    #     # If the request is an AJAX request, return JSON response
+    #     data = serialize('json', customer)
+    #     return JsonResponse(data, safe=False)
     params ={'customer':customer}
     return render (request , "show_data/customershow.html",params)
 
