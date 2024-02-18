@@ -171,37 +171,56 @@ nav .search-box .bx-search
         text-align: center;
 }
 .home-section nav .profile-details
-{
-    display: flex;
-    align-items: center;
-    height: 50px;
-    min-width: 100px;
-    background: #F5F6FA;
-    border: 2px solid #EFEEF1;
-    border-radius: 6px;
-    padding: 0 15px 0 2px;
+        {
+            display: flex;
+            align-items: center;
+            height: 50px;
+            min-width: 100px;
+            background: #F5F6FA;
+            border: 2px solid #EFEEF1;
+            border-radius: 6px;
+            padding: 0 5px 0 2px;
+            margin-right: 8px;
+        }
+        
+        nav .profile-details ul li{
+    text-decoration: none;
+    list-style: none;
+    padding: 5px 10px;
+    position: relative;
 }
 
-nav .profile-details img
-{
-    height: 40px;
-    width: 40px;
-    object-fit: cover;
-    border-radius: 6px;
+nav .profile-details ul li a{
+    text-decoration: none;
+    list-style: none;
+    font-size: 17px;
+    color: black;
 }
 
-nav .profile-details .admin_name
-{
-    font-size: 15px;
-    font-weight: 500;
-    color: #333;
-    margin: 0 10px;
-    white-space: nowrap;
+nav .profile-details .dropdown{
+    display: none;
 }
 
-nav .profile-details i{
-    color: #333;
-    font-size: 25px;
+nav .profile-details ul li:hover .dropdown
+{
+    display: block;
+    position: absolute;
+    left:0;
+    top:80%;
+    background-color:#2697FF;
+    border-radius: 10px;
+}
+
+nav .profile-details .dropdown ul
+{
+    display: block;
+    margin: 10px;
+}
+
+nav .profile-details .dropdown ul li 
+{
+    width: 150px;
+    padding: 10px 0 10px 0;
 }
     </style>   
 </head>
@@ -214,61 +233,61 @@ nav .profile-details i{
 
         <ul class="nav-links">
             <li>
-                <a href="#">
+                <a href="/emppanel">
                     <img src="{% static 'images/dashboard (1).png' %}" alt="">
                     <span class="link_name">Dashboard</span>
                 </a>
             </li>
             <li>
-                <a href="{% url 'productionshow' %}">
+                <a href="{% url 'temp1' %}">
                     <img src="{% static 'images/manufacturing.png' %}" alt="">
                     <span class="link_name">Production</span>
                 </a>
             </li>
             <li>
-                <a href="{% url 'ordershow' %}">
+                <a href="{% url 'ord' %}">
                     <img src="{% static 'images/order.png' %}" alt="">
                     <span class="link_name">Order</span>
                 </a>
             </li>
             <li>
-                <a href="{% url 'saleshow' %}">
+                <a href="{% url 'sa' %}">
                     <img src="{% static 'images/sale.png' %}" alt="">
                     <span class="link_name">Sales</span>
                 </a>
             </li>
             <li>
-                <a href="{% url 'purchaseshow' %}">
+                <a href="{% url 'pur' %}">
                     <img src="{% static 'images/goods.png' %}" alt="">
                     <span class="link_name">Purchase</span>
                 </a>
             </li>
             <li>
-                <a href="{% url 'stockshow' %}">
+                <a href="{%url 'sto'%}">
                     <img src="{% static 'images/stock.png' %}" alt="">
                     <span class="link_name">Stock</span>
                 </a>
             </li>
             <li>
-                <a href="{% url 'rawshow' %}">
+                <a href="{% url 'rwm' %}">
                     <img src="{% static 'images/raw-materials.png' %}" alt="">
                     <span class="link_name">Raw Material</span>
                 </a>
             </li>
             <li>
-                <a href="{% url 'deliveryshow' %}">
+                <a href="{% url 'del1' %}">
                     <img src="{% static 'images/delivery.png' %}" alt="">
                     <span class="link_name">Delivery</span>
                 </a>
             </li>
             <li>
-                <a href="{% url 'feedbackshow' %}">
+                <a href="{% url 'feed' %}">
                     <img src="{% static 'images/feedback (1).png' %}" alt="">
                     <span class="link_name">Feedback</span>
                 </a>
             </li>
             <li>
-                <a href="{% url 'recycleshow' %}">
+                <a href="{% url 'recy' %}">
                     <img src="{% static 'images/recycle-symbol.png' %}" alt="">
                     <span class="link_name">Recycling</span>
                 </a>
@@ -291,11 +310,18 @@ nav .profile-details i{
                 <i class='bx bx-search'></i>
             </div>
             <div class="profile-details">
-                <img src="images/tiger.jpg" alt="">
-                <span class="admin_name">Raj Shah</span>
-                <i class='bx bx-chevron-down'></i>
+                <ul>
+                    <li><a href="#">Manage Account ▼</a>
+                        <div class="dropdown">
+                            <ul>
+                                <li><a href="#">Change Username Or Password</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </nav>
+        {% block body %}{% endblock body %}
     </section>
     <script src="{% static 'script.js' %}"></script>
 </body>
