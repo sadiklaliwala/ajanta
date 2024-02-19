@@ -14,8 +14,10 @@ def home(request):
  params={'el':el,'sa':sa,'pl':pl,'bt':bt,'fan':fan}
  return render(request, 'app/home.html' ,params)
 
-def product_detail(request):
- return render(request, 'app/productdetail.html')
+def product_detail(request,pk):
+ product=Product.objects.get(product_id=pk)
+ params={'product':product}
+ return render(request, 'app/productdetail.html', params)
 
 def add_to_cart(request):
  return render(request, 'app/addtocart.html')

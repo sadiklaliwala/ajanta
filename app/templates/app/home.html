@@ -50,7 +50,7 @@
   <!-- Slider 1 -->
   <div class="owl-carousel" id="slider1">
     {%for i in el %}
-    <a href="{% url 'product-detail' %}" class="btn">
+    <a href="{% url 'product-detail' i.product_id %}" class="btn">
       <div class="item"><img src="{% static 'app/images/product/1.jpg' %}" alt="" height="200px"><span
           class="fw-bold">{{i.product_name}}</span><br><span class="fs-5">Rs. {{i.product_price}}</span>
       </div>
@@ -67,7 +67,7 @@
   <!-- Slider 2 -->
   <div class="owl-carousel" id="slider2">
     {%for i in sa %}
-    <a href="{% url 'product-detail' %}" class="btn">
+    <a href="{% url 'product-detail' i.product_id %}" class="btn">
       <div class="item"><img src="{% static 'app/images/product/1.jpg' %}" alt="" height="200px"><span
           class="fw-bold">{{i.product_name}}</span><br><span class="fs-5">Rs. {{i.product_price}}</span>
       </div>
@@ -80,7 +80,7 @@
   <!-- Slider 3 -->
   <div class="owl-carousel" id="slider3">
     {%for i in pl %}
-    <a href="{% url 'product-detail' %}" class="btn">
+    <a href="{% url 'product-detail' i.product_id %}" class="btn">
       <div class="item"><img src="{% static 'app/images/product/1.jpg' %}" alt="" height="200px"><span
           class="fw-bold">{{i.product_name}}</span><br><span class="fs-5">Rs. {{i.product_price}}</span>
       </div>
@@ -93,7 +93,7 @@
   <!-- Slider 4 -->
   <div class="owl-carousel" id="slider4">
     {%for i in bt %}
-    <a href="{% url 'product-detail' %}" class="btn">
+    <a href="{% url 'product-detail' i.product_id %}" class="btn">
       <div class="item"><img src="{% static 'app/images/product/1.jpg' %}" alt="" height="200px"><span
           class="fw-bold">{{i.product_name}}</span><br><span class="fs-5">Rs. {{i.product_price}}</span>
       </div>
@@ -106,7 +106,7 @@
   <!-- Slider 5 -->
   <div class="owl-carousel" id="slider5">
     {%for i in fan %}
-    <a href="{% url 'product-detail' %}" class="btn">
+    <a href="{% url 'product-detail' i.product_id %}" class="btn">
       <div class="item"><img src="{% static 'app/images/product/1.jpg' %}" alt="" height="200px"><span
           class="fw-bold">{{i.product_name}}</span><br><span class="fs-5">Rs. {{i.product_price}}</span>
       </div>
