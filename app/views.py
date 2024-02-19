@@ -1,7 +1,18 @@
+from unicodedata import category
 from django.shortcuts import render
 
+from adminsite.models import Product
+
 def home(request):
- return render(request, 'app/home.html')
+ 
+ #get all products with Category id 1
+ el=Product.objects.filter(category_id=1)
+ sa=Product.objects.filter(category_id=2)
+ pl=Product.objects.filter(category_id=3)
+ bt=Product.objects.filter(category_id=5)
+ fan=Product.objects.filter(category_id=6)
+ params={'el':el,'sa':sa,'pl':pl,'bt':bt,'fan':fan}
+ return render(request, 'app/home.html' ,params)
 
 def product_detail(request):
  return render(request, 'app/productdetail.html')

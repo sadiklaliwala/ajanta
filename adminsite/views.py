@@ -77,15 +77,15 @@ def admin_logout(request):
 #def signin(request):
     # user = Customer.objects.all()
 
-    if request.method=='POST':
-        email=request.POST['email']
-        pass1=request.POST['pass']
+    # if request.method=='POST':
+    #     email=request.POST['email']
+    #     pass1=request.POST['pass']
 
-        if Customer.objects.filter(cust_email=email).exists():
+    #     if Customer.objects.filter(cust_email=email).exists():
 
-            if Customer.objects.filter(cust_password=pass1).exists():
+    #         if Customer.objects.filter(cust_password=pass1).exists():
 
-                data = Customer.objects.get(cust_email=email)
+    #             data = Customer.objects.get(cust_email=email)
 
     #              if data.cust_password == pass1 and data.cust_email == email:
     #                  request.session['cid']=data.cust_id
@@ -238,7 +238,7 @@ def product_add(request):
         vproduct=Product(category=vcategory,product_name=vproduct_name,material=vmaterial,image=vimage,product_price=vproduct_price,product_weight=vproduct_weight,product_quantity=vproduct_quantity,product_color=vproduct_color)
         vproduct.save()
         params={'category_object':Category.objects.all(),'msg':'massage successfully '}
-        return render(request , "add_data/product_add.html")
+        return redirect("productshow")
         # return render (request , 'purchaseform.html',params)
         # from here all supplier name are coming 
     params={'category':Category.objects.all()}
@@ -530,7 +530,7 @@ def update_category(request,pk):
         vcategoryname=request.POST.get("categoryname")
         catsave=Category(category_id=pk,category_name = vcategoryname)
         catsave.save()
-        return redirect ("categoryshow")
+        return redirect ("categoryhow")
     params={'category_object':Category.objects.get(category_id=pk)}
     return render (request , "update_data/update_category.html",params)
 
@@ -552,7 +552,7 @@ def update_recycle(request,pk):
         rquan=request.POST.get("quantity")
         recycle=Recycling(r_id=pk,r_date=rdate,quantity=rquan)
         recycle.save()
-        return redirect ("recyclingshow")
+        return redirect ("categoryhow")
     params={'recycling_object':Recycling.objects.get(r_id=pk)}
     return render (request , "update_data/update_recycle.html",params)
 

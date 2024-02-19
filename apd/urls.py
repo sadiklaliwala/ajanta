@@ -18,7 +18,8 @@ from django.contrib import admin
 from django.urls import path,include
 from adminsite import views
 from employee import urls
-
+from django.conf import settings
+from django.conf.urls.static import static
 urlpatterns = [
     path('',include('app.urls')),
     path('employee',include('employee.urls')),
@@ -124,4 +125,5 @@ urlpatterns = [
       path('registration',views.registration,name="customerregistration"),
 
 
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
