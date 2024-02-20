@@ -114,10 +114,11 @@ class Category(models.Model):
 
 
 class Customer(models.Model):
-    customer_id = models.IntegerField(db_column='Customer_id', primary_key=True)  # Field name made lowercase.
+    customer_id = models.AutoField(db_column='Customer_id', primary_key=True)  # Field name made lowercase.
+    password = models.CharField(max_length=100, blank=True, null=True)
     customer_fname = models.CharField(db_column='Customer_fname', max_length=15)  # Field name made lowercase.
     customer_lname = models.CharField(db_column='Customer_lname', max_length=15)  # Field name made lowercase.
-    contact_number = models.IntegerField(db_column='Contact_number')
+    contact_number = models.IntegerField()
     customer_gender = models.CharField(db_column='Customer_gender', max_length=6)  # Field name made lowercase.
     customer_dob = models.DateField(db_column='Customer_dob')  # Field name made lowercase.
     customer_email = models.CharField(db_column='Customer_email', max_length=30)  # Field name made lowercase.
@@ -128,7 +129,6 @@ class Customer(models.Model):
     class Meta:
         managed = False
         db_table = 'customer'
-
 # pass2
 class Delivery(models.Model):
     d_id = models.IntegerField(db_column='D_id', primary_key=True)  # Field name made lowercase.

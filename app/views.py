@@ -1,7 +1,7 @@
 from unicodedata import category
-from django.shortcuts import render
-
-from adminsite.models import Product
+from django.shortcuts import render,redirect
+from django.contrib import messages
+from adminsite.models import Product ,Customer
 
 def home(request):
  
@@ -37,14 +37,58 @@ def orders(request):
 def change_password(request):
  return render(request, 'app/changepassword.html')
 
-def mobile(request):
- return render(request, 'app/mobile.html')
+def mobile(request,data=None):
+ if data == None:
+  ei=Product.objects.filter(category_id=1)
+ elif data== 'fan' or data == 'bottle':
+    ei=Product.objects.filter(category_id=2)
+ params={'electricItem':ei }
+ return render(request, 'app/mobile.html',params)
 
 def login(request):
+ if request.method=='POST':
+        email=request.POST['email']
+        pass1=request.POST['password']
+
+        if Customer.objects.filter(customer_email=email).exists():
+
+            if Customer.objects.filter(customer_password=pass1).exists():
+
+                data = Customer.objects.filter(customer_email=email,customer_password=pass1 )
+    
+                for data in data:
+                    request.session['cid']=data.customer_id
+                    return redirect('home')
+                else:
+                    messages.info(request, 'Invalid Credentials')
+                    return redirect('login')
+            else:
+                messages.info(request,'Invalid Password')
+                return redirect('login')
+        else:
+            messages.info(request,'Invalid Email', extra_tags='info')
+            # messages.success(request,'Success from login', extra_tags='success')
+            return redirect('login')
+ 
  return render(request, 'app/login.html')
 
 def customerregistration(request):
- return render(request, 'app/customerregistration.html')
+    if request.method=="POST":
+        vcustomer=Customer(
+            customer_fname=request.POST.get('customerfname'),
+            customer_lname=request.POST.get('customerlname'),
+            contact_number=request.POST.get('number'),
+            customer_gender=request.POST.get('gender'),
+            customer_dob=request.POST.get('customerdob'),
+            customer_email=request.POST.get('emailid'),
+            customer_password=request.POST.get('password'),
+            address=request.POST.get('address'),
+            customer_pincode=request.POST.get('pincode'))
+        vcustomer.save()
+        params={'customer':Customer.objects.all(),'msg':'massage successfully '}
+        return redirect('login')
+    params={'customer':Customer.objects.all(),'msg':'massage successfully '}
+    return render(request, 'app/customerregistration.html',params)
 
 def checkout(request):
  return render(request, 'app/checkout.html')
