@@ -15,7 +15,7 @@
                     <th>r_date</th>
                     <th>quantity</th>
                     <th  scope="col">delete </th>
-                    <th scope="col">update </th>
+                    
                  </tr>
               </thead>
   
@@ -31,13 +31,7 @@
                      </a>
                   </p>
                </td>
-               <td>
-                  <p class="table_cell">
-                     <a href="/update_recycle/{{vtwork.r_id}}">
-                        <span class="icon"><i class="bi-x-circle-fill">update</i></span>
-                     </a>
-                  </p>
-               </td>
+               
               </tr>
               {% endfor %}
               <a href="{% url 'recycling_add' %}"><button type="button" class="btn btn-outline-primary">Add</button></a>

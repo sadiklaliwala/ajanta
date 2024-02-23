@@ -17,7 +17,7 @@
                     <th>production_cost</th>
                     <th>production_date</th>
                     <th scope="col">delete </th>
-                    <th scope="col">update </th>
+                    
                  </tr>
                  {% for vtwork in production %}
                  <tr>
@@ -33,13 +33,7 @@
                         </a>
                      </p>
                   </td>
-                  <td>
-                     <p class="table_cell">
-                        <a href="/update_production/{{vtwork.production_id}}">
-                           <span class="icon"><i class="bi-x-circle-fill">update</i></span>
-                        </a>
-                     </p>
-                  </td>
+                  
                  </tr>
                  {% endfor %}
                  <a href="{% url 'production_add' %}"><button type="button" class="btn btn-outline-primary">Add</button></a>

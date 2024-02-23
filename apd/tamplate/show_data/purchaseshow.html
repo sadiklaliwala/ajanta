@@ -17,7 +17,7 @@
                     <th>Quantity</th>
                     <th>amount</th>
                     <th scope="col">delete </th>
-                    <th scope="col">Update </th>
+                    
                  </tr>
               </thead>
               {% for vtwork in vpurchase %}
@@ -34,13 +34,7 @@
                      </a>
                   </p>
                </td>
-                 <td>
-                  <p class="table_cell">
-                     <a href="/update_purchase/{{vtwork.purchase_id}}">
-                        <span class="icon"><i class="bi-x-circle-fill">Update</i></span>
-                     </a>
-                  </p>
-               </td>
+                 
               </tr>
   
               {% endfor %}

@@ -16,7 +16,7 @@
                     <th>raw_name</th>
                     <th>raw_quantity</th>
                     <th scope="col">delete </th>
-                    <th scope="col">Update </th>
+                    
                  </tr>
               </thead>
   
@@ -33,13 +33,7 @@
                      </a>
                   </p>
                </td>
-                 <td>
-                  <p class="table_cell">
-                     <a href="/update_rawmaterial/{{vtwork.raw_id}}">
-                        <span class="icon"><i class="bi-x-circle-fill">Update</i></span>
-                     </a>
-                  </p>
-               </td>
+                 
               </tr>
               {% endfor %}
               <a href="{% url 'rawmaterial_add' %}"><button type="button" class="btn btn-outline-primary">Add</button></a>

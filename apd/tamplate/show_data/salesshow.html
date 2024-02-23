@@ -17,7 +17,7 @@
                     <th>product</th>
                     <th>quantity</th>
                     <th scope="col">delete </th>
-                    <th scope="col">Update </th>
+                    
                  </tr>
               </thead>
   
@@ -34,13 +34,7 @@
                      </a>
                   </p>
                </td>
-                 <td>
-                  <p class="table_cell">
-                     <a href="/update_sales/{{vtwork.sales_id}}">
-                        <span class="icon"><i class="bi-x-circle-fill">Update</i></span>
-                     </a>
-                  </p>
-               </td>
+                 
               </tr>
               {% endfor %}
               <a href="{% url 'sales' %}"><button type="button" class="btn btn-outline-primary">Add</button></a>

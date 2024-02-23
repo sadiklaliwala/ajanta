@@ -18,7 +18,7 @@
                     <th>order_quantity</th>
                     <th>payment</th>
                     <th scope="col">delete </th>
-                    <th scope="col">update</th>
+                    
                  </tr>
                  {% for vtwork in order1 %}
                  <tr>
@@ -35,13 +35,7 @@
                         </a>
                      </p>
                   </td>
-                  <td>
-                     <p class="table_cell">
-                        <a href="/update_order/{{vtwork.order_id}}">
-                           <span class="icon"><i class="bi-x-circle-fill">update</i></span>
-                        </a>
-                     </p>
-                  </td>
+                  
                  </tr>
                  {% endfor %}
                  <a href=" /order_add "><button type="button" class="btn btn-outline-primary">Add</button></a>
