@@ -24,7 +24,6 @@ def product_detail(request,pk):
  return render(request, 'app/productdetail.html', params)
 
 def add_to_cart(request):
-    if request.method =='POST':
         
  return render(request, 'app/addtocart.html')
 
