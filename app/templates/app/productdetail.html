@@ -14,7 +14,14 @@
    Weight :-<p>{{product.product_weight}}</p> <br>
    Color :-<p>{{product.product_color}}</p> <br>
    <h4>Rs. 13999 <small class="fw-light text-decoration-line-through">15999</small></h4> <br>
-   <a href="{% url 'add-to-cart' %}" class="btn btn-primary shadow px-5 py-2">Add to Cart</a>
+   
+   <form action="/add-to-cart" class="d-inline" >
+    <input type="hidden" name="pro_id" value="{{product.product_id}}" id="prod_id">
+<button type="submit" class="btn btn-primary shadow px-5 py-2">Add to Cart</button>   
+</form>
+   
+   
+   <!-- <a href="{% url 'add-to-cart' %}" class="btn btn-primary shadow px-5 py-2">Add to Cart</a> -->
    <a href="{% url 'buy-now' %}" class="btn btn-danger shadow px-5 py-2 ms-4">Buy Now</a>
    <h5 class="mt-5">Available Offers</h5>
    <ul>

@@ -4,6 +4,9 @@ from django.contrib import messages
 from adminsite.models import Product ,Customer
 
 def home(request):
+#  customerid
+ n=request.session.get('cid')
+ user=Customer.objects.filter(customer_id=n).first()
  
  #get all products with Category id 1
  el=Product.objects.filter(category_id=1)
@@ -11,15 +14,18 @@ def home(request):
  pl=Product.objects.filter(category_id=3)
  bt=Product.objects.filter(category_id=5)
  fan=Product.objects.filter(category_id=6)
- params={'el':el,'sa':sa,'pl':pl,'bt':bt,'fan':fan}
+ params={'el':el,'sa':sa,'pl':pl,'bt':bt,'fan':fan,'user':user}
  return render(request, 'app/home.html' ,params)
 
 def product_detail(request,pk):
+    
  product=Product.objects.get(product_id=pk)
  params={'product':product}
  return render(request, 'app/productdetail.html', params)
 
 def add_to_cart(request):
+    if request.method =='POST':
+        
  return render(request, 'app/addtocart.html')
 
 def buy_now(request):
@@ -59,6 +65,7 @@ def login(request):
                 for data in data:
                     request.session['cid']=data.customer_id
                     return redirect('home')
+                    
                 else:
                     messages.info(request, 'Invalid Credentials')
                     return redirect('login')
@@ -69,7 +76,7 @@ def login(request):
             messages.info(request,'Invalid Email', extra_tags='info')
             # messages.success(request,'Success from login', extra_tags='success')
             return redirect('login')
- 
+    
  return render(request, 'app/login.html')
 
 def customerregistration(request):
