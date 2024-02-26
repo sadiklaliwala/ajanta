@@ -633,13 +633,18 @@ def admindasheboard(request ):
         pass
     else:
         return redirect('admin_login')
-    return render (request , "admindasheboard.html")
+    user_seassion=request.session.get('adminn')
+    admin_user=Admin.objects.filter(admin_name=user_seassion).first()
+    params={'admin_user':admin_user}
+    return render (request , "admin_panel/admin_deshboard.html",params)
 
 def adminbase(request ):
     if request.session.has_key('adminn'):
         pass
     else:
         return redirect('admin_login')
+    n=request.session.get('cid')
+    print(n)
     return render (request , "basepage.html")
 
 def adminshow(request):
@@ -679,6 +684,8 @@ def customershow(request):
         pass
     else:
         return redirect('admin_login')
+    user_seassion=request.session.get('adminn')
+    admin_user=Admin.objects.filter(admin_name=user_seassion).first()
     customer=Customer.objects.all()
     # if request.method == "GET":
     #     st = request.GET.get('search')
@@ -688,7 +695,7 @@ def customershow(request):
     #     # If the request is an AJAX request, return JSON response
     #     data = serialize('json', customer)
     #     return JsonResponse(data, safe=False)
-    params ={'customer':customer}
+    params ={'customer':customer ,'admin_user':admin_user}
     return render (request , "show_data/customershow.html",params)
 
 def deliveryshow(request):
@@ -932,6 +939,10 @@ def delete_work(request , work_id):
     return redirect("workshow")
 
 def adminpanel(request):
+    if request.session.has_key('adminn'):
+        pass
+    else:
+        return redirect('admin_login')
     adm=Admin.objects.all().count()
     bill=Billing.objects.all().count()
     cate=Category.objects.all().count()
@@ -950,10 +961,13 @@ def adminpanel(request):
     stoc=Stock.objects.all().count()
     supp=Supplier.objects.all().count()
     work =Work.objects.all().count()
+    user_seassion=request.session.get('adminn')
+    admin_user=Admin.objects.filter(admin_name=user_seassion).first()
+    # print(admin_user.admin_name)
     context={'admin_count':adm,'bill_count':bill,'category_count':cate,'customer_count':cust,'delivery_count':deliv,
     'employee_count':empl,'feedback_count':feed,'offer_count':off,'order_count':or1,'product_count':prd,
     'production_count':prod,'purchase_count':purc,'raw_count':raw,'recycle_count':recycle,
-    'sales_count':sal,'stock_count':stoc,'supplier_count':supp,'work_count':work}
+    'sales_count':sal,'stock_count':stoc,'supplier_count':supp,'work_count':work,'admin_user':admin_user}
     return render(request,"admin_panel/admin.html",context)
 
 def emppanel(request):

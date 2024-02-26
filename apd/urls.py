@@ -28,7 +28,7 @@ urlpatterns = [
 
     # path('',views.home,name='home'),
     # path('admin/', admin.site.urls),
-    #path('admindasheboard/', views.admindasheboard,name="admindasheboard"),
+    path('admindasheboard/', views.admindasheboard,name="admindasheboard"),
     path('admin/',views.admin_panel, name ='admin_panel'),
     # Login 
     path("admin_login",views.admin_login,name="admin_login"),
