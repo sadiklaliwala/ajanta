@@ -124,6 +124,16 @@ urlpatterns = [
       path('login',views.login,name="customerlogin"),
       path('registration',views.registration,name="customerregistration"),
 
+      path('prod_show123' ,views.prodc , name= "temp1"),
+      path('ord_show',views.ord, name='ord'),
+      path('sal_show', views.sa, name="sa"),
+      path('pur_show', views.pur, name="pur"),
+      path('sto_show', views.sto, name="sto"),
+      path('del_show', views.del1, name="del1"),
+      path('rwm_show', views.rwm, name="rwm"),
+      path('feed_show', views.feed, name="feed"),
+      path('recy_show', views.recy, name="recy"),
+
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
