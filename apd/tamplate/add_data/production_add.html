@@ -18,7 +18,7 @@
 <body>
 
     <div class="service-form-container">
-    <form method="POST" action="{% url 'production_add' %}">
+    <form method="POST" >
         <h2 class="form-title">Production form</h2>
         {% csrf_token %}
         <div class="input-box">
@@ -31,7 +31,7 @@
         </div>
     <div class="input-box">
         <label for="category">Enter Quantity :</label>
-        <input type="text" id="category" name="quantity"><br>
+        <input type="number" id="category" name="quantity"><br>
     </div>
 
         <div class="input-box">

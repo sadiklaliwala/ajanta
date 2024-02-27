@@ -19,7 +19,7 @@
 
     <h1>Add a New Product</h1>
     <div class="service-form-container">
-    <form method="POST" action="{% url 'sales' %}">
+    <form method="POST" >
         {% csrf_token %}
         <div class="input-box">
         <label for="category">Enter sales_date :</label>

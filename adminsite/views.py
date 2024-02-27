@@ -221,7 +221,7 @@ def category_add(request):
         vcategory_name=request.POST.get("categoryname")
         vcategory=Category(category_name=vcategory_name)
         vcategory.save()
-        return render (request , "add_data/category_add.html")
+        return redirect('categoryhow')
     return render (request , "add_data/category_add.html")
 
 def product_add(request):
@@ -263,7 +263,7 @@ def production_add(request):
         vproduction=Production(product=vproduct,quantity=vquantity,production_cost=vproduction_cost,production_date=vproduction_date)
         vproduction.save()
         params={'product_object':Product.objects.all(),'msg':'massage successfully '}
-        return render(request , "add_data/production_add.html")
+        return redirect("productionshow")
     params={'product_object':Product.objects.all()}
     return render (request ,'add_data/production_add.html',params)    
 
@@ -352,7 +352,7 @@ def sales_add(request):
         vsales=Sales(sales_date=vsales_date,product=fvproduct,quantity=vquantity)
         vsales.save()
         params={'product_object':Product.objects.all(),'msg':'massage successfully '}
-        return render(request , "add_data/sales.html")
+        return redirect ("salesshow")
     params={'product_object':Product.objects.all()}
     return render (request ,'add_data/sales.html',params)
 
@@ -397,14 +397,18 @@ def update_supplier(request,pk):
 
 def update_stock(request,pk):
     if request.method =="POST":
-        vproduct=request.POST.get("product")
-        fvproduct=Product.objects.get(product_id=vproduct)
-        vquantity=request.POST.get("quantity")
-        vmaterial_quantity=request.POST.get("materialquantity")
-        stock=Stock( stock_id=pk,product=fvproduct,quantity=vquantity,material_quantity=vmaterial_quantity)
-        stock.save()
+        s=Stock.objects.get(stock_id=pk)
+        vproduct=request.POST.get("product1")
+        s.product=Product.objects.get(product_id=vproduct)
+        s.quantity=request.POST.get("quantity")
+        s.r_id=request.POST.get("raw_id")
+        # s.r_id=RawMaterial.objects.get(raw_id=vraw_id)
+        s.material_quantity=request.POST.get("materialquantity")
+        # stock=Stock( stock_id=pk,product=fvproduct,quantity=vquantity,material_quantity=vmaterial_quantity)
+        # stock.save()
+        s.save()
         params={'rawMaterial_object':RawMaterial.objects.all(),'product_object':Product.objects.all()}
-        return render(request , "update_data/update_stock.html",params)
+        return redirect('stockshow')
     params={'rawMaterial_object':RawMaterial.objects.all(),'product_object':Product.objects.all(),"stock_object": Stock.objects.get(stock_id=pk)}
     return render (request ,"update_data/update_stock.html",params)
 
@@ -423,12 +427,16 @@ def update_sales(request,pk):
 
 def update_rawmaterial(request,pk):
     if request.method=="POST":
-        vsup=request.POST.get("supplier")
-        fvsup=Supplier.objects.get(sup_id=vsup)
-        vraw_name=request.POST.get("rawmaterialname")
-        vraw_quantity=request.POST.get("quantity")
-        rawmaterial=RawMaterial(raw_id=pk,sup=fvsup,raw_name=vraw_name,raw_quantity=vraw_quantity)
-        rawmaterial.save()
+        s=RawMaterial.objects.get(raw_id=pk)
+        vsup=request.POST.get("supplier")   
+        s.sup=Supplier.objects.get(sup_id=vsup)
+        s.raw_name=request.POST.get("rawmaterialname")
+        s.raw_quantity=request.POST.get("quantity1")
+        print(s.raw_quantity)
+        print(s.sup)
+        # rawmaterial=RawMaterial(raw_id=pk,sup=fvsup,raw_name=vraw_name,raw_quantity=vraw_quantity)
+        # rawmaterial.save()
+        s.save()
         return redirect("rawmaterialshow")
     params={'supplier_object': Supplier.objects.all,'rawmaterial_object':RawMaterial.objects.get(raw_id=pk)}
     return render(request , "update_data/update_rawmaterial.html",params)
@@ -436,13 +444,15 @@ def update_rawmaterial(request,pk):
 
 def update_purchase(request,pk):
     if request.method =="POST":
+        s=Purchase.objects.get(purchase_id=pk)
         supplier_id=request.POST.get('supplier')
-        vsupplier=Supplier.objects.get(sup_id=supplier_id)
-        material_name=request.POST.get('materialname')
-        vquantity=request.POST.get('quantity')
-        vamount=request.POST.get('amount')
-        vpur=Purchase(purchase_id=pk,sup=vsupplier,material=material_name,quantity=vquantity,amount=vamount)
-        vpur.save()
+        s.sup=Supplier.objects.get(sup_id=supplier_id)
+        s.material=request.POST.get('materialname')
+        s.quantity=request.POST.get('quantity')
+        s.amount=request.POST.get('amount')
+        # vpur=Purchase(purchase_id=pk,sup=vsupplier,material=material_name,quantity=vquantity,amount=vamount)
+        # vpur.save()
+        s.save()
         supplier_object=Supplier.objects.all()
         params={'suppliers':supplier_object ,'msg':'massage successfully '}
         return redirect("purchaseshow")
@@ -481,7 +491,7 @@ def update_employee(request,pk):
         s.qualification=request.POST["qualification"]
         s.save()
         params={'work_object':Work.objects.all(),'msg':'massage successfully '}
-        redirect("employeeshow")
+        return redirect("employeeshow")
     params={'work_object':Work.objects.all(),'employee_object':Employee.objects.get(emp_id=pk)}
     return render (request ,'update_data/update_employee.html',params)    
 
@@ -558,19 +568,21 @@ def update_recycle(request,pk):
 
 def update_product(request,pk):
     if request.method=="POST":
+        s=Product.objects.get(product_id=pk)
         category_id=request.POST.get("category")
-        vwork=Category.objects.get(category_id=category_id)
-        vname=request.POST.get("productname")
-        vmaterial=request.POST.get("material")
+        s.category=Category.objects.get(category_id=category_id)
+        s.product_name=request.POST.get("productname")
+        s.material=request.POST.get("material")
         vimage=request.FILES.get("image")
         if vimage:
             s.image=vimage
-        vprice=request.POST.get("productprice")
-        vweight=request.POST.get("productweight")
-        vquantity=request.POST.get("productquantity")
-        vcolor=request.POST.get("productcolor")
-        vroduct=Product(product_id=pk,category=vwork,product_name=vname,material=vmaterial,image=vimage,product_price=vprice,product_weight=vweight,product_quantity=vquantity,product_color=vcolor)
-        vroduct.save()
+        s.product_price=request.POST.get("productprice")
+        s.product_weight=request.POST.get("productweight")
+        s.product_quantity=request.POST.get("productquantity")
+        s.product_color=request.POST.get("productcolor")
+        # vroduct=Product(product_id=pk,category=vwork,product_name=vname,material=vmaterial,image=vimage,product_price=vprice,product_weight=vweight,product_quantity=vquantity,product_color=vcolor)
+        # vroduct.save()
+        s.save()
         return redirect ("productshow")
     params={'Category':Category.objects.all(),'product_object':Product.objects.get(product_id=pk)}
     return render (request , "update_data/update_product.html",params)
@@ -606,7 +618,7 @@ def update_order(request,pk):
     if request.method=="POST":
         customer_id=request.POST.get("customer")
         cust=Customer.objects.get(customer_id=customer_id)
-        odate=request.POST.get("order_date")
+        odate=request.POST.get("orderdate")
         product_id=request.POST.get("product")
         prod=Product.objects.get(product_id=product_id)
         quantity=request.POST.get("order_quantity")
@@ -710,20 +722,26 @@ def deliveryshow(request):
     return render (request , "show_data/deliveryshow.html",params)
 
 def employeeshow(request):
+    employee=Employee.objects.all()
+    if request.GET.get('search'):
+        # employee=
+        Order1.objects.filter(order_id__icontains=request.GET.get('search'))
     if request.session.has_key('adminn'):
         pass
     else:
         return redirect('admin_login')
-    employee=Employee.objects.all()
     params ={'employee':employee}
     return render (request , "show_data/employeeshow.html",params)
 
 def order1show(request):
+    order1=Order1.objects.all()
+    if request.GET.get('search'):
+        order1=Order1.objects.filter(order_id__icontains=request.GET.get('search'))
     if request.session.has_key('adminn'):
         pass
     else:
         return redirect('admin_login')
-    order1=Order1.objects.all()
+    
     params ={'order1':order1}
     return render (request , "show_data/ordershow.html",params)
 
@@ -768,11 +786,13 @@ def salesshow(request):
     return render (request , "show_data/salesshow.html",params)
 
 def suppliershow(request):
+    supplier=Supplier.objects.all()
+    if request.GET.get('search'):
+        supplier=Supplier.objects.filter(sup_name__icontains=request.GET.get('search'))
     if request.session.has_key('adminn'):
         pass
     else:
         return redirect('admin_login')
-    supplier=Supplier.objects.all()
     params ={'supplier':supplier}
     return render (request , "show_data/suppliershow.html",params)
 

@@ -21,7 +21,7 @@
         {% csrf_token %}
         <div class="input-box">
         <label for="category">Choose product :</label>
-        <select name="product">
+        <select name="product1">
             {% for i in product_object %}
             <option value="{{i.product_id}}">{{i.product_name}}</option>
             {% endfor %}
@@ -39,11 +39,14 @@
         <!--<label for="category">Enter Row_material :</label>
         <input type="number" id="category" name="rowmaterial"><br>-->
         <div class="input-box">
-        <label for="category">Choose Raw_material :</label>
-        <select name="product">
+            <label for="category">Enter raw :</label>
+        <input type="number" id="category" name="raw_id" value="{{stock_object.r_id}}"><br>
+        
+        <!-- <label for="category">Choose Raw_material :</label> -->
+        <!-- <select name="raw_id">
             {% for i in rawMaterial_object %}
             <option value="{{i.r_id}}">{{i.raw_name}}</option>
-            {% endfor %}
+            {% endfor %} -->
         </select><br>
         </div>
         <div class="input-box">
