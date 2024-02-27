@@ -5,8 +5,8 @@ from adminsite.models import Product ,Customer
 
 def home(request):
 #  customerid
- n=request.session.get('cid')
- user=Customer.objects.filter(customer_id=n).first()
+ cid=request.session.get('cid')
+ user=Customer.objects.filter(customer_id=cid).first()
  
  #get all products with Category id 1
  el=Product.objects.filter(category_id=1)
