@@ -2,3 +2,5 @@ lorem43
 ,mfvdkfndznfv
 bgkbn fkgv b'b 
 gfbnk'
+
+image = models.ImageField(upload_to="productimg/",default=" ")

@@ -83,7 +83,7 @@ DATABASES = {
         'NAME': 'apd',
         'USER': 'root',
         'HOST': 'localhost',
-        'PORT': 4306,
+        'PORT': 3306,
        
        
         'PASSWORD':''

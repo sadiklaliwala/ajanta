@@ -1,5 +1,4 @@
-
-# This is an auto-generated Django model module.
+# This is an auto-generated Django model module.                                                                                                           
 # You'll have to do the following manually to clean this up:
 #   * Rearrange models' order
 #   * Make sure each model has one field with primary_key=True
@@ -10,7 +9,7 @@ from django.db import models
 
 
 class Admin(models.Model):
-    admin_id = models.IntegerField(db_column='Admin_id', primary_key=True)  # Field name made lowercase.
+    admin_id = models.AutoField(db_column='Admin_id', primary_key=True)  # Field name made lowercase.
     admin_name = models.CharField(db_column='Admin_name', max_length=20)  # Field name made lowercase.
     password = models.CharField(max_length=10)
 
@@ -87,23 +86,22 @@ class AuthUserUserPermissions(models.Model):
         db_table = 'auth_user_user_permissions'
         unique_together = (('user', 'permission'),)
 
-# pass
+
 class Billing(models.Model):
-    bill_id = models.IntegerField(db_column='Bill_id', primary_key=True)  # Field name made lowercase.
+    bill_id = models.AutoField(db_column='Bill_id', primary_key=True)  # Field name made lowercase.
     customer = models.ForeignKey('Customer', models.DO_NOTHING, db_column='Customer_id', blank=True, null=True)  # Field name made lowercase.
     order = models.ForeignKey('Order1', models.DO_NOTHING, db_column='Order_id', blank=True, null=True)  # Field name made lowercase.
     shipping_charges = models.FloatField()
     order_date = models.DateField(db_column='Order_date')  # Field name made lowercase.
     total = models.FloatField(db_column='Total')  # Field name made lowercase.
-    
+
     class Meta:
         managed = False
         db_table = 'billing'
-    
 
-# pass1
+
 class Category(models.Model):
-    category_id = models.IntegerField(db_column='Category_id', primary_key=True)  # Field name made lowercase.
+    category_id = models.AutoField(db_column='Category_id', primary_key=True)  # Field name made lowercase.
     category_name = models.CharField(db_column='Category_name', max_length=15)  # Field name made lowercase.
 
     class Meta:
@@ -112,10 +110,10 @@ class Category(models.Model):
 
 
 class Customer(models.Model):
-    customer_id = models.IntegerField(db_column='Customer_id', primary_key=True)  # Field name made lowercase.
+    customer_id = models.AutoField(db_column='Customer_id', primary_key=True)  # Field name made lowercase.
     customer_fname = models.CharField(db_column='Customer_fname', max_length=15)  # Field name made lowercase.
     customer_lname = models.CharField(db_column='Customer_lname', max_length=15)  # Field name made lowercase.
-    contact_number = models.IntegerField(db_column='Contact_number')
+    contact_number = models.IntegerField()
     customer_gender = models.CharField(db_column='Customer_gender', max_length=6)  # Field name made lowercase.
     customer_dob = models.DateField(db_column='Customer_dob')  # Field name made lowercase.
     customer_email = models.CharField(db_column='Customer_email', max_length=30)  # Field name made lowercase.
@@ -127,9 +125,9 @@ class Customer(models.Model):
         managed = False
         db_table = 'customer'
 
-# pass2
+
 class Delivery(models.Model):
-    d_id = models.IntegerField(db_column='D_id', primary_key=True)  # Field name made lowercase.
+    d_id = models.AutoField(db_column='D_id', primary_key=True)  # Field name made lowercase.
     customer = models.ForeignKey(Customer, models.DO_NOTHING, db_column='Customer_id', blank=True, null=True)  # Field name made lowercase.
     address = models.CharField(db_column='Address', max_length=100)  # Field name made lowercase.
     product = models.ForeignKey('Product', models.DO_NOTHING, db_column='Product_id', blank=True, null=True)  # Field name made lowercase.
@@ -188,7 +186,7 @@ class DjangoSession(models.Model):
 
 
 class Employee(models.Model):
-    emp_id = models.IntegerField(db_column='Emp_id', primary_key=True)  # Field name made lowercase.
+    emp_id = models.AutoField(db_column='Emp_id', primary_key=True)  # Field name made lowercase.
     work = models.ForeignKey('Work', models.DO_NOTHING, db_column='Work_id', blank=True, null=True)  # Field name made lowercase.
     emp_name = models.CharField(db_column='Emp_name', max_length=30)  # Field name made lowercase.
     emp_dob = models.DateField(db_column='Emp_dob')  # Field name made lowercase.
@@ -198,28 +196,32 @@ class Employee(models.Model):
     emp_joindate = models.DateField(db_column='Emp_joindate')  # Field name made lowercase.
     emp_leavedate = models.DateField(db_column='Emp_leavedate', blank=True, null=True)  # Field name made lowercase.
     qualification = models.CharField(db_column='Qualification', max_length=30, blank=True, null=True)  # Field name made lowercase.
+    emp_un = models.CharField(max_length=30, blank=True, null=True)
+    emp_password = models.CharField(max_length=10, blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'employee'
 
-# pass3
+
 class Feedback(models.Model):
-    f_id = models.IntegerField(db_column='F_id', primary_key=True)  # Field name made lowercase.
+    f_id = models.AutoField(db_column='F_id', primary_key=True)  # Field name made lowercase.
     f_date = models.DateField(db_column='F_date', blank=True, null=True)  # Field name made lowercase.
     feedback = models.CharField(db_column='Feedback', max_length=100, blank=True, null=True)  # Field name made lowercase.
     customer = models.ForeignKey(Customer, models.DO_NOTHING, db_column='Customer_id', blank=True, null=True)  # Field name made lowercase.
+    product = models.ForeignKey('Product', models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'feedback'
 
-# pass4
+
 class Offer(models.Model):
-    offer_id   = models.IntegerField(db_column='Offer_id', primary_key=True)  # Field name made lowercase.
+    offer_id = models.AutoField(db_column='Offer_id', primary_key=True)  # Field name made lowercase.
     start_date = models.DateField(db_column='Start_date')  # Field name made lowercase.
-    end_date   = models.DateField(db_column='End_date')  # Field name made lowercase.
+    end_date = models.DateField(db_column='End_date')  # Field name made lowercase.
     description = models.CharField(db_column='Description', max_length=100)  # Field name made lowercase.
+    product = models.ForeignKey('Product', models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
         managed = False
@@ -227,12 +229,12 @@ class Offer(models.Model):
 
 
 class Order1(models.Model):
-    order_id= models.IntegerField(db_column='Order_id', primary_key=True)  # Field name made lowercase.
-    customer= models.ForeignKey(Customer, models.DO_NOTHING, db_column='Customer_id', blank=True, null=True)  # Field name made lowercase.
-    order_date= models.DateField(db_column='Order_date')  # Field name made lowercase.
-    product= models.ForeignKey('Product', models.DO_NOTHING, db_column='Product_id', blank=True, null=True)  # Field name mductade lowercase.
+    order_id = models.AutoField(db_column='Order_id', primary_key=True)  # Field name made lowercase.
+    customer = models.ForeignKey(Customer, models.DO_NOTHING, db_column='Customer_id', blank=True, null=True)  # Field name made lowercase.
+    order_date = models.DateField(db_column='Order_date')  # Field name made lowercase.
+    product = models.ForeignKey('Product', models.DO_NOTHING, db_column='Product_id', blank=True, null=True)  # Field name made lowercase.
     order_quantity = models.IntegerField(db_column='Order_quantity')  # Field name made lowercase.
-    payment= models.CharField(max_length=10)
+    payment = models.CharField(max_length=10)
 
     class Meta:
         managed = False
@@ -240,11 +242,11 @@ class Order1(models.Model):
 
 
 class Product(models.Model):
-    product_id = models.IntegerField(db_column='Product_id', primary_key=True)  # Field name made lowercase.
+    product_id = models.AutoField(db_column='Product_id', primary_key=True)  # Field name made lowercase.
     category = models.ForeignKey(Category, models.DO_NOTHING, db_column='Category_id', blank=True, null=True)  # Field name made lowercase.
     product_name = models.CharField(db_column='Product_name', max_length=30)  # Field name made lowercase.
     material = models.CharField(max_length=20)
-    image = models.ImageField( upload_to="productimg")
+    image = models.ImageField(upload_to="productimg/",default=" ")
     product_price = models.IntegerField(db_column='Product_price')  # Field name made lowercase.
     product_weight = models.CharField(db_column='Product_weight', max_length=10)  # Field name made lowercase.
     product_quantity = models.CharField(db_column='Product_quantity', max_length=10)  # Field name made lowercase.
@@ -256,7 +258,7 @@ class Product(models.Model):
 
 
 class Production(models.Model):
-    production_id = models.IntegerField(db_column='Production_id', primary_key=True)  # Field name made lowercase.
+    production_id = models.AutoField(db_column='Production_id', primary_key=True)  # Field name made lowercase.
     product = models.ForeignKey(Product, models.DO_NOTHING, db_column='Product_id', blank=True, null=True)  # Field name made lowercase.
     quantity = models.IntegerField(db_column='Quantity')  # Field name made lowercase.
     production_cost = models.FloatField(db_column='Production_cost')  # Field name made lowercase.
@@ -268,7 +270,7 @@ class Production(models.Model):
 
 
 class Purchase(models.Model):
-    purchase_id = models.IntegerField(primary_key=True)
+    purchase_id = models.AutoField(primary_key=True)
     sup = models.ForeignKey('Supplier', models.DO_NOTHING, blank=True, null=True)
     material = models.CharField(max_length=30)
     quantity = models.IntegerField()
@@ -278,9 +280,9 @@ class Purchase(models.Model):
         managed = False
         db_table = 'purchase'
 
-# pass5
+
 class RawMaterial(models.Model):
-    raw_id = models.IntegerField(db_column='Raw_id', primary_key=True)  # Field name made lowercase.
+    raw_id = models.AutoField(db_column='Raw_id', primary_key=True)  # Field name made lowercase.
     sup = models.ForeignKey('Supplier', models.DO_NOTHING, db_column='Sup_id', blank=True, null=True)  # Field name made lowercase.
     raw_name = models.CharField(db_column='Raw_name', max_length=20)  # Field name made lowercase.
     raw_quantity = models.CharField(db_column='Raw_quantity', max_length=20)  # Field name made lowercase.
@@ -289,9 +291,9 @@ class RawMaterial(models.Model):
         managed = False
         db_table = 'raw_material'
 
-# pass6
+
 class Recycling(models.Model):
-    r_id = models.IntegerField(db_column='R_id', primary_key=True)  # Field name made lowercase.
+    r_id = models.AutoField(db_column='R_id', primary_key=True)  # Field name made lowercase.
     r_date = models.DateField(db_column='R_date')  # Field name made lowercase.
     quantity = models.CharField(db_column='Quantity', max_length=10)  # Field name made lowercase.
 
@@ -299,9 +301,9 @@ class Recycling(models.Model):
         managed = False
         db_table = 'recycling'
 
-# pass7
+
 class Sales(models.Model):
-    sales_id = models.IntegerField(db_column='Sales_id', primary_key=True)  # Field name made lowercase.
+    sales_id = models.AutoField(db_column='Sales_id', primary_key=True)  # Field name made lowercase.
     sales_date = models.DateField(db_column='Sales_date')  # Field name made lowercase.
     product = models.ForeignKey(Product, models.DO_NOTHING, db_column='Product_id', blank=True, null=True)  # Field name made lowercase.
     quantity = models.IntegerField(db_column='Quantity')  # Field name made lowercase.
@@ -310,9 +312,9 @@ class Sales(models.Model):
         managed = False
         db_table = 'sales'
 
-# pass8
+
 class Stock(models.Model):
-    stock_id = models.IntegerField(db_column='Stock_id', primary_key=True)  # Field name made lowercase.
+    stock_id = models.AutoField(db_column='Stock_id', primary_key=True)  # Field name made lowercase.
     product = models.ForeignKey(Product, models.DO_NOTHING, db_column='Product_id', blank=True, null=True)  # Field name made lowercase.
     r_id = models.IntegerField(db_column='R_id', blank=True, null=True)  # Field name made lowercase.
     quantity = models.IntegerField(db_column='Quantity')  # Field name made lowercase.
@@ -324,7 +326,7 @@ class Stock(models.Model):
 
 
 class Supplier(models.Model):
-    sup_id = models.IntegerField(db_column='Sup_id', primary_key=True)  # Field name made lowercase.
+    sup_id = models.AutoField(db_column='Sup_id', primary_key=True)  # Field name made lowercase.
     sup_name = models.CharField(db_column='Sup_name', max_length=30)  # Field name made lowercase.
     contact_number = models.IntegerField(db_column='Contact_number')  # Field name made lowercase.
     sup_address = models.CharField(db_column='Sup_address', max_length=100)  # Field name made lowercase.
@@ -336,7 +338,7 @@ class Supplier(models.Model):
 
 
 class Work(models.Model):
-    work_id = models.IntegerField(db_column='Work_id', primary_key=True)  # Field name made lowercase.
+    work_id = models.AutoField(db_column='Work_id', primary_key=True)  # Field name made lowercase.
     work_name = models.CharField(db_column='Work_name', max_length=20)  # Field name made lowercase.
 
     class Meta:
