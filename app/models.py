@@ -246,7 +246,7 @@ class Product(models.Model):
     category = models.ForeignKey(Category, models.DO_NOTHING, db_column='Category_id', blank=True, null=True)  # Field name made lowercase.
     product_name = models.CharField(db_column='Product_name', max_length=30)  # Field name made lowercase.
     material = models.CharField(max_length=20)
-    image = models.ImageField( upload_to="productimg")
+    image = models.ImageField(upload_to="productimg/",default=" ")
     product_price = models.IntegerField(db_column='Product_price')  # Field name made lowercase.
     product_weight = models.CharField(db_column='Product_weight', max_length=10)  # Field name made lowercase.
     product_quantity = models.CharField(db_column='Product_quantity', max_length=10)  # Field name made lowercase.

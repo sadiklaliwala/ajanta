@@ -230,7 +230,7 @@ def product_add(request):
         vcategory=Category.objects.get(category_id=fvcategory)
         vproduct_name=request.POST.get("productname")
         vmaterial=request.POST.get("material")
-        vimage=request.POST.get("image") 
+        vimage=request.FILES.get("image") 
         vproduct_price=request.POST.get("productprice")
         vproduct_weight=request.POST.get("productweight")
         vproduct_quantity=request.POST.get("productquantity")
@@ -562,7 +562,9 @@ def update_product(request,pk):
         vwork=Category.objects.get(category_id=category_id)
         vname=request.POST.get("productname")
         vmaterial=request.POST.get("material")
-        vimage=request.POST.get("image")
+        vimage=request.FILES.get("image")
+        if vimage:
+            s.image=vimage
         vprice=request.POST.get("productprice")
         vweight=request.POST.get("productweight")
         vquantity=request.POST.get("productquantity")
@@ -726,12 +728,14 @@ def order1show(request):
     return render (request , "show_data/ordershow.html",params)
 
 def productshow(request):
+    ss=Product.objects.all()
+    if request.GET.get('search'):
+        ss=Product.objects.filter(product_name__icontains=request.GET.get('search'))
     if request.session.has_key('adminn'):
         pass
     else:
         return redirect('admin_login')
-    product=Product.objects.all()
-    params ={'product':product}
+    params ={'product':ss}
     return render (request , "show_data/productshow.html",params)
 
 def productionshow(request):

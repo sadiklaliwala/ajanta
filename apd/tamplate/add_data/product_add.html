@@ -18,7 +18,7 @@
 <body>
 
     <div class="service-form-container">
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
         <h2 class="form-title">Product form</h2>
         {% csrf_token %}
         <div class="input-box">
@@ -40,7 +40,7 @@
     
         <div class="input-box">
         <label for="category">Add image :</label>
-        <input type="file" accept="image/*" id="category" name="image"><br>
+        <input type="file" id="category" name="image"><br>
         </div>
 
         <div class="input-box">
