@@ -49,8 +49,8 @@ from django.core.serializers import serialize
 
 
 # navebar
-def admin_panel(request):
-  return render (request , "admin_panel/admin.html" )
+# def admin_panel(request):
+#   return render (request , "admin_panel/admin.html" )
 
 # admin_login
 def admin_login(request):
@@ -63,7 +63,7 @@ def admin_login(request):
             for ad in admins:
                 i=i+1
                 request.session['adminn']=ad.admin_name
-                return redirect('admin_panel')
+                return redirect('adminpanel')
         else:
             messages.info(request,'Invalid Credentials', extra_tags='info')
             return redirect('admin_login')
@@ -603,11 +603,13 @@ def update_delivery(request,pk):
         customer_id=request.POST.get("customer")
         s.customer=Customer.objects.get(customer_id=customer_id)
         s.address=request.POST.get("address")
-        product_id=request.POST.get("product")
-        s.product=Product.objects.get(product_id=product_id)
+        vproduct_id=request.POST.get("product")
+        vp=Product.objects.get(product_id=vproduct_id)
+        s.product=vp
         s.d_date=request.POST.get("d_date")
         emp_id=request.POST.get("employee")
-        s.emp=Employee.objects.get(emp_id=emp_id)
+        ve=Employee.objects.get(emp_id=emp_id)
+        s.emp=ve
         s.quantity=request.POST.get("quantity")
         s.save()
         return redirect("deliveryshow")
