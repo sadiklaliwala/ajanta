@@ -69,6 +69,7 @@ def admin_login(request):
             return redirect('admin_login')
     return render(request,"admin_panel/admin_login.html")
 def admin_logout(request):
+    # request.session.clear()
     logout(request)
     request.session.flush()
     request.session['adminn'] = None
@@ -1068,12 +1069,6 @@ def del1(request):
     # return render(request,'delete.html',{'Enrolled':ans})
 
     # return render (request , "delete.html" ,{'ans' : ans})
- 
-
-
-
-
-
 
 # add this in your html file
 #      <p class ="table_cell">
