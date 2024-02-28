@@ -18,23 +18,23 @@
 <body>
 
     <div class="service-form-container">
-    <form method="POST" action="{% url 'recycling_add' %}">
-        <h2 class="form-title">Recycling form</h2>
-        {% csrf_token %}
-        <div class="input-box">
-        <label for="category">Enter Recycling_date:</label>
-        <input type="date" id="category" name="recyclingdate"><br>
-        </div>
-        <div class="input-box">
-        <label for="category">Enter Quantity :</label>
-        <input type="number" id="category" name="quantity"><br>
-        </div>
+        <form method="POST" action="{% url 'recycling_add' %}">
+            <h2 class="form-title">Recycling form</h2>
+            {% csrf_token %}
+            <div class="input-box">
+                <label for="category">Enter Recycling_date:</label>
+                <input type="date" id="category" name="recyclingdate"><br>
+            </div>
+            <div class="input-box">
+                <label for="category">Enter Quantity :</label>
+                <input type="text" id="category" name="quantity"><br>
+            </div>
 
-        
-        <div class="button-container">
-            <button type="submit" name="Submit">Submit</button>
-        </div>
-    </form>
+
+            <div class="button-container">
+                <button type="submit" name="Submit">Submit</button>
+            </div>
+        </form>
     </div>
     {% if msg %}
     {{msg}}

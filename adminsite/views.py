@@ -165,6 +165,7 @@ def delivery_add(request):
         vquantity =request.POST.get("quantity")
         vdelivery=Delivery(customer=fvcustomer,address=vaddress,product=fvproduct,d_date=vd_date,emp=fvemp,quantity=vquantity)
         vdelivery.save()
+        return redirect('del1')
     params={'customer':Customer.objects.all(),"employee":Employee.objects.all(),'product':Product.objects.all()}
     return render (request , "add_data/delivery_add.html",params)
 
@@ -179,6 +180,7 @@ def purchase_add(request):
         vpur.save()
         supplier_object=Supplier.objects.all()
         params={'suppliers':supplier_object ,'msg':'massage successfully '}
+        return redirect('pur')
         # return render (request , 'purchaseform.html',params)
         # from here all supplier name are coming 
     params={'suppliers':Supplier.objects.all()}
@@ -251,7 +253,7 @@ def recycling_add(request):
         vquantity=request.POST.get("quantity")
         recycling=Recycling(r_date=vr_date,quantity=vquantity)
         recycling.save()
-        return render(request , "add_data/recycling_add.html")  
+        return redirect('recy')  
     return render(request , "add_data/recycling_add.html")  
 
 def production_add(request):
@@ -295,7 +297,7 @@ def rawmaterial_add(request):
         vraw_quantity=request.POST.get("quantity")
         rawmaterial=RawMaterial(sup=fvsup,raw_name=vraw_name,raw_quantity=vraw_quantity)
         rawmaterial.save()
-        return render(request , "add_data/rawmaterial_add.html")
+        return redirect('rwm')
     params={'supplier_object': Supplier.objects.all}
     return render(request , "add_data/rawmaterial_add.html",params)
 
@@ -313,7 +315,7 @@ def order_add(request):
         customer_object=Customer.objects.all()
         product_object=Product.objects.all()
         params={'customer_object':Customer.objects.all(),'product_object':Product.objects.all(),'msg':'massage successfully '}
-        return redirect("ordershow")
+        return redirect("ord")
         # return render (request , 'purchaseform.html',params)
         # from here all supplier name are coming 
     params={'customer_object':Customer.objects.all(),'product_object':Product.objects.all()}
@@ -353,7 +355,7 @@ def sales_add(request):
         vsales=Sales(sales_date=vsales_date,product=fvproduct,quantity=vquantity)
         vsales.save()
         params={'product_object':Product.objects.all(),'msg':'massage successfully '}
-        return redirect ("salesshow")
+        return redirect ("sa")
     params={'product_object':Product.objects.all()}
     return render (request ,'add_data/sales.html',params)
 
@@ -369,7 +371,7 @@ def stock_add(request):
         stock.save()
         # return redirect("stockshow")
         params={'rawMaterial_object':RawMaterial.objects.all(),'product_object':Product.objects.all()}
-        return render(request , "add_data/stock.html",params)
+        return redirect('sto')
     params={'rawmaterial_object':RawMaterial.objects.all(),'product_object':Product.objects.all()}
     return render (request ,'add_data/stock.html',params)
 #update
@@ -409,7 +411,7 @@ def update_stock(request,pk):
         # stock.save()
         s.save()
         params={'rawMaterial_object':RawMaterial.objects.all(),'product_object':Product.objects.all()}
-        return redirect('stockshow')
+        return redirect('sto')
     params={'rawMaterial_object':RawMaterial.objects.all(),'product_object':Product.objects.all(),"stock_object": Stock.objects.get(stock_id=pk)}
     return render (request ,"update_data/update_stock.html",params)
 
@@ -422,7 +424,7 @@ def update_sales(request,pk):
         vsales=Sales(sales_id=pk, sales_date=vsales_date,product=fvproduct,quantity=vquantity)
         vsales.save()
         params={'product_object':Product.objects.all(),'msg':'massage successfully '}
-        return redirect("salesshow")
+        return redirect("sa")
     params={'product_object':Product.objects.all(),'sales_object':Sales.objects.get(sales_id=pk)}
     return render (request ,'update_data/update_sales.html',params)
 
@@ -438,7 +440,7 @@ def update_rawmaterial(request,pk):
         # rawmaterial=RawMaterial(raw_id=pk,sup=fvsup,raw_name=vraw_name,raw_quantity=vraw_quantity)
         # rawmaterial.save()
         s.save()
-        return redirect("rawmaterialshow")
+        return redirect('rwm')
     params={'supplier_object': Supplier.objects.all,'rawmaterial_object':RawMaterial.objects.get(raw_id=pk)}
     return render(request , "update_data/update_rawmaterial.html",params)
 
@@ -456,7 +458,7 @@ def update_purchase(request,pk):
         s.save()
         supplier_object=Supplier.objects.all()
         params={'suppliers':supplier_object ,'msg':'massage successfully '}
-        return redirect("purchaseshow")
+        return redirect("pur")
     params={'suppliers':Supplier.objects.all(),'purchase_object':Purchase.objects.get(purchase_id=pk)}
     return render (request ,'update_data/update_purchase.html',params)
 
@@ -563,7 +565,7 @@ def update_recycle(request,pk):
         rquan=request.POST.get("quantity")
         recycle=Recycling(r_id=pk,r_date=rdate,quantity=rquan)
         recycle.save()
-        return redirect ("categoryhow")
+        return redirect ("recy")
     params={'recycling_object':Recycling.objects.get(r_id=pk)}
     return render (request , "update_data/update_recycle.html",params)
 
@@ -613,7 +615,7 @@ def update_delivery(request,pk):
         s.emp=ve
         s.quantity=request.POST.get("quantity")
         s.save()
-        return redirect("deliveryshow")
+        return redirect("del1")
     params={'customer':Customer.objects.all(),'product':Product.objects.all(),'employee':Employee.objects.all(),'delivery_object':Delivery.objects.get(d_id=pk)}
     return render (request , "update_data/update_delivery.html",params)
 
@@ -628,7 +630,7 @@ def update_order(request,pk):
         payment=request.POST.get("payment")
         order=Order1(order_id=pk,customer=cust,order_date=odate,product=prod,order_quantity=quantity,payment=payment)
         order.save()
-        return redirect("ordershow")
+        return redirect("ord")
     params={'customer_object':Customer.objects.all(),'product_object':Product.objects.all(),'order_object':Order1.objects.get(order_id=pk)}
     return render (request , "update_data/update_order.html",params)
 
@@ -641,7 +643,7 @@ def update_production(request,pk):
         date=request.POST.get("production_date")
         production=Production(production_id=pk,product=prod,quantity=pquantity,production_cost=cost,production_date=date)
         production.save()
-        return redirect("productionshow")
+        return redirect("productionshoh")
     params={'product_object':Product.objects.all(),'production_object':Production.objects.get(production_id=pk)}
     return render (request , "update_data/update_production.html",params)
 
@@ -885,7 +887,7 @@ def delete_delivery(request , d_id):
     deletestaff=Delivery.objects.get(d_id=d_id)
     deletestaff.delete()
     ans=Admin.objects.all()
-    return redirect("deliveryshow")
+    return redirect("del1")
 
 def delete_employee(request , emp_id):
     deletestaff=Employee.objects.get(emp_id=emp_id)
@@ -909,7 +911,7 @@ def delete_order(request , order_id):
     deletestaff=Order1.objects.get(order_id=order_id)
     deletestaff.delete()
     ans=Admin.objects.all()
-    return redirect("ordershow")
+    return redirect("ord")
 
 def delete_production(request , production_id):
     deletestaff=Production.objects.get(production_id=production_id)
@@ -927,25 +929,25 @@ def delete_purchase(request , purchase_id):
     deletestaff=Purchase.objects.get(purchase_id=purchase_id)
     deletestaff.delete()
     ans=Admin.objects.all()
-    return redirect("purchaseshow")
+    return redirect("pur")
 
 def delete_rawmaterial(request , raw_id):
     deletestaff=RawMaterial.objects.get(raw_id=raw_id)
     deletestaff.delete()
     ans=Admin.objects.all()
-    return redirect("rawmaterialshow")
+    return redirect('rwm')
 
 def delete_recycle(request , r_id):
     deletestaff=Recycling.objects.get(r_id=r_id)
     deletestaff.delete()
     ans=Admin.objects.all()
-    return redirect("recyclingshow")
+    return redirect("recy")
 
 def delete_sale(request , sales_id):
     deletestaff=Sales.objects.get(sales_id=sales_id)
     deletestaff.delete()
     ans=Admin.objects.all()
-    return redirect("salesshow")
+    return redirect("sa")
 
 def delete_stock(request , stock_id):
     deletestaff=Stock.objects.get(stock_id=stock_id)
